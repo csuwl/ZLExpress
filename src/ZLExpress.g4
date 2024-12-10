@@ -23,8 +23,8 @@ grammar ZLExpress;
 }
 
 
-exprList:
- (expression ';')*
+exprList
+:(expression ';')*
 ;
 
 
@@ -45,10 +45,10 @@ groupExpression
 
 
 assignExpression
-  : IDENTIFIER ASSIGN constant                   # AssigExpression
- |IDENTIFIER ASSIGN booleanExpression            # AssigExpression
- |IDENTIFIER ASSIGN computeExpression            # AssigExpression
- |IDENTIFIER ASSIGN computeGroupExpression       # AssigExpression
+  : IDENTIFIER ASSIGN constant
+ |IDENTIFIER ASSIGN booleanExpression
+ |IDENTIFIER ASSIGN computeExpression
+ |IDENTIFIER ASSIGN computeGroupExpression
  ;
 
 computeGroupExpression
@@ -81,8 +81,8 @@ constantArray
     : LEFT_SQUARE_BRACKETS constant (COMMA constant)* RIGHT_SQUARE_BRACKETS
     ;
 
-compare:
-    EQUALS | GT | GE | LT | LE | NE;
+compare
+:    EQUALS | GT | GE | LT | LE | NE;
 
 identifier
     : IDENTIFIER DOT IDENTIFIER

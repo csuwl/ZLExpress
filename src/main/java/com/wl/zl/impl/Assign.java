@@ -1,12 +1,10 @@
 package com.wl.zl.impl;
 
 
-import com.wl.zl.ZLExpressParser;
+import com.wl.g4.ZLExpressParser;
 import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.Map;
-import java.util.Objects;
 
 /**
  * 赋值
@@ -15,13 +13,16 @@ public class Assign implements ICustomVisitor<Object> {
 
     @Override
     public Class<? extends ParserRuleContext> getProcessType() {
-        return ZLExpressParser.AssigExpressionContext.class;
+        return ZLExpressParser.AssignExpressionContext.class;
     }
 
     @Override
     public Object visit(ParserRuleContext ctx, VisitProcess<Object> visitProcess) {
         ZLExpressParser.ExpressionContext parent = (ZLExpressParser.ExpressionContext) ctx.getParent();
-        Map<String, Object> map = parent.getMap();
+        Map<Object, Object> map = parent.context;
+        if(null==map || map.isEmpty()){
+
+        }
         Object label = visitProcess.visit(ctx.getChild(0));
         Object value = visitProcess.visit(ctx.getChild(2));
 

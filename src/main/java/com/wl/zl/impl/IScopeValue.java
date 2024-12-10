@@ -5,8 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 
 public interface IScopeValue {
-    Map<String,Object> map= new HashMap<>();
-    default Map<String, Object> getMap(){
-        return map;
+    Map<String,Object> context= new HashMap<>();
+    default Map<String, Object> getContext(){
+        return context;
     }
 }

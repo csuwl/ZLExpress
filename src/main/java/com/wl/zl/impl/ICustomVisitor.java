@@ -7,4 +7,9 @@ public interface ICustomVisitor<T> {
     public Class<? extends ParserRuleContext> getProcessType();
 
     T visit(ParserRuleContext ctx, VisitProcess<T> tVisitProcess);
+
+    default Object resolveContext(ParserRuleContext ctx){
+
+        return null;
+    };
 }
