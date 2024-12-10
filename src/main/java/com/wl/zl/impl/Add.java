@@ -1,30 +1,32 @@
 package com.wl.zl.impl;
 
-import com.wl.zl.ZLExpressBaseListener;
-import com.wl.zl.ZLExpressBaseVisitor;
-import com.wl.zl.ZLExpressLexer;
-import com.wl.zl.ZLExpressParser;
+import com.wl.zl.*;
 import org.antlr.v4.runtime.CommonToken;
-import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public  class  Add<T> extends ZLExpressBaseVisitor<T> {
+public class Add<T> implements ICustomVisitor<T> {
 
     @Override
-    public T visitPlusExpression(ZLExpressParser.PlusExpressionContext ctx) {
+    public Class<? extends ParserRuleContext> getProcessType() {
+        return ZLExpressParser.PlusExpressionContext.class;
+    }
+
+    @Override
+    public T visit(ParserRuleContext ctx, VisitProcess<T> tVisitProcess) {
         ParseTree one = ctx.getChild(0);
         CommonToken payloadOne = (CommonToken) one.getPayload();
         System.out.println(payloadOne.getType());
-        if(ZLExpressLexer.IDENTIFIER==payloadOne.getType()){
+        if (ZLExpressLexer.IDENTIFIER == payloadOne.getType()) {
+            ParserRuleContext parent = ctx.getParent();
             System.out.println("从上下文获取");
         }
 
-        ParseTree operator = ctx.getChild(1);
         ParseTree two = ctx.getChild(2);
 
         String text = one.getText();
         System.out.println(ctx);
 
-        return super.visitPlusExpression(ctx);
+        return null;
     }
 }

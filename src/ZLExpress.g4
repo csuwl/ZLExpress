@@ -22,24 +22,50 @@ grammar ZLExpress;
 // ############################################################
 }
 
-expression
-: (booleanExpression ';')*
-| (assignExpression ';')*
-| (computeExpression ';')*
+
+exprList:
+ (expression ';')*
 ;
+
+
+expression
+: booleanExpression
+| assignExpression
+| computeExpression
+| groupExpression
+;
+
+groupExpression
+:(LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS computeGroupExpression RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS groupExpression RIGHT_PARENTHESIS )
+|(LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS )
+|(LEFT_PARENTHESIS assignExpression RIGHT_PARENTHESIS )
+;
+
 
 assignExpression
   : IDENTIFIER ASSIGN constant                   # AssigExpression
  |IDENTIFIER ASSIGN booleanExpression            # AssigExpression
  |IDENTIFIER ASSIGN computeExpression            # AssigExpression
+ |IDENTIFIER ASSIGN computeGroupExpression       # AssigExpression
  ;
 
+computeGroupExpression
+:(LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS computeGroupExpression PLUS computeGroupExpression RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS computeGroupExpression MINUS computeGroupExpression  RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS computeGroupExpression MUL computeGroupExpression RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS computeGroupExpression DIV computeGroupExpression RIGHT_PARENTHESIS)
+|(LEFT_PARENTHESIS computeGroupExpression RIGHT_PARENTHESIS)
+;
 
 computeExpression
-: (IDENTIFIER|num) PLUS (IDENTIFIER|num)              # PlusExpression
-| (IDENTIFIER|num) MINUS (IDENTIFIER|num)             # MinusExpression
-| (IDENTIFIER|num) MUL (IDENTIFIER|num)               # MulExpression
-| (IDENTIFIER|num) DIV (IDENTIFIER|num)               # DivExpression
+: (IDENTIFIER|num|computeGroupExpression) PLUS (IDENTIFIER|num|computeGroupExpression) (PLUS (IDENTIFIER|num|computeGroupExpression))*               # PlusExpression
+| (IDENTIFIER|num|computeGroupExpression) MINUS (IDENTIFIER|num|computeGroupExpression) (MINUS (IDENTIFIER|num|computeGroupExpression))*             # MinusExpression
+| (IDENTIFIER|num|computeGroupExpression) MUL (IDENTIFIER|num|computeGroupExpression)  (MUL (IDENTIFIER|num|computeGroupExpression))*                # MulExpression
+| (IDENTIFIER|num|computeGroupExpression) DIV (IDENTIFIER|num|computeGroupExpression)  (DIV (IDENTIFIER|num|computeGroupExpression))*                # DivExpression
+| (MINUS | PLUS)? (IDENTIFIER|num)                                              # NumExpression
 ;
 
 booleanExpression
@@ -48,7 +74,6 @@ booleanExpression
     | identifier (NOT IN | NIN) constantArray                     # NinExpression
     | left=booleanExpression operator=AND right=booleanExpression # AndExpression
     | left=booleanExpression operator=OR right=booleanExpression  # OrExpression
-    | LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS        # GroupExpression
     | NOT booleanExpression                                       # NotExpression
     ;
 
@@ -66,8 +91,8 @@ identifier
     ;
 
 num
-  : (MINUS | PLUS)? INTEGER_VALUE # IntegerConstant
-  | (MINUS | PLUS)? DECIMAL_VALUE # DecimalConstant
+  : INTEGER_VALUE # IntegerConstant
+  | DECIMAL_VALUE # DecimalConstant
   ;
 
 constant
@@ -137,5 +162,5 @@ fragment LETTER
     ;
 
 WS
-    : [ \r\n\t]+ -> channel(HIDDEN)
+    : [ \r\n\t;]+ -> channel(HIDDEN)
     ;
