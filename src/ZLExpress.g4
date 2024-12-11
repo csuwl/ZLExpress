@@ -27,18 +27,26 @@ exprList
 :(expression ';')*
 ;
 
+defFunction
+:DEF FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT  #DefFunctionOne
+|IDENTIFIER ASSIGN DEF return_type FUNCTION  LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT #DefFunctionTwo
+;
+
+functionExecute
+: IDENTIFIER LEFT_PARENTHESIS (function_parameter) ? (',' function_parameter)* RIGHT_PARENTHESIS
+;
 
 expression
 : booleanExpression
 | assignExpression
 | computeExpression
 | groupExpression
+| defFunction
+| functionExecute
 ;
 
 groupExpression
-:(LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS groupExpression RIGHT_PARENTHESIS )
+:(LEFT_PARENTHESIS groupExpression RIGHT_PARENTHESIS )
 |(LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS )
 |(LEFT_PARENTHESIS assignExpression RIGHT_PARENTHESIS )
 ;
@@ -48,28 +56,25 @@ assignExpression
   : IDENTIFIER ASSIGN constant
  |IDENTIFIER ASSIGN booleanExpression
  |IDENTIFIER ASSIGN computeExpression
- |IDENTIFIER ASSIGN computeGroupExpression
+ |IDENTIFIER ASSIGN functionExecute
  ;
 
-computeGroupExpression
-:(LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression PLUS computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression MINUS computeGroupExpression  RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression MUL computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression DIV computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression RIGHT_PARENTHESIS)
+groupComputeExpression
+:LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS
 ;
 
 computeExpression
-: (IDENTIFIER|num|computeGroupExpression) PLUS (IDENTIFIER|num|computeGroupExpression) (PLUS (IDENTIFIER|num|computeGroupExpression))*               # PlusExpression
-| (IDENTIFIER|num|computeGroupExpression) MINUS (IDENTIFIER|num|computeGroupExpression) (MINUS (IDENTIFIER|num|computeGroupExpression))*             # MinusExpression
-| (IDENTIFIER|num|computeGroupExpression) MUL (IDENTIFIER|num|computeGroupExpression)  (MUL (IDENTIFIER|num|computeGroupExpression))*                # MulExpression
-| (IDENTIFIER|num|computeGroupExpression) DIV (IDENTIFIER|num|computeGroupExpression)  (DIV (IDENTIFIER|num|computeGroupExpression))*                # DivExpression
-| (MINUS | PLUS)? (IDENTIFIER|num)                                              # NumExpression
+: computeExpression MUL computeExpression                                                           # MulExpression
+| computeExpression DIV computeExpression                                                           # DivExpression
+| computeExpression PLUS computeExpression                                                          # PlusExpression
+| computeExpression MINUS computeExpression                                                         # MinusExpression
+| groupComputeExpression                                                                            # GroupComputeExpressionA
+| (MINUS | PLUS)? (IDENTIFIER|num)                                                                  # NumExpression
 ;
 
 booleanExpression
     : identifier compare constant                                 # CompareExpression
+    | identifier compare identifier                               # CompareExpression
     | identifier IN constantArray                                 # InExpression
     | identifier (NOT IN | NIN) constantArray                     # NinExpression
     | left=booleanExpression operator=AND right=booleanExpression # AndExpression
@@ -126,6 +131,24 @@ OR: 'OR' | 'or' | '||';
 IN: 'IN' | 'in';
 NIN: 'NIN' | 'nin';
 NOT: 'NOT' | 'not';
+DEF: 'def';
+FUNCTION:'func'|'function';
+
+INT_TYPE: 'Int';
+DOUBLE_TYPE: 'Double';
+STRING_TYPE: 'String';
+VOID_TYPE: 'Void' | 'void';
+BOOL_TYPE: 'Bool';
+
+BLOCK_LEFT:'{';
+BLOCK_RIGHT:'}';
+
+type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE;
+return_type:type;
+function_parameter_typre:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
+function_parameter: (IDENTIFIER | constant | constantArray)
+;
+
 
 BOOLEAN_VALUE
     : 'TRUE' | 'true' | 'FALSE' | 'false'

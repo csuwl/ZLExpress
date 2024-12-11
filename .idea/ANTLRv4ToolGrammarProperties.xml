@@ -10,7 +10,7 @@
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="com.wl.g4" />
-          <option name="language" value="" />
+          <option name="language" value="Java" />
           <option name="generateVisitor" value="true" />
         </PerGrammarGenerationSettings>
       </list>

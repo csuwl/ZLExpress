@@ -1,4 +1,4 @@
-// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -39,6 +39,40 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitExprList(ZLExpressParser.ExprListContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code DefFunctionOne}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DefFunctionOne}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DefFunctionTwo}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DefFunctionTwo}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#functionExecute}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionExecute(ZLExpressParser.FunctionExecuteContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#functionExecute}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionExecute(ZLExpressParser.FunctionExecuteContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#expression}.
 	 * @param ctx the parse tree
 	 */
@@ -69,15 +103,15 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitAssignExpression(ZLExpressParser.AssignExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#computeGroupExpression}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#groupComputeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterComputeGroupExpression(ZLExpressParser.ComputeGroupExpressionContext ctx);
+	void enterGroupComputeExpression(ZLExpressParser.GroupComputeExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#computeGroupExpression}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#groupComputeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitComputeGroupExpression(ZLExpressParser.ComputeGroupExpressionContext ctx);
+	void exitGroupComputeExpression(ZLExpressParser.GroupComputeExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code PlusExpression}
 	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
@@ -91,6 +125,30 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitPlusExpression(ZLExpressParser.PlusExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code NumExpression}
+	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumExpression(ZLExpressParser.NumExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NumExpression}
+	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumExpression(ZLExpressParser.NumExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code GroupComputeExpressionA}
+	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterGroupComputeExpressionA(ZLExpressParser.GroupComputeExpressionAContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code GroupComputeExpressionA}
+	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitGroupComputeExpressionA(ZLExpressParser.GroupComputeExpressionAContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code MinusExpression}
 	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
 	 * @param ctx the parse tree
@@ -102,18 +160,6 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMinusExpression(ZLExpressParser.MinusExpressionContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code MulExpression}
-	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void enterMulExpression(ZLExpressParser.MulExpressionContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code MulExpression}
-	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
-	 * @param ctx the parse tree
-	 */
-	void exitMulExpression(ZLExpressParser.MulExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code DivExpression}
 	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
@@ -127,17 +173,17 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitDivExpression(ZLExpressParser.DivExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code NumExpression}
+	 * Enter a parse tree produced by the {@code MulExpression}
 	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterNumExpression(ZLExpressParser.NumExpressionContext ctx);
+	void enterMulExpression(ZLExpressParser.MulExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code NumExpression}
+	 * Exit a parse tree produced by the {@code MulExpression}
 	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitNumExpression(ZLExpressParser.NumExpressionContext ctx);
+	void exitMulExpression(ZLExpressParser.MulExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code NinExpression}
 	 * labeled alternative in {@link ZLExpressParser#booleanExpression}.
@@ -300,4 +346,44 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitBooleanConstant(ZLExpressParser.BooleanConstantContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void enterType(ZLExpressParser.TypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#type}.
+	 * @param ctx the parse tree
+	 */
+	void exitType(ZLExpressParser.TypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_type(ZLExpressParser.Return_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_type(ZLExpressParser.Return_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#function_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunction_parameter(ZLExpressParser.Function_parameterContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#function_parameter}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunction_parameter(ZLExpressParser.Function_parameterContext ctx);
 }

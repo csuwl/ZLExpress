@@ -1,8 +1,8 @@
 package com.wl;
 
-import com.wl.zl.impl.Add;
-import com.wl.zl.impl.Assign;
-import com.wl.zl.impl.VisitProcess;
+import com.wl.g4.ZLExpressLexer;
+import com.wl.g4.ZLExpressParser;
+import com.wl.zl.impl.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -14,18 +14,23 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString("d1=423;d2=543;d3=d1+d2;"));
+        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString("543+765+68+32+985;210+23;"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
 
-        Add<Object> objectAdd = new Add<>();
-        Assign<Object> objectAssign = new Assign<>();
+        PlusVis plusVis = new PlusVis();
+        AssignVis assignVis = new AssignVis();
+        ExpressionVis expressionVis = new ExpressionVis();
+        DoubleConstantVis doubleConstantVis = new DoubleConstantVis();
+        IntegerConstantVis integerConstantVis = new IntegerConstantVis();
+        NumConstantVis numConstantVis = new NumConstantVis();
+        ExprListVis exprListVis = new ExprListVis();
 
-        VisitProcess<Object> objectVisitProcess = new VisitProcess<>(Arrays.asList(objectAssign,objectAdd));
+        VisitProcess objectVisitProcess = new VisitProcess(Arrays.asList(exprListVis, plusVis, assignVis, expressionVis, doubleConstantVis, integerConstantVis, numConstantVis));
 
-        objectVisitProcess.visit(zlExpressParser.expression());
+        Result result = objectVisitProcess.visitParseTree(zlExpressParser.exprList());
 
+        System.out.println(result);
 
-        System.out.println();
     }
 }

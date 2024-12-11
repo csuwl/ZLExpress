@@ -1,26 +1,38 @@
 package com.wl.zl.impl;
 
-import org.antlr.v4.runtime.ParserRuleContext;
+import com.wl.g4.ZLExpressBaseVisitor;
+import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisitProcess<T> extends ZLExpressBaseVisitor<T> {
+public class VisitProcess {
 
-    private List<ICustomVisitor<T>> visitorList = new ArrayList<ICustomVisitor<T>>();
+    private List<ICustomVisitor> visitorList = new ArrayList<ICustomVisitor>();
 
-    public VisitProcess(List<ICustomVisitor<T>> visitorList) {
+    public VisitProcess(List<ICustomVisitor> visitorList) {
         this.visitorList = visitorList;
     }
 
-    public T visit(ParserRuleContext ctx) {
-        for (ICustomVisitor<T> visitor : this.visitorList) {
-            Class<? extends ParserRuleContext> processType = visitor.getProcessType();
-            if (processType.isInstance(ctx)) {
-                return visitor.visit(ctx,this);
+    public Result visitParseTree(ParseTree tree) {
+        for (ICustomVisitor visitor : this.visitorList) {
+            Class<? extends ParseTree> processType = visitor.getProcessType();
+            if (processType.isInstance(tree)) {
+                Object object = visitor.visit(tree, this);
+                return new Result(object, null == object ? null : object.getClass());
             }
         }
-        return null;
+        return visitChildren(tree);
+    }
+
+
+    public Result visitChildren(ParseTree tree) {
+        Result result = null;
+        for (int i = 0; i < tree.getChildCount(); i++) {
+            ParseTree child = tree.getChild(i);
+            result = visitParseTree(child);
+        }
+        return result;
     }
 
 
