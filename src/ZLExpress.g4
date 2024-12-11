@@ -44,7 +44,13 @@ expression
 | groupExpression
 | defFunction
 | functionExecute
+| returnExpression
 ;
+
+returnExpression
+: RETURN  id |constant | NULL | functionExecute| computeExpression|booleanExpression |groupExpression
+;
+
 
 groupExpression
 :(LEFT_PARENTHESIS groupExpression RIGHT_PARENTHESIS )
@@ -138,6 +144,8 @@ BOOL_TYPE: 'Bool' | 'bool' | 'boolean';
 
 BLOCK_LEFT:'{';
 BLOCK_RIGHT:'}';
+
+RETURN:'return';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE;
 return_type:type;

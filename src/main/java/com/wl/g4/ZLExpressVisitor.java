@@ -64,6 +64,12 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(ZLExpressParser.ExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#returnExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnExpression(ZLExpressParser.ReturnExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#groupExpression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result

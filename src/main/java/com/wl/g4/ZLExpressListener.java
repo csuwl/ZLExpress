@@ -83,6 +83,16 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitExpression(ZLExpressParser.ExpressionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#returnExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnExpression(ZLExpressParser.ReturnExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#returnExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnExpression(ZLExpressParser.ReturnExpressionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#groupExpression}.
 	 * @param ctx the parse tree
 	 */
