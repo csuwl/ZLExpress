@@ -14,7 +14,7 @@ public class ExprListVis implements ICustomVisitor<Object> {
             }
             result = visitProcess.visitParseTree(child);
         }
-        return result.getResult();
+        return null == result ? null : result.getResult();
     }
 
     @Override

@@ -69,14 +69,14 @@ computeExpression
 | computeExpression PLUS computeExpression                                                          # PlusExpression
 | computeExpression MINUS computeExpression                                                         # MinusExpression
 | groupComputeExpression                                                                            # GroupComputeExpressionA
-| (MINUS | PLUS)? (IDENTIFIER|num)                                                                  # NumExpression
+| (MINUS | PLUS)? (id|num)                                                                  # NumExpression
 ;
 
 booleanExpression
-    : identifier compare constant                                 # CompareExpression
-    | identifier compare identifier                               # CompareExpression
-    | identifier IN constantArray                                 # InExpression
-    | identifier (NOT IN | NIN) constantArray                     # NinExpression
+    : id compare constant                                 # CompareExpression
+    | id compare id                                       # CompareExpression
+    | id IN constantArray                                 # InExpression
+    | id (NOT IN | NIN) constantArray                     # NinExpression
     | left=booleanExpression operator=AND right=booleanExpression # AndExpression
     | left=booleanExpression operator=OR right=booleanExpression  # OrExpression
     | NOT booleanExpression                                       # NotExpression
@@ -166,6 +166,10 @@ INTEGER_VALUE
 DECIMAL_VALUE
     : DECIMAL_DIGITS
     ;
+
+id:
+IDENTIFIER
+;
 
 IDENTIFIER
     : (LETTER | DIGIT | '_')+

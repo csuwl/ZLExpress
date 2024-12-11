@@ -22,11 +22,11 @@ public class PlusVis implements ICustomVisitor<Number> {
         if(result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Integer.class)){
            return (Integer)result1.getResult() + (Integer) result2.getResult();
         } else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Integer.class)) {
-            return (Double) result1.getResult() + (Double) result2.getResult();
-        }else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Integer.class)) {
             return (Double) result1.getResult() + (Integer) result2.getResult();
-        } else if (result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Double.class)) {
+        }else if (result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Double.class)) {
             return (Integer) result1.getResult() + (Double) result2.getResult();
+        } else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Double.class)) {
+            return (Double) result1.getResult() + (Double) result2.getResult();
         }
 
         return null;

@@ -17,9 +17,19 @@ public class AssignVis implements ICustomVisitor<Void> {
 
         String symbel = ctx.getStart().getText();
         Object value = visitProcess.visitParseTree(tree.getChild(2));
-        System.out.println(symbel + " = " + value);
-        putGloable(tree, symbel, value);
+        try {
+            value = Double.valueOf(value.toString());
+        } catch (Exception e) {
+        }
 
+        try {
+            value = Integer.valueOf(value.toString());
+        } catch (Exception e) {
+        }
+
+        System.out.println(symbel + " = " + value);
+
+        putParentContext(tree, symbel, value);
         return null;
     }
 
