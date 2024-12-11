@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString("d1=423;d2=543;d3=d1+d2;"));
+        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString("543+765+68+32+985;"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
 
@@ -28,9 +28,9 @@ public class App {
 
         VisitProcess objectVisitProcess = new VisitProcess(Arrays.asList(exprListVis, plusVis, assignVis, expressionVis, doubleConstantVis, integerConstantVis, numConstantVis));
 
-        objectVisitProcess.visitParseTree(zlExpressParser.exprList());
+        Result result = objectVisitProcess.visitParseTree(zlExpressParser.exprList());
 
+        System.out.println(result);
 
-        System.out.println();
     }
 }

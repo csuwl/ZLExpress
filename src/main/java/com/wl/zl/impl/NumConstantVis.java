@@ -7,7 +7,8 @@ public class NumConstantVis implements ICustomVisitor<Object>{
 
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {
-       return visitProcess.visitChildren(tree);
+        Result result = visitProcess.visitChildren(tree);
+        return result.getResult();
     }
 
     @Override

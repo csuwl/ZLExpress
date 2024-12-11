@@ -14,19 +14,20 @@ public class VisitProcess {
         this.visitorList = visitorList;
     }
 
-    public Object visitParseTree(ParseTree tree) {
+    public Result visitParseTree(ParseTree tree) {
         for (ICustomVisitor visitor : this.visitorList) {
             Class<? extends ParseTree> processType = visitor.getProcessType();
             if (processType.isInstance(tree)) {
-              return  visitor.visit(tree,this);
+                Object object = visitor.visit(tree, this);
+                return new Result(object, null == object ? null : object.getClass());
             }
         }
         return null;
     }
 
 
-    public Object visitChildren(ParseTree tree) {
-        Object result = null;
+    public Result visitChildren(ParseTree tree) {
+        Result result = null;
         for (int i = 0; i < tree.getChildCount(); i++) {
             ParseTree child = tree.getChild(i);
             result = visitParseTree(child);

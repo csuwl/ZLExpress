@@ -5,13 +5,13 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.math.BigDecimal;
 
-public class DoubleConstantVis implements ICustomVisitor<BigDecimal> {
+public class DoubleConstantVis implements ICustomVisitor<Double> {
 
     @Override
-    public BigDecimal visit(ParseTree tree, VisitProcess visitProcess) {
+    public Double visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.DecimalConstantContext decimalConstantContext = (ZLExpressParser.DecimalConstantContext) tree;
         String text = decimalConstantContext.getText();
-        return new BigDecimal(text);
+        return new Double(text);
     }
 
     @Override

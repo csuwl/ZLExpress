@@ -27,12 +27,16 @@ exprList
 :(expression ';')*
 ;
 
+defFunction
+:DEF FUNCTION LEFT_PARENTHESIS (FUNCTION_PARAME_TYPE IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
+;
 
 expression
 : booleanExpression
 | assignExpression
 | computeExpression
 | groupExpression
+| defFunction
 ;
 
 groupExpression
@@ -63,6 +67,7 @@ computeExpression
 
 booleanExpression
     : identifier compare constant                                 # CompareExpression
+    | identifier compare identifier                               # CompareExpression
     | identifier IN constantArray                                 # InExpression
     | identifier (NOT IN | NIN) constantArray                     # NinExpression
     | left=booleanExpression operator=AND right=booleanExpression # AndExpression
@@ -119,6 +124,22 @@ OR: 'OR' | 'or' | '||';
 IN: 'IN' | 'in';
 NIN: 'NIN' | 'nin';
 NOT: 'NOT' | 'not';
+DEF: 'def';
+FUNCTION:'func'|'function';
+
+INT_TYPE: 'Int';
+DOUBLE_TYPE: 'Double';
+STRING_TYPE: 'String';
+VOID_TYPE: 'Void';
+BOOL_TYPE: 'Bool';
+
+BLOCK_LEFT:'{';
+BLOCK_RIGHT:'}';
+
+TYPE:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE;
+RETURN_TYPE:TYPE;
+FUNCTION_PARAME_TYPE:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
+
 
 BOOLEAN_VALUE
     : 'TRUE' | 'true' | 'FALSE' | 'false'
@@ -155,5 +176,5 @@ fragment LETTER
     ;
 
 WS
-    : [ \r\n\t;]+ -> channel(HIDDEN)
+    : [ \r\n\t]+ -> channel(HIDDEN)
     ;
