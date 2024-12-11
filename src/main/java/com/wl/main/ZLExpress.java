@@ -27,7 +27,9 @@ public class ZLExpress {
         ExprListVis exprListVis = new ExprListVis();
         IdVis idVis = new IdVis();
         TextConstantVis textConstantVis = new TextConstantVis();
-        visitProcess.setVisitorList(Arrays.asList(textConstantVis, idVis, exprListVis, plusVis, assignVis, expressionVis, doubleConstantVis, integerConstantVis, numConstantVis));
+        GroupComputeVis groupComputeVis = new GroupComputeVis();
+        GroupVis groupVis = new GroupVis();
+        visitProcess.setVisitorList(Arrays.asList(groupVis, groupComputeVis, textConstantVis, idVis, exprListVis, plusVis, assignVis, expressionVis, doubleConstantVis, integerConstantVis, numConstantVis));
     }
 
     public Object process(String express, Map<Object, Object> context, Boolean cache) {

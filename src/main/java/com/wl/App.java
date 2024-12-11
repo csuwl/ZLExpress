@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("(543+543)", null, null);
+        Object process = zlExpress.process("(1+1)+(1+3+(1+1))", null, null);
 
         System.out.println(process);
 
