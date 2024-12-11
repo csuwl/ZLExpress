@@ -61,10 +61,10 @@ computeGroupExpression
 ;
 
 computeExpression
-: (IDENTIFIER|num|computeGroupExpression) PLUS (IDENTIFIER|num|computeGroupExpression) (PLUS (IDENTIFIER|num|computeGroupExpression))*               # PlusExpression
-| (IDENTIFIER|num|computeGroupExpression) MINUS (IDENTIFIER|num|computeGroupExpression) (MINUS (IDENTIFIER|num|computeGroupExpression))*             # MinusExpression
-| (IDENTIFIER|num|computeGroupExpression) MUL (IDENTIFIER|num|computeGroupExpression)  (MUL (IDENTIFIER|num|computeGroupExpression))*                # MulExpression
+: (IDENTIFIER|num|computeGroupExpression) MUL (IDENTIFIER|num|computeGroupExpression)  (MUL (IDENTIFIER|num|computeGroupExpression))*                # MulExpression
 | (IDENTIFIER|num|computeGroupExpression) DIV (IDENTIFIER|num|computeGroupExpression)  (DIV (IDENTIFIER|num|computeGroupExpression))*                # DivExpression
+| (IDENTIFIER|num|computeGroupExpression) PLUS (IDENTIFIER|num|computeGroupExpression) (PLUS (IDENTIFIER|num|computeGroupExpression))*               # PlusExpression
+| (IDENTIFIER|num|computeGroupExpression) MINUS (IDENTIFIER|num|computeGroupExpression) (MINUS (IDENTIFIER|num|computeGroupExpression))*             # MinusExpression
 | (MINUS | PLUS)? (IDENTIFIER|num)                                              # NumExpression
 ;
 

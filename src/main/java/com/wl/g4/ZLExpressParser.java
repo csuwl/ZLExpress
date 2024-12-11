@@ -126,7 +126,7 @@ public class ZLExpressParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class ExprListContext extends ParserRuleContext {
+	public static class ExprListContext extends ParserRuleContext implements IScopeValue {
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}

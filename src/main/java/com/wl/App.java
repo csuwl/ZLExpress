@@ -2,10 +2,7 @@ package com.wl;
 
 import com.wl.g4.ZLExpressLexer;
 import com.wl.g4.ZLExpressParser;
-import com.wl.zl.impl.Add;
-import com.wl.zl.impl.Assign;
-import com.wl.zl.impl.ExpressionVis;
-import com.wl.zl.impl.VisitProcess;
+import com.wl.zl.impl.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
@@ -21,13 +18,17 @@ public class App {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
 
-        Add<Object> objectAdd = new Add<>();
-        Assign objectAssign = new Assign();
+        PlusVis plusVis = new PlusVis();
+        AssignVis assignVis = new AssignVis();
         ExpressionVis expressionVis = new ExpressionVis();
+        DoubleConstantVis doubleConstantVis = new DoubleConstantVis();
+        IntegerConstantVis integerConstantVis = new IntegerConstantVis();
+        NumConstantVis numConstantVis = new NumConstantVis();
+        ExprListVis exprListVis = new ExprListVis();
 
-        VisitProcess<Object> objectVisitProcess = new VisitProcess<>(Arrays.asList(objectAssign, objectAdd, expressionVis));
+        VisitProcess objectVisitProcess = new VisitProcess(Arrays.asList(exprListVis, plusVis, assignVis, expressionVis, doubleConstantVis, integerConstantVis, numConstantVis));
 
-        objectVisitProcess.visitParseTree(zlExpressParser.expression());
+        objectVisitProcess.visitParseTree(zlExpressParser.exprList());
 
 
         System.out.println();

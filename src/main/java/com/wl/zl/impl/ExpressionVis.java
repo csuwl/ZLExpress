@@ -5,8 +5,9 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 public class ExpressionVis implements ICustomVisitor<Object>{
+
     @Override
-    public Object visit(ParseTree tree, VisitProcess<Object> visitProcess) {
+    public Object visit(ParseTree tree, VisitProcess visitProcess) {
         return visitProcess.visitChildren(tree);
     }
 

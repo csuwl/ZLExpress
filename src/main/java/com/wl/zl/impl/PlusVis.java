@@ -5,15 +5,12 @@ import org.antlr.v4.runtime.CommonToken;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class Add<T> implements ICustomVisitor<T> {
+public class PlusVis implements ICustomVisitor<Number> {
 
     @Override
-    public Class<? extends ParserRuleContext> getProcessType() {
-        return ZLExpressParser.PlusExpressionContext.class;
-    }
-
-    @Override
-    public T visit(ParseTree tree, VisitProcess<T> visitProcess) {
+    public Number visit(ParseTree tree, VisitProcess visitProcess) {
+        ZLExpressParser.PlusExpressionContext ctx = (ZLExpressParser.PlusExpressionContext) tree;
+        ctx
         ParseTree one = tree.getChild(0);
         CommonToken payloadOne = (CommonToken) one.getPayload();
         System.out.println(payloadOne.getType());
@@ -28,7 +25,14 @@ public class Add<T> implements ICustomVisitor<T> {
         System.out.println(text);
 
 
-       visitProcess.visitChildren(tree);
+        visitProcess.visitChildren(tree);
         return null;
     }
+
+    @Override
+    public Class<? extends ParserRuleContext> getProcessType() {
+        return ZLExpressParser.PlusExpressionContext.class;
+    }
+
+
 }

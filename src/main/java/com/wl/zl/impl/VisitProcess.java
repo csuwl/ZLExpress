@@ -6,31 +6,32 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.ArrayList;
 import java.util.List;
 
-public class VisitProcess<T> extends ZLExpressBaseVisitor<T> {
+public class VisitProcess {
 
-    private List<ICustomVisitor<T>> visitorList = new ArrayList<ICustomVisitor<T>>();
+    private List<ICustomVisitor> visitorList = new ArrayList<ICustomVisitor>();
 
-    public VisitProcess(List<ICustomVisitor<T>> visitorList) {
+    public VisitProcess(List<ICustomVisitor> visitorList) {
         this.visitorList = visitorList;
     }
 
-    public T visitParseTree(ParseTree tree) {
-        for (ICustomVisitor<T> visitor : this.visitorList) {
+    public Object visitParseTree(ParseTree tree) {
+        for (ICustomVisitor visitor : this.visitorList) {
             Class<? extends ParseTree> processType = visitor.getProcessType();
             if (processType.isInstance(tree)) {
-                return visitor.visit(tree, this);
+              return  visitor.visit(tree,this);
             }
         }
         return null;
     }
 
 
-    public T visitChildren(ParseTree tree) {
+    public Object visitChildren(ParseTree tree) {
+        Object result = null;
         for (int i = 0; i < tree.getChildCount(); i++) {
             ParseTree child = tree.getChild(i);
-            visitParseTree(child);
+            result = visitParseTree(child);
         }
-        return null;
+        return result;
     }
 
 
