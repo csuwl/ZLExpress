@@ -6,6 +6,10 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * process visitors
+ * @author wanglei
+ */
 public class VisitProcess {
 
     private List<ICustomVisitor> visitorList = new ArrayList<ICustomVisitor>();
