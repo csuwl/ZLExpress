@@ -14,8 +14,15 @@ public class VisitProcess {
 
     private List<ICustomVisitor> visitorList = new ArrayList<ICustomVisitor>();
 
-    public VisitProcess(List<ICustomVisitor> visitorList) {
+    public void addVisitor(ICustomVisitor visitor) {
+        visitorList.add(visitor);
+    }
+
+    public void setVisitorList(List<ICustomVisitor> visitorList) {
         this.visitorList = visitorList;
+    }
+
+    public VisitProcess() {
     }
 
     public Result visitParseTree(ParseTree tree) {

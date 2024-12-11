@@ -24,7 +24,8 @@ grammar ZLExpress;
 
 
 exprList
-:(expression ';')*
+:expression
+|(expression ';')*
 ;
 
 defFunction
