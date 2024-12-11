@@ -36,9 +36,7 @@ expression
 ;
 
 groupExpression
-:(LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS groupExpression RIGHT_PARENTHESIS )
+:(LEFT_PARENTHESIS groupExpression RIGHT_PARENTHESIS )
 |(LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS )
 |(LEFT_PARENTHESIS assignExpression RIGHT_PARENTHESIS )
 ;
@@ -48,24 +46,19 @@ assignExpression
   : IDENTIFIER ASSIGN constant
  |IDENTIFIER ASSIGN booleanExpression
  |IDENTIFIER ASSIGN computeExpression
- |IDENTIFIER ASSIGN computeGroupExpression
  ;
 
-computeGroupExpression
-:(LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression PLUS computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression MINUS computeGroupExpression  RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression MUL computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression DIV computeGroupExpression RIGHT_PARENTHESIS)
-|(LEFT_PARENTHESIS computeGroupExpression RIGHT_PARENTHESIS)
+groupComputeExpression
+:LEFT_PARENTHESIS computeExpression RIGHT_PARENTHESIS
 ;
 
 computeExpression
-: (IDENTIFIER|num|computeGroupExpression) MUL (IDENTIFIER|num|computeGroupExpression)  (MUL (IDENTIFIER|num|computeGroupExpression))*                # MulExpression
-| (IDENTIFIER|num|computeGroupExpression) DIV (IDENTIFIER|num|computeGroupExpression)  (DIV (IDENTIFIER|num|computeGroupExpression))*                # DivExpression
-| (IDENTIFIER|num|computeGroupExpression) PLUS (IDENTIFIER|num|computeGroupExpression) (PLUS (IDENTIFIER|num|computeGroupExpression))*               # PlusExpression
-| (IDENTIFIER|num|computeGroupExpression) MINUS (IDENTIFIER|num|computeGroupExpression) (MINUS (IDENTIFIER|num|computeGroupExpression))*             # MinusExpression
-| (MINUS | PLUS)? (IDENTIFIER|num)                                              # NumExpression
+: computeExpression MUL computeExpression                                                           # MulExpression
+| computeExpression DIV computeExpression                                                           # DivExpression
+| computeExpression PLUS computeExpression                                                          # PlusExpression
+| computeExpression MINUS computeExpression                                                         # MinusExpression
+| groupComputeExpression                                                                            # GroupComputeExpressionA
+| (MINUS | PLUS)? (IDENTIFIER|num)                                                                  # NumExpression
 ;
 
 booleanExpression

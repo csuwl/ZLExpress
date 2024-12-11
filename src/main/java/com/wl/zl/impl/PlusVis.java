@@ -10,22 +10,13 @@ public class PlusVis implements ICustomVisitor<Number> {
     @Override
     public Number visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.PlusExpressionContext ctx = (ZLExpressParser.PlusExpressionContext) tree;
-        ctx
-        ParseTree one = tree.getChild(0);
-        CommonToken payloadOne = (CommonToken) one.getPayload();
-        System.out.println(payloadOne.getType());
-        if (ZLExpressParser.IDENTIFIER == payloadOne.getType()) {
-            ParseTree parent = tree.getParent();
-            System.out.println("从上下文获取");
-        }
 
-        ParseTree two = tree.getChild(2);
-
-        String text = one.getText();
-        System.out.println(text);
+        ParseTree child1 = ctx.getChild(0);
+        ParseTree child2 = ctx.getChild(2);
+        Object value1 = visitProcess.visitParseTree(child1);
+        Object value2 = visitProcess.visitParseTree(child2);
 
 
-        visitProcess.visitChildren(tree);
         return null;
     }
 
