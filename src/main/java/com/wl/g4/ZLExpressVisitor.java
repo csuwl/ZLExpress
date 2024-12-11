@@ -178,12 +178,6 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompare(ZLExpressParser.CompareContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#identifier}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitIdentifier(ZLExpressParser.IdentifierContext ctx);
-	/**
 	 * Visit a parse tree produced by the {@code IntegerConstant}
 	 * labeled alternative in {@link ZLExpressParser#num}.
 	 * @param ctx the parse tree

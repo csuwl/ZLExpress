@@ -277,16 +277,6 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitCompare(ZLExpressParser.CompareContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#identifier}.
-	 * @param ctx the parse tree
-	 */
-	void enterIdentifier(ZLExpressParser.IdentifierContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#identifier}.
-	 * @param ctx the parse tree
-	 */
-	void exitIdentifier(ZLExpressParser.IdentifierContext ctx);
-	/**
 	 * Enter a parse tree produced by the {@code IntegerConstant}
 	 * labeled alternative in {@link ZLExpressParser#num}.
 	 * @param ctx the parse tree

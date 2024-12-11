@@ -193,13 +193,6 @@ public class ZLExpressBaseVisitor<T> extends AbstractParseTreeVisitor<T> impleme
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitIdentifier(ZLExpressParser.IdentifierContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
 	@Override public T visitIntegerConstant(ZLExpressParser.IntegerConstantContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

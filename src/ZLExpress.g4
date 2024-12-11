@@ -28,7 +28,7 @@ exprList
 ;
 
 defFunction
-:DEF FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT  #DefFunctionOne
+:DEF return_type FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT  #DefFunctionOne
 |IDENTIFIER ASSIGN DEF return_type FUNCTION  LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT #DefFunctionTwo
 ;
 
@@ -53,10 +53,10 @@ groupExpression
 
 
 assignExpression
-  : IDENTIFIER ASSIGN constant
- |IDENTIFIER ASSIGN booleanExpression
- |IDENTIFIER ASSIGN computeExpression
- |IDENTIFIER ASSIGN functionExecute
+  : type? IDENTIFIER ASSIGN constant
+ |type? IDENTIFIER ASSIGN booleanExpression
+ |type? IDENTIFIER ASSIGN computeExpression
+ |type? IDENTIFIER ASSIGN functionExecute
  ;
 
 groupComputeExpression
@@ -89,11 +89,6 @@ constantArray
 compare
 :    EQUALS | GT | GE | LT | LE | NE;
 
-identifier
-    : IDENTIFIER DOT IDENTIFIER
-    | IDENTIFIER
-    | QUOTED_STRING
-    ;
 
 num
   : INTEGER_VALUE # IntegerConstant
@@ -134,11 +129,11 @@ NOT: 'NOT' | 'not';
 DEF: 'def';
 FUNCTION:'func'|'function';
 
-INT_TYPE: 'Int';
-DOUBLE_TYPE: 'Double';
-STRING_TYPE: 'String';
+INT_TYPE: 'Int' | 'int';
+DOUBLE_TYPE: 'Double' | 'double';
+STRING_TYPE: 'String'| 'string';
 VOID_TYPE: 'Void' | 'void';
-BOOL_TYPE: 'Bool';
+BOOL_TYPE: 'Bool' | 'bool' | 'boolean';
 
 BLOCK_LEFT:'{';
 BLOCK_RIGHT:'}';
@@ -189,5 +184,5 @@ fragment LETTER
     ;
 
 WS
-    : [ \r\n\t;]+ -> channel(HIDDEN)
+    : [ \r\n\t]+ -> channel(HIDDEN)
     ;

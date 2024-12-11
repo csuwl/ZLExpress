@@ -302,18 +302,6 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIdentifier(ZLExpressParser.IdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitIdentifier(ZLExpressParser.IdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterIntegerConstant(ZLExpressParser.IntegerConstantContext ctx) { }
 	/**
 	 * {@inheritDoc}
