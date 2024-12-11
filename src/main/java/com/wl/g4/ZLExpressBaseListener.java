@@ -50,13 +50,25 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDefFunction(ZLExpressParser.DefFunctionContext ctx) { }
+	@Override public void enterDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDefFunction(ZLExpressParser.DefFunctionContext ctx) { }
+	@Override public void exitDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

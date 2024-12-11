@@ -196,6 +196,62 @@ public class ZLExpressParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class DefFunctionContext extends ParserRuleContext {
+		public DefFunctionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_defFunction; }
+	 
+		public DefFunctionContext() { }
+		public void copyFrom(DefFunctionContext ctx) {
+			super.copyFrom(ctx);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DefFunctionTwoContext extends DefFunctionContext {
+		public List<TerminalNode> IDENTIFIER() { return getTokens(ZLExpressParser.IDENTIFIER); }
+		public TerminalNode IDENTIFIER(int i) {
+			return getToken(ZLExpressParser.IDENTIFIER, i);
+		}
+		public TerminalNode ASSIGN() { return getToken(ZLExpressParser.ASSIGN, 0); }
+		public TerminalNode DEF() { return getToken(ZLExpressParser.DEF, 0); }
+		public Return_typeContext return_type() {
+			return getRuleContext(Return_typeContext.class,0);
+		}
+		public TerminalNode FUNCTION() { return getToken(ZLExpressParser.FUNCTION, 0); }
+		public TerminalNode LEFT_PARENTHESIS() { return getToken(ZLExpressParser.LEFT_PARENTHESIS, 0); }
+		public TerminalNode RIGHT_PARENTHESIS() { return getToken(ZLExpressParser.RIGHT_PARENTHESIS, 0); }
+		public TerminalNode BLOCK_LEFT() { return getToken(ZLExpressParser.BLOCK_LEFT, 0); }
+		public ExprListContext exprList() {
+			return getRuleContext(ExprListContext.class,0);
+		}
+		public TerminalNode BLOCK_RIGHT() { return getToken(ZLExpressParser.BLOCK_RIGHT, 0); }
+		public List<Function_parameter_typreContext> function_parameter_typre() {
+			return getRuleContexts(Function_parameter_typreContext.class);
+		}
+		public Function_parameter_typreContext function_parameter_typre(int i) {
+			return getRuleContext(Function_parameter_typreContext.class,i);
+		}
+		public List<TerminalNode> COMMA() { return getTokens(ZLExpressParser.COMMA); }
+		public TerminalNode COMMA(int i) {
+			return getToken(ZLExpressParser.COMMA, i);
+		}
+		public DefFunctionTwoContext(DefFunctionContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).enterDefFunctionTwo(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).exitDefFunctionTwo(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof ZLExpressVisitor ) return ((ZLExpressVisitor<? extends T>)visitor).visitDefFunctionTwo(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class DefFunctionOneContext extends DefFunctionContext {
 		public TerminalNode DEF() { return getToken(ZLExpressParser.DEF, 0); }
 		public TerminalNode FUNCTION() { return getToken(ZLExpressParser.FUNCTION, 0); }
 		public List<TerminalNode> IDENTIFIER() { return getTokens(ZLExpressParser.IDENTIFIER); }
@@ -219,25 +275,18 @@ public class ZLExpressParser extends Parser {
 		public TerminalNode COMMA(int i) {
 			return getToken(ZLExpressParser.COMMA, i);
 		}
-		public TerminalNode ASSIGN() { return getToken(ZLExpressParser.ASSIGN, 0); }
-		public Return_typeContext return_type() {
-			return getRuleContext(Return_typeContext.class,0);
-		}
-		public DefFunctionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_defFunction; }
+		public DefFunctionOneContext(DefFunctionContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).enterDefFunction(this);
+			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).enterDefFunctionOne(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).exitDefFunction(this);
+			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).exitDefFunctionOne(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ZLExpressVisitor ) return ((ZLExpressVisitor<? extends T>)visitor).visitDefFunction(this);
+			if ( visitor instanceof ZLExpressVisitor ) return ((ZLExpressVisitor<? extends T>)visitor).visitDefFunctionOne(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -251,6 +300,7 @@ public class ZLExpressParser extends Parser {
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case DEF:
+				_localctx = new DefFunctionOneContext(_localctx);
 				enterOuterAlt(_localctx, 1);
 				{
 				setState(44);
@@ -302,6 +352,7 @@ public class ZLExpressParser extends Parser {
 				}
 				break;
 			case IDENTIFIER:
+				_localctx = new DefFunctionTwoContext(_localctx);
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(67);

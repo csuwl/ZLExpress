@@ -39,15 +39,29 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitExprList(ZLExpressParser.ExprListContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#defFunction}.
+	 * Enter a parse tree produced by the {@code DefFunctionOne}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
 	 * @param ctx the parse tree
 	 */
-	void enterDefFunction(ZLExpressParser.DefFunctionContext ctx);
+	void enterDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#defFunction}.
+	 * Exit a parse tree produced by the {@code DefFunctionOne}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
 	 * @param ctx the parse tree
 	 */
-	void exitDefFunction(ZLExpressParser.DefFunctionContext ctx);
+	void exitDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code DefFunctionTwo}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code DefFunctionTwo}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#functionExecute}.
 	 * @param ctx the parse tree

@@ -38,11 +38,19 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExprList(ZLExpressParser.ExprListContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#defFunction}.
+	 * Visit a parse tree produced by the {@code DefFunctionOne}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDefFunction(ZLExpressParser.DefFunctionContext ctx);
+	T visitDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code DefFunctionTwo}
+	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#functionExecute}.
 	 * @param ctx the parse tree
