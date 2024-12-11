@@ -28,11 +28,12 @@ exprList
 ;
 
 defFunction
-:DEF FUNCTION IDENTIFIER? LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
+:DEF FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
+|IDENTIFIER ASSIGN DEF return_type FUNCTION  LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
 ;
 
 functionExecute
-: IDENTIFIER LEFT_PARENTHESIS IDENTIFIER? (',' IDENTIFIER)* RIGHT_PARENTHESIS
+: IDENTIFIER LEFT_PARENTHESIS (function_parameter) ? (',' function_parameter)* RIGHT_PARENTHESIS
 ;
 
 expression
@@ -55,7 +56,7 @@ assignExpression
   : IDENTIFIER ASSIGN constant
  |IDENTIFIER ASSIGN booleanExpression
  |IDENTIFIER ASSIGN computeExpression
- |IDENTIFIER ASSIGN defFunction
+ |IDENTIFIER ASSIGN functionExecute
  ;
 
 groupComputeExpression
@@ -136,7 +137,7 @@ FUNCTION:'func'|'function';
 INT_TYPE: 'Int';
 DOUBLE_TYPE: 'Double';
 STRING_TYPE: 'String';
-VOID_TYPE: 'Void';
+VOID_TYPE: 'Void' | 'void';
 BOOL_TYPE: 'Bool';
 
 BLOCK_LEFT:'{';
@@ -145,6 +146,8 @@ BLOCK_RIGHT:'}';
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE;
 return_type:type;
 function_parameter_typre:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
+function_parameter: (IDENTIFIER | constant | constantArray)
+;
 
 
 BOOLEAN_VALUE
