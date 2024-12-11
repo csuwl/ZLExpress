@@ -22,7 +22,7 @@ public class VisitProcess {
                 return new Result(object, null == object ? null : object.getClass());
             }
         }
-        return null;
+        return visitChildren(tree);
     }
 
 

@@ -15,14 +15,18 @@ public class PlusVis implements ICustomVisitor<Number> {
         ParseTree child2 = ctx.getChild(2);
         Result result1 = visitProcess.visitParseTree(child1);
         Result result2 = visitProcess.visitParseTree(child2);
+        if(null ==result1 || null == result2){
+            return null;
+        }
+
         if(result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Integer.class)){
-           return (Integer)result1.getResult() + (Integer) result1.getResult();
+           return (Integer)result1.getResult() + (Integer) result2.getResult();
         } else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Integer.class)) {
-            return (Double) result1.getResult() + (Double) result1.getResult();
+            return (Double) result1.getResult() + (Double) result2.getResult();
         }else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Integer.class)) {
-            return (Double) result1.getResult() + (Integer) result1.getResult();
+            return (Double) result1.getResult() + (Integer) result2.getResult();
         } else if (result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Double.class)) {
-            return (Integer) result1.getResult() + (Double) result1.getResult();
+            return (Integer) result1.getResult() + (Double) result2.getResult();
         }
 
         return null;

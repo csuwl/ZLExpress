@@ -14,7 +14,7 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         System.out.println("Hello World!");
-        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString("543+765+68+32+985;"));
+        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString("543+765+68+32+985;210+23;"));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
 
