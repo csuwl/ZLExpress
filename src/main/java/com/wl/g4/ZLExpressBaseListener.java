@@ -62,13 +62,25 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx) { }
+	@Override public void enterFunctionParameterList(ZLExpressParser.FunctionParameterListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx) { }
+	@Override public void exitFunctionParameterList(ZLExpressParser.FunctionParameterListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionParameterItem(ZLExpressParser.FunctionParameterItemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionParameterItem(ZLExpressParser.FunctionParameterItemContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -81,6 +93,18 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionExecute(ZLExpressParser.FunctionExecuteContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunctionExecuteParameterList(ZLExpressParser.FunctionExecuteParameterListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunctionExecuteParameterList(ZLExpressParser.FunctionExecuteParameterListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -398,6 +422,18 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterReturn_type(ZLExpressParser.Return_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitReturn_type(ZLExpressParser.Return_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -422,25 +458,25 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx) { }
+	@Override public void enterFunction_parameter_type(ZLExpressParser.Function_parameter_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx) { }
+	@Override public void exitFunction_parameter_type(ZLExpressParser.Function_parameter_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterFunction_parameter(ZLExpressParser.Function_parameterContext ctx) { }
+	@Override public void enterFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitFunction_parameter(ZLExpressParser.Function_parameterContext ctx) { }
+	@Override public void exitFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

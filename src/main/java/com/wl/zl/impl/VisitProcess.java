@@ -1,39 +1,40 @@
 package com.wl.zl.impl;
 
-import com.wl.g4.ZLExpressBaseVisitor;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * process visitors
+ *
  * @author wanglei
  */
 public class VisitProcess {
 
-    private List<ICustomVisitor> visitorList = new ArrayList<ICustomVisitor>();
+    private Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<>();
 
     public void addVisitor(ICustomVisitor visitor) {
-        visitorList.add(visitor);
+        visitorMap.put(visitor.getProcessType(), visitor);
     }
 
-    public void setVisitorList(List<ICustomVisitor> visitorList) {
-        this.visitorList = visitorList;
+    public void setVisitorMap(Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap) {
+        this.visitorMap = visitorMap;
     }
 
     public VisitProcess() {
     }
 
     public Result visitParseTree(ParseTree tree) {
-        for (ICustomVisitor visitor : this.visitorList) {
-            Class<? extends ParseTree> processType = visitor.getProcessType();
-            if (processType.isInstance(tree)) {
-                Object object = visitor.visit(tree, this);
-                return new Result(object, null == object ? null : object.getClass());
-            }
+        Class<? extends ParseTree> treeClass = tree.getClass();
+        ICustomVisitor visitor = visitorMap.get(treeClass);
+        if (null != visitor) {
+            Object object = visitor.visit(tree, this);
+            return new Result(object, null == object ? null : object.getClass());
+        } else {
+            return visitChildren(tree);
         }
-        return visitChildren(tree);
+
     }
 
 

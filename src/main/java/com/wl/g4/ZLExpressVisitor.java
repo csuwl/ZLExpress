@@ -45,18 +45,29 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code DefFunctionTwo}
-	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#functionParameterList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
+	T visitFunctionParameterList(ZLExpressParser.FunctionParameterListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#functionParameterItem}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionParameterItem(ZLExpressParser.FunctionParameterItemContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#functionExecute}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFunctionExecute(ZLExpressParser.FunctionExecuteContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#functionExecuteParameterList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFunctionExecuteParameterList(ZLExpressParser.FunctionExecuteParameterListContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#expression}.
 	 * @param ctx the parse tree
@@ -231,6 +242,12 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType(ZLExpressParser.TypeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturn_type(ZLExpressParser.Return_typeContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -243,17 +260,17 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNull(ZLExpressParser.NullContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#function_parameter_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx);
+	T visitFunction_parameter_type(ZLExpressParser.Function_parameter_typeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#function_parameter}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#functionExecuteParameter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction_parameter(ZLExpressParser.Function_parameterContext ctx);
+	T visitFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#id}.
 	 * @param ctx the parse tree

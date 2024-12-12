@@ -51,17 +51,25 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitDefFunctionOne(ZLExpressParser.DefFunctionOneContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code DefFunctionTwo}
-	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#functionParameterList}.
 	 * @param ctx the parse tree
 	 */
-	void enterDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
+	void enterFunctionParameterList(ZLExpressParser.FunctionParameterListContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code DefFunctionTwo}
-	 * labeled alternative in {@link ZLExpressParser#defFunction}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#functionParameterList}.
 	 * @param ctx the parse tree
 	 */
-	void exitDefFunctionTwo(ZLExpressParser.DefFunctionTwoContext ctx);
+	void exitFunctionParameterList(ZLExpressParser.FunctionParameterListContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#functionParameterItem}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionParameterItem(ZLExpressParser.FunctionParameterItemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#functionParameterItem}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionParameterItem(ZLExpressParser.FunctionParameterItemContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#functionExecute}.
 	 * @param ctx the parse tree
@@ -72,6 +80,16 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionExecute(ZLExpressParser.FunctionExecuteContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#functionExecuteParameterList}.
+	 * @param ctx the parse tree
+	 */
+	void enterFunctionExecuteParameterList(ZLExpressParser.FunctionExecuteParameterListContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#functionExecuteParameterList}.
+	 * @param ctx the parse tree
+	 */
+	void exitFunctionExecuteParameterList(ZLExpressParser.FunctionExecuteParameterListContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#expression}.
 	 * @param ctx the parse tree
@@ -367,6 +385,16 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitType(ZLExpressParser.TypeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturn_type(ZLExpressParser.Return_typeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturn_type(ZLExpressParser.Return_typeContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
 	 * @param ctx the parse tree
 	 */
@@ -387,25 +415,25 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitNull(ZLExpressParser.NullContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#function_parameter_type}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx);
+	void enterFunction_parameter_type(ZLExpressParser.Function_parameter_typeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#function_parameter_type}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_parameter_typre(ZLExpressParser.Function_parameter_typreContext ctx);
+	void exitFunction_parameter_type(ZLExpressParser.Function_parameter_typeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#function_parameter}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#functionExecuteParameter}.
 	 * @param ctx the parse tree
 	 */
-	void enterFunction_parameter(ZLExpressParser.Function_parameterContext ctx);
+	void enterFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#function_parameter}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#functionExecuteParameter}.
 	 * @param ctx the parse tree
 	 */
-	void exitFunction_parameter(ZLExpressParser.Function_parameterContext ctx);
+	void exitFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#id}.
 	 * @param ctx the parse tree
