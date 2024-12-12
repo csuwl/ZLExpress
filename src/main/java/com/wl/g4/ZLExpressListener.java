@@ -403,15 +403,15 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitReturn_type(ZLExpressParser.Return_typeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#not_void_type}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx);
+	void enterNot_void_type(ZLExpressParser.Not_void_typeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#not_void_type}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx);
+	void exitNot_void_type(ZLExpressParser.Not_void_typeContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#null}.
 	 * @param ctx the parse tree
@@ -442,6 +442,36 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#importExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterImportExpression(ZLExpressParser.ImportExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#importExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitImportExpression(ZLExpressParser.ImportExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#packagePath}.
+	 * @param ctx the parse tree
+	 */
+	void enterPackagePath(ZLExpressParser.PackagePathContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#packagePath}.
+	 * @param ctx the parse tree
+	 */
+	void exitPackagePath(ZLExpressParser.PackagePathContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#newObjectExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNewObjectExpression(ZLExpressParser.NewObjectExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#newObjectExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNewObjectExpression(ZLExpressParser.NewObjectExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#id}.
 	 * @param ctx the parse tree

@@ -39,18 +39,11 @@ public class AssignVis implements ICustomVisitor<Void> {
                 value = Double.parseDouble(result.getResult().toString());
             } else if (ZLExpressLexer.STRING_TYPE == typeToken.getType()) {
                 value = result.getResult().toString();
+            } else if (ZLExpressLexer.BOOL_TYPE == typeToken.getType()) {
+                value = Boolean.parseBoolean(result.getResult().toString());
             }
         } else {
-            Class resultClazz = result.getClazz();
-            if (Integer.class.equals(resultClazz)) {
-                value = Integer.parseInt(result.getResult().toString());
-            } else if (Double.class.equals(resultClazz)) {
-                value = Double.parseDouble(result.getResult().toString());
-            } else if (String.class.equals(resultClazz)) {
-                value = result.getResult().toString();
-            } else {
-                value = result.getResult().toString();
-            }
+            value = result.getResult();
         }
 
         putParentContext(tree, symbel, value);

@@ -43,6 +43,8 @@ public class ZLExpress {
         AndVis andVis = new AndVis();
         OrVis orVis = new OrVis();
         ReturnVis returnVis = new ReturnVis();
+        ImportVis importVis = new ImportVis();
+        NewObjectVis newObjectVis = new NewObjectVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>(){
             {
@@ -68,6 +70,8 @@ public class ZLExpress {
                 put(andVis.getProcessType(), andVis);
                 put(orVis.getProcessType(), orVis);
                 put(returnVis.getProcessType(), returnVis);
+                put(importVis.getProcessType(), importVis);
+                put(newObjectVis.getProcessType(), newObjectVis);
             }
         };
 

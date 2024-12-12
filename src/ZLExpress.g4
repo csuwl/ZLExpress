@@ -46,7 +46,8 @@ functionExecute
 ;
 
 functionExecuteParameterList
-:(functionExecuteParameter) ? (',' functionExecuteParameter)*
+:functionExecuteParameter
+|functionExecuteParameter (',' functionExecuteParameter)*
 ;
 
 expression
@@ -62,6 +63,8 @@ expressionNotReturn
 | groupExpression
 | defFunction
 | functionExecute
+| importExpression
+| newObjectExpression
 | constant
 | array
 | id
@@ -86,6 +89,7 @@ assignExpression
  |type? IDENTIFIER ASSIGN computeExpression
  |type? IDENTIFIER ASSIGN functionExecute
  |ARRAY_TYPE? IDENTIFIER ASSIGN array
+ |not_void_type? IDENTIFIER ASSIGN newObjectExpression
  ;
 
 groupComputeExpression
@@ -171,13 +175,28 @@ BLOCK_LEFT:'{';
 BLOCK_RIGHT:'}';
 
 RETURN:'return';
+IMPORT:'import';
+NEW:'new';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;
-return_not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
+not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 null:NULL;
 function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 functionExecuteParameter: (IDENTIFIER | constant | array)
+;
+
+importExpression
+:IMPORT packagePath
+;
+
+packagePath
+:id
+|id (DOT id)* (DOT '*')*
+;
+
+newObjectExpression
+: NEW packagePath LEFT_PARENTHESIS functionExecuteParameterList RIGHT_PARENTHESIS
 ;
 
 

@@ -11,7 +11,7 @@ public class DoubleConstantVis implements ICustomVisitor<Double> {
     public Double visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.DecimalConstantContext decimalConstantContext = (ZLExpressParser.DecimalConstantContext) tree;
         String text = decimalConstantContext.getText();
-        return new Double(text);
+        return Double.parseDouble(text);
     }
 
     @Override

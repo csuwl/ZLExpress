@@ -253,11 +253,11 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturn_type(ZLExpressParser.Return_typeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#not_void_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx);
+	T visitNot_void_type(ZLExpressParser.Not_void_typeContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#null}.
 	 * @param ctx the parse tree
@@ -276,6 +276,24 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#importExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitImportExpression(ZLExpressParser.ImportExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#packagePath}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPackagePath(ZLExpressParser.PackagePathContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#newObjectExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNewObjectExpression(ZLExpressParser.NewObjectExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#id}.
 	 * @param ctx the parse tree

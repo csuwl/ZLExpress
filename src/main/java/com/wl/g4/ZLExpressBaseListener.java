@@ -446,13 +446,13 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx) { }
+	@Override public void enterNot_void_type(ZLExpressParser.Not_void_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx) { }
+	@Override public void exitNot_void_type(ZLExpressParser.Not_void_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -489,6 +489,42 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitFunctionExecuteParameter(ZLExpressParser.FunctionExecuteParameterContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterImportExpression(ZLExpressParser.ImportExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImportExpression(ZLExpressParser.ImportExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterPackagePath(ZLExpressParser.PackagePathContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPackagePath(ZLExpressParser.PackagePathContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNewObjectExpression(ZLExpressParser.NewObjectExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNewObjectExpression(ZLExpressParser.NewObjectExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
