@@ -10,14 +10,15 @@ public class ExprListVis implements ICustomVisitor<Object> {
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ExprListContext exprList = (ZLExpressParser.ExprListContext) tree;
-        List<ZLExpressParser.ExpressionContext> expresstionContextList = exprList.getRuleContexts(ZLExpressParser.ExpressionContext.class);
-        if(null == expresstionContextList || expresstionContextList.isEmpty()){
-            return null;
+        List<ZLExpressParser.ExpressionNotReturnContext> expressionNotReturnContexts = exprList.expressionNotReturn();
+        Result result=null;
+        for(ZLExpressParser.ExpressionNotReturnContext expressionNotReturnContext: expressionNotReturnContexts){
+            result = visitProcess.visitParseTree(expressionNotReturnContext);
         }
 
-        Result result = null;
-        for (ZLExpressParser.ExpressionContext expressionContext : expresstionContextList) {
-            result = visitProcess.visitParseTree(expressionContext);
+        ZLExpressParser.ReturnExpressionContext returnExpressionContext = exprList.returnExpression();
+        if(null != returnExpressionContext){
+            result = visitProcess.visitParseTree(returnExpressionContext);
         }
         return null == result ? null : result.getResult();
     }

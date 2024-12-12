@@ -38,6 +38,11 @@ public class ZLExpress {
         NullVis nullVis = new NullVis();
         NotVis notVis = new NotVis();
         ArrayVis arrayVis = new ArrayVis();
+        InVis inVis = new InVis();
+        NotInVis notInVis = new NotInVis();
+        AndVis andVis = new AndVis();
+        OrVis orVis = new OrVis();
+        ReturnVis returnVis = new ReturnVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>(){
             {
@@ -58,6 +63,11 @@ public class ZLExpress {
                 put(nullVis.getProcessType(), nullVis);
                 put(notVis.getProcessType(), notVis);
                 put(arrayVis.getProcessType(), arrayVis);
+                put(inVis.getProcessType(), inVis);
+                put(notInVis.getProcessType(), notInVis);
+                put(andVis.getProcessType(), andVis);
+                put(orVis.getProcessType(), orVis);
+                put(returnVis.getProcessType(), returnVis);
             }
         };
 

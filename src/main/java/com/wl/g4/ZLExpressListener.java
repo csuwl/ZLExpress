@@ -1,4 +1,4 @@
-// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -99,15 +99,15 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitExpression(ZLExpressParser.ExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#expression_not_return}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#expressionNotReturn}.
 	 * @param ctx the parse tree
 	 */
-	void enterExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx);
+	void enterExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#expression_not_return}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#expressionNotReturn}.
 	 * @param ctx the parse tree
 	 */
-	void exitExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx);
+	void exitExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#returnExpression}.
 	 * @param ctx the parse tree

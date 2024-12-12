@@ -1,4 +1,4 @@
-// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -122,13 +122,13 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx) { }
+	@Override public void enterExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx) { }
+	@Override public void exitExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

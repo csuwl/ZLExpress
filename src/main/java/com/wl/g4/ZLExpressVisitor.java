@@ -1,4 +1,4 @@
-// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -74,11 +74,11 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpression(ZLExpressParser.ExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#expression_not_return}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#expressionNotReturn}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx);
+	T visitExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#returnExpression}.
 	 * @param ctx the parse tree

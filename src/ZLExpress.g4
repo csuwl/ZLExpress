@@ -24,9 +24,9 @@ grammar ZLExpress;
 
 
 exprList
-: expression
-| ( expression ';')*
-| ( expression_not_return ';')
+: expressionNotReturn
+| returnExpression
+| (expressionNotReturn (';')+)* (returnExpression (';')+)?
 ;
 
 defFunction
@@ -50,18 +50,22 @@ functionExecuteParameterList
 ;
 
 expression
-: expression_not_return
+: expressionNotReturn
 | returnExpression
 ;
 
 
-expression_not_return
+expressionNotReturn
 : booleanExpression
 | assignExpression
 | computeExpression
 | groupExpression
 | defFunction
 | functionExecute
+| constant
+| array
+| id
+| null
 ;
 
 returnExpression
