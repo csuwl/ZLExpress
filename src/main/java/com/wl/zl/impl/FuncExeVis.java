@@ -1,5 +1,6 @@
 package com.wl.zl.impl;
 
+import com.wl.g4.ZLExpressLexer;
 import com.wl.g4.ZLExpressParser;
 import com.wl.model.FunctionDefinition;
 import com.wl.model.Result;
@@ -45,22 +46,26 @@ public class FuncExeVis implements ICustomVisitor<Object> {
             if (null == exprListContexts || exprListContexts.isEmpty()) {
                 return null;
             } else {
-                ZLExpressParser.ExprListContext exprListContext = exprListContexts.get(0);
                 //            函数参数定义
-                List<ZLExpressParser.FunctionParameterListContext> defParameterListContextList = defFunctionContext.getRuleContexts(ZLExpressParser.FunctionParameterListContext.class);
-                ZLExpressParser.FunctionParameterListContext defFunctionParameterListContext = defParameterListContextList.get(0);
-                List<ZLExpressParser.FunctionParameterItemContext> functionParameterItemContextList = defFunctionParameterListContext.getRuleContexts(ZLExpressParser.FunctionParameterItemContext.class);
+                ZLExpressParser.FunctionParameterListContext functionParameterListContext = defFunctionContext.functionParameterList();
+                List<ZLExpressParser.FunctionParameterItemContext> functionParameterItemContextList = functionParameterListContext.getRuleContexts(ZLExpressParser.FunctionParameterItemContext.class);
 
                 List<String> labels = new ArrayList<>(functionParameterItemContextList.size());
                 for (ZLExpressParser.FunctionParameterItemContext functionParameterItemContext : functionParameterItemContextList) {
                     labels.add(functionParameterItemContext.getStop().getText());
                 }
 //                放到上下文
+                ZLExpressParser.ExprListContext exprListContext = exprListContexts.get(0);
                 for (int i = 0; i < parameterValue.size(); i++) {
                     exprListContext.getContext().put(labels.get(i), parameterValue.get(i));
                 }
 //               执行内容
-                return visitProcess.visitParseTree(exprListContext);
+                Result result = visitProcess.visitParseTree(exprListContext);
+//                函数返回类型是void的话 返回null
+                if(ZLExpressLexer.VOID_TYPE == defFunctionContext.return_type().type().stop.getType()){
+                    return null;
+                }
+                return result.getResult();
             }
         }
     }

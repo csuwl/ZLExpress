@@ -15,7 +15,13 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("fdsa;gew;", null, null);
+        Object process = zlExpress.process("int sa=50;\n" +
+                "void ssg(int ss){\n" +
+                "    ss=876;\n" +
+                "    return ss;\n" +
+                "};\n" +
+                "ssg(50);\n" +
+                "return sa;", null, null);
 
         System.out.println(process);
 
