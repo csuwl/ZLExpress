@@ -32,6 +32,8 @@ public class ZLExpress {
         TextConstantVis textConstantVis = new TextConstantVis();
         GroupComputeVis groupComputeVis = new GroupComputeVis();
         GroupVis groupVis = new GroupVis();
+        DefFuncVis defFuncVis = new DefFuncVis();
+        FuncExeVis funcExeVis = new FuncExeVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>(){
             {
@@ -46,6 +48,8 @@ public class ZLExpress {
                 put(textConstantVis.getProcessType(), textConstantVis);
                 put(groupComputeVis.getProcessType(), groupComputeVis);
                 put(groupVis.getProcessType(), groupVis);
+                put(defFuncVis.getProcessType(), defFuncVis);
+                put(funcExeVis.getProcessType(), funcExeVis);
             }
         };
 

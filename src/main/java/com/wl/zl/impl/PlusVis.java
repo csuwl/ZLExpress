@@ -15,7 +15,7 @@ public class PlusVis implements ICustomVisitor<Number> {
         ParseTree child2 = ctx.getChild(2);
         Result result1 = visitProcess.visitParseTree(child1);
         Result result2 = visitProcess.visitParseTree(child2);
-        if(null ==result1 || null == result2){
+        if(null == result1 || null == result1.getResult() || null == result2 || null== result2.getResult()){
             return null;
         }
 

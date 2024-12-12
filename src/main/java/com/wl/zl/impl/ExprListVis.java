@@ -3,16 +3,20 @@ package com.wl.zl.impl;
 import com.wl.g4.ZLExpressParser;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.List;
+
 public class ExprListVis implements ICustomVisitor<Object> {
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {
+        ZLExpressParser.ExprListContext exprList = (ZLExpressParser.ExprListContext) tree;
+        List<ZLExpressParser.ExpressionContext> expresstionContextList = exprList.getRuleContexts(ZLExpressParser.ExpressionContext.class);
+        if(null == expresstionContextList || expresstionContextList.isEmpty()){
+            return null;
+        }
+
         Result result = null;
-        for (int i = 0; i < tree.getChildCount(); i++) {
-            ParseTree child = tree.getChild(i);
-            if (";".equals(child.getText())) {
-                continue;
-            }
-            result = visitProcess.visitParseTree(child);
+        for (ZLExpressParser.ExpressionContext expressionContext : expresstionContextList) {
+            result = visitProcess.visitParseTree(expressionContext);
         }
         return null == result ? null : result.getResult();
     }

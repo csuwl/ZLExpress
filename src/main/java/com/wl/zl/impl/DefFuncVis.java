@@ -1,8 +1,10 @@
 package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
+import com.wl.model.FunctionDefinition;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -16,23 +18,20 @@ public class DefFuncVis implements ICustomVisitor<Void> {
     public Void visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.DefFunctionContext ctx = (ZLExpressParser.DefFunctionContext) tree;
         String functionName = ctx.getChild(1).getText();
-        ParseTree parameterList = ctx.getChild(3);
+        List<ZLExpressParser.FunctionParameterListContext> parameterListContextList = ctx.getRuleContexts(ZLExpressParser.FunctionParameterListContext.class);
+        ZLExpressParser.FunctionParameterListContext functionParameterListContext = parameterListContextList.get(0);
+        List<ZLExpressParser.FunctionParameterItemContext> functionParameterItemContextList = functionParameterListContext.getRuleContexts(ZLExpressParser.FunctionParameterItemContext.class);
+//      获取函数类型
+        List<Integer> parameterTypes = new ArrayList<>(functionParameterItemContextList.size());
+        for (ZLExpressParser.FunctionParameterItemContext functionParameterItem : functionParameterItemContextList) {
+            parameterTypes.add(functionParameterItem.getStart().getType());
+        }
 
-        Object functinListObject = resolveContext(tree, functionName);
-        if (null == functinListObject) {
-            putParentContext(tree, functionName, Arrays.asList(ctx));
-        } else {
-            if (functinListObject instanceof List) {
-                List<ZLExpressParser.DefFunctionContext> funcList = (List<ZLExpressParser.DefFunctionContext>) functinListObject;
-//                检查函数 参数个数 个数相同的去掉
-                funcList.removeIf(defFunctionContext -> {
-                    ParseTree parameterListFunc = defFunctionContext.getChild(3);
-                    return parameterListFunc.getChildCount() == parameterList.getChildCount();
-                });
-                funcList.add(ctx);
-            } else {
-                putParentContext(tree, functionName, Arrays.asList(ctx));
-            }
+        FunctionDefinition functionDefinition = new FunctionDefinition(functionName, parameterTypes);
+//
+        List<ZLExpressParser.DefFunctionContext> functionContextList = resolveParentFunctionDefinition(tree, functionDefinition);
+        if (null == functionContextList || functionContextList.isEmpty()) {
+            putParentFunctionDefinition(tree, functionDefinition, Arrays.asList(ctx));
         }
         return null;
     }

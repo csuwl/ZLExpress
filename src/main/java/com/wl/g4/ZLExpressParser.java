@@ -230,18 +230,6 @@ public class ZLExpressParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class DefFunctionContext extends ParserRuleContext {
-		public DefFunctionContext(ParserRuleContext parent, int invokingState) {
-			super(parent, invokingState);
-		}
-		@Override public int getRuleIndex() { return RULE_defFunction; }
-	 
-		public DefFunctionContext() { }
-		public void copyFrom(DefFunctionContext ctx) {
-			super.copyFrom(ctx);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class DefFunctionOneContext extends DefFunctionContext {
 		public Return_typeContext return_type() {
 			return getRuleContext(Return_typeContext.class,0);
 		}
@@ -256,18 +244,21 @@ public class ZLExpressParser extends Parser {
 			return getRuleContext(ExprListContext.class,0);
 		}
 		public TerminalNode BLOCK_RIGHT() { return getToken(ZLExpressParser.BLOCK_RIGHT, 0); }
-		public DefFunctionOneContext(DefFunctionContext ctx) { copyFrom(ctx); }
+		public DefFunctionContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_defFunction; }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).enterDefFunctionOne(this);
+			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).enterDefFunction(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).exitDefFunctionOne(this);
+			if ( listener instanceof ZLExpressListener ) ((ZLExpressListener)listener).exitDefFunction(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof ZLExpressVisitor ) return ((ZLExpressVisitor<? extends T>)visitor).visitDefFunctionOne(this);
+			if ( visitor instanceof ZLExpressVisitor ) return ((ZLExpressVisitor<? extends T>)visitor).visitDefFunction(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -276,7 +267,6 @@ public class ZLExpressParser extends Parser {
 		DefFunctionContext _localctx = new DefFunctionContext(_ctx, getState());
 		enterRule(_localctx, 2, RULE_defFunction);
 		try {
-			_localctx = new DefFunctionOneContext(_localctx);
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(64);
