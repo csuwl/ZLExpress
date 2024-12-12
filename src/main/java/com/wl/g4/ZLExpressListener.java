@@ -1,4 +1,4 @@
-// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -82,6 +82,16 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitExpression(ZLExpressParser.ExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#expression_not_return}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#expression_not_return}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#returnExpression}.
 	 * @param ctx the parse tree
@@ -357,15 +367,25 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitType(ZLExpressParser.TypeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
 	 * @param ctx the parse tree
 	 */
-	void enterReturn_type(ZLExpressParser.Return_typeContext ctx);
+	void enterReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
 	 * @param ctx the parse tree
 	 */
-	void exitReturn_type(ZLExpressParser.Return_typeContext ctx);
+	void exitReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#null}.
+	 * @param ctx the parse tree
+	 */
+	void enterNull(ZLExpressParser.NullContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#null}.
+	 * @param ctx the parse tree
+	 */
+	void exitNull(ZLExpressParser.NullContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
 	 * @param ctx the parse tree

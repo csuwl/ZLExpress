@@ -24,13 +24,16 @@ grammar ZLExpress;
 
 
 exprList
-:expression
-|(expression ';')*
+: expression
+| ( expression ';')*
+| ( expression_not_return ';')
 ;
 
 defFunction
-:DEF return_type FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT  #DefFunctionOne
-|IDENTIFIER ASSIGN DEF return_type FUNCTION  LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT #DefFunctionTwo
+:DEF return_not_void_type FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT           #DefFunctionOne
+|IDENTIFIER ASSIGN DEF return_not_void_type FUNCTION  LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT   #DefFunctionTwo
+|DEF VOID_TYPE FUNCTION IDENTIFIER LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT                                        #DefFunctionOne
+|IDENTIFIER ASSIGN DEF VOID_TYPE FUNCTION  LEFT_PARENTHESIS (function_parameter_typre IDENTIFIER)? (',' function_parameter_typre IDENTIFIER)* RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT                                #DefFunctionTwo
 ;
 
 functionExecute
@@ -38,17 +41,22 @@ functionExecute
 ;
 
 expression
+: expression_not_return
+| returnExpression
+;
+
+
+expression_not_return
 : booleanExpression
 | assignExpression
 | computeExpression
 | groupExpression
 | defFunction
 | functionExecute
-| returnExpression
 ;
 
 returnExpression
-: RETURN  id |constant | NULL | functionExecute| computeExpression|booleanExpression |groupExpression
+: RETURN  (null | id | constant | functionExecute | computeExpression | booleanExpression | groupExpression)
 ;
 
 
@@ -148,7 +156,9 @@ BLOCK_RIGHT:'}';
 RETURN:'return';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE;
-return_type:type;
+
+return_not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
+null:NULL;
 function_parameter_typre:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
 function_parameter: (IDENTIFIER | constant | constantArray)
 ;

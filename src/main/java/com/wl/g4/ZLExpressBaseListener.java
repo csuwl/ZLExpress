@@ -1,4 +1,4 @@
-// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -93,6 +93,18 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExpression(ZLExpressParser.ExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -386,13 +398,25 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterReturn_type(ZLExpressParser.Return_typeContext ctx) { }
+	@Override public void enterReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitReturn_type(ZLExpressParser.Return_typeContext ctx) { }
+	@Override public void exitReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNull(ZLExpressParser.NullContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNull(ZLExpressParser.NullContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

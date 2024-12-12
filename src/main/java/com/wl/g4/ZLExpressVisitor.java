@@ -1,4 +1,4 @@
-// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -63,6 +63,12 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpression(ZLExpressParser.ExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#expression_not_return}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitExpression_not_return(ZLExpressParser.Expression_not_returnContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#returnExpression}.
 	 * @param ctx the parse tree
@@ -225,11 +231,17 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitType(ZLExpressParser.TypeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#return_type}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#return_not_void_type}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitReturn_type(ZLExpressParser.Return_typeContext ctx);
+	T visitReturn_not_void_type(ZLExpressParser.Return_not_void_typeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#null}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNull(ZLExpressParser.NullContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#function_parameter_typre}.
 	 * @param ctx the parse tree
