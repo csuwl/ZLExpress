@@ -44,6 +44,8 @@ public class FuncExeVis implements ICustomVisitor<Object> {
 
             List<ZLExpressParser.ExprListContext> exprListContexts = defFunctionContext.getRuleContexts(ZLExpressParser.ExprListContext.class);
             if (null == exprListContexts || exprListContexts.isEmpty()) {
+//                todo 查找内置函数
+//                todo 和jdk java类联动
                 return null;
             } else {
                 //            函数参数定义
