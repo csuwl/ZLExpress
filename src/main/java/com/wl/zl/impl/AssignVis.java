@@ -19,34 +19,36 @@ public class AssignVis implements ICustomVisitor<Void> {
 
         int childCount = ctx.getChildCount();
         String symbel = null;
-        Object value = null;
+        Result result = null;
         Token typeToken = null;
+        Object value = null;
         if (childCount == 3) {
             symbel = ctx.getStart().getText();
-            value = visitProcess.visitParseTree(tree.getChild(2));
+            result = visitProcess.visitParseTree(tree.getChild(2));
         } else if (childCount == 4) {
             typeToken = ctx.getStart();
             symbel = ctx.getChild(1).getText();
-            value = visitProcess.visitParseTree(tree.getChild(3));
+            result = visitProcess.visitParseTree(tree.getChild(3));
         }
 
         if (null != typeToken) {
             if (ZLExpressLexer.INT_TYPE == typeToken.getType()) {
-                value = Integer.parseInt(value.toString());
+                value = Integer.parseInt(result.getResult().toString());
             } else if (ZLExpressLexer.DOUBLE_TYPE == typeToken.getType()) {
-                value = Double.parseDouble(value.toString());
+                value = Double.parseDouble(result.getResult().toString());
             } else if (ZLExpressLexer.STRING_TYPE == typeToken.getType()) {
-                value = value.toString();
+                value = result.getResult().toString();
             }
         } else {
-            try {
-                value = Double.valueOf(value.toString());
-            } catch (Exception e) {
-            }
-
-            try {
-                value = Integer.valueOf(value.toString());
-            } catch (Exception e) {
+            Class resultClazz = result.getClazz();
+            if (Integer.class.equals(resultClazz)) {
+                value = Integer.parseInt(result.getResult().toString());
+            } else if (Double.class.equals(resultClazz)) {
+                value = Double.parseDouble(result.getResult().toString());
+            } else if (String.class.equals(resultClazz)) {
+                value = result.getResult().toString();
+            } else {
+                value = result.getResult().toString();
             }
         }
 

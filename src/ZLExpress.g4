@@ -97,8 +97,7 @@ computeExpression
 ;
 
 booleanExpression
-    : id compare constant                                 # CompareExpression
-    | id compare id                                       # CompareExpression
+    : (id|constant|null) compare (id|constant|null)       # CompareExpression
     | id IN constantArray                                 # InExpression
     | id (NOT IN | NIN) constantArray                     # NinExpression
     | left=booleanExpression operator=AND right=booleanExpression # AndExpression

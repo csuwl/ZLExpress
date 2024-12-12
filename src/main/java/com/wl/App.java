@@ -15,10 +15,7 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("int dsa(int sm,int dsa){\n" +
-                "  return sm+dsa;\n" +
-                "};\n" +
-                "dsa(45,76);", null, null);
+        Object process = zlExpress.process("id=\"ds\"; id == \"ds\";", null, null);
 
         System.out.println(process);
 
