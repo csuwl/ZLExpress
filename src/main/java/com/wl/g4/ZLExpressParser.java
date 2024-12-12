@@ -21,6 +21,7 @@ package com.wl.g4;
 // # NOTE: This is ANTLR4 auto-generated code. Do not modify! #
 // ############################################################
 
+import com.wl.zl.impl.IScopeValue;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -138,7 +139,7 @@ public class ZLExpressParser extends Parser {
 	}
 
 	@SuppressWarnings("CheckReturnValue")
-	public static class ExprListContext extends ParserRuleContext {
+	public static class ExprListContext extends ParserRuleContext implements IScopeValue {
 		public List<ExpressionContext> expression() {
 			return getRuleContexts(ExpressionContext.class);
 		}
