@@ -293,15 +293,25 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitOrExpression(ZLExpressParser.OrExpressionContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#constantArray}.
+	 * Enter a parse tree produced by {@link ZLExpressParser#array}.
 	 * @param ctx the parse tree
 	 */
-	void enterConstantArray(ZLExpressParser.ConstantArrayContext ctx);
+	void enterArray(ZLExpressParser.ArrayContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#constantArray}.
+	 * Exit a parse tree produced by {@link ZLExpressParser#array}.
 	 * @param ctx the parse tree
 	 */
-	void exitConstantArray(ZLExpressParser.ConstantArrayContext ctx);
+	void exitArray(ZLExpressParser.ArrayContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link ZLExpressParser#arrayContent}.
+	 * @param ctx the parse tree
+	 */
+	void enterArrayContent(ZLExpressParser.ArrayContentContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link ZLExpressParser#arrayContent}.
+	 * @param ctx the parse tree
+	 */
+	void exitArrayContent(ZLExpressParser.ArrayContentContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link ZLExpressParser#compare}.
 	 * @param ctx the parse tree

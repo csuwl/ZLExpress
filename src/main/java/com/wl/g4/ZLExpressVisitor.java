@@ -188,11 +188,17 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOrExpression(ZLExpressParser.OrExpressionContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#constantArray}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#array}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitConstantArray(ZLExpressParser.ConstantArrayContext ctx);
+	T visitArray(ZLExpressParser.ArrayContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#arrayContent}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitArrayContent(ZLExpressParser.ArrayContentContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#compare}.
 	 * @param ctx the parse tree

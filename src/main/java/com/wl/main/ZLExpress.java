@@ -2,12 +2,12 @@ package com.wl.main;
 
 import com.wl.g4.ZLExpressLexer;
 import com.wl.g4.ZLExpressParser;
+import com.wl.model.Result;
 import com.wl.zl.impl.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +37,7 @@ public class ZLExpress {
         CompareVis compareVis = new CompareVis();
         NullVis nullVis = new NullVis();
         NotVis notVis = new NotVis();
+        ArrayVis arrayVis = new ArrayVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>(){
             {
@@ -56,6 +57,7 @@ public class ZLExpress {
                 put(compareVis.getProcessType(), compareVis);
                 put(nullVis.getProcessType(), nullVis);
                 put(notVis.getProcessType(), notVis);
+                put(arrayVis.getProcessType(), arrayVis);
             }
         };
 

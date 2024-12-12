@@ -15,7 +15,8 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("id == \"ds\" || id ==null;", null, null);
+        Object process = zlExpress.process("d=[[ds,fdsa],\n" +
+                "[s]];", null, null);
 
         System.out.println(process);
 

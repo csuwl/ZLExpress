@@ -65,7 +65,7 @@ expression_not_return
 ;
 
 returnExpression
-: RETURN  (null | id | constant | functionExecute | computeExpression | booleanExpression | groupExpression)
+: RETURN  (null | id | constant | functionExecute | computeExpression | array |booleanExpression | groupExpression)
 ;
 
 
@@ -81,6 +81,7 @@ assignExpression
  |type? IDENTIFIER ASSIGN booleanExpression
  |type? IDENTIFIER ASSIGN computeExpression
  |type? IDENTIFIER ASSIGN functionExecute
+ |ARRAY_TYPE? IDENTIFIER ASSIGN array
  ;
 
 groupComputeExpression
@@ -97,18 +98,21 @@ computeExpression
 ;
 
 booleanExpression
-    : (id|constant|null) compare (id|constant|null)       # CompareExpression
-    | id IN constantArray                                 # InExpression
-    | id (NOT IN | NIN) constantArray                     # NinExpression
-    | left=booleanExpression operator=AND right=booleanExpression # AndExpression
-    | left=booleanExpression operator=OR right=booleanExpression  # OrExpression
-    | NOT booleanExpression                                       # NotExpression
+    : (id|constant|null) compare (id|constant|null)                  # CompareExpression
+    | (id|constant|null) IN (array|id)                               # InExpression
+    | (id|constant|null) (NOT IN | NIN) (array|id)                   # NinExpression
+    | left=booleanExpression operator=AND right=booleanExpression    # AndExpression
+    | left=booleanExpression operator=OR right=booleanExpression     # OrExpression
+    | NOT booleanExpression                                          # NotExpression
     ;
 
-constantArray
-    : LEFT_SQUARE_BRACKETS constant (COMMA constant)* RIGHT_SQUARE_BRACKETS
+array
+    : LEFT_SQUARE_BRACKETS arrayContent? (COMMA arrayContent)* RIGHT_SQUARE_BRACKETS
     ;
 
+arrayContent
+: (id|constant|null|array)
+;
 compare
 :    EQUALS | GT | GE | LT | LE | NE;
 
@@ -157,18 +161,19 @@ DOUBLE_TYPE: 'Double' | 'double';
 STRING_TYPE: 'String'| 'string';
 VOID_TYPE: 'Void' | 'void';
 BOOL_TYPE: 'Bool' | 'bool' | 'boolean';
+ARRAY_TYPE: 'Array' | 'array';
 
 BLOCK_LEFT:'{';
 BLOCK_RIGHT:'}';
 
 RETURN:'return';
 
-type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE;
+type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;
-return_not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
+return_not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 null:NULL;
-function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE;
-functionExecuteParameter: (IDENTIFIER | constant | constantArray)
+function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
+functionExecuteParameter: (IDENTIFIER | constant | array)
 ;
 
 

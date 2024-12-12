@@ -326,13 +326,25 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterConstantArray(ZLExpressParser.ConstantArrayContext ctx) { }
+	@Override public void enterArray(ZLExpressParser.ArrayContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitConstantArray(ZLExpressParser.ConstantArrayContext ctx) { }
+	@Override public void exitArray(ZLExpressParser.ArrayContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterArrayContent(ZLExpressParser.ArrayContentContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitArrayContent(ZLExpressParser.ArrayContentContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

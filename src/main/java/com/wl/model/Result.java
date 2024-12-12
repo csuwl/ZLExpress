@@ -1,4 +1,4 @@
-package com.wl.zl.impl;
+package com.wl.model;
 
 import java.util.Objects;
 
