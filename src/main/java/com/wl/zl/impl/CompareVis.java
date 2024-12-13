@@ -22,8 +22,8 @@ public class CompareVis implements ICustomVisitor<Boolean> {
         List<ZLExpressParser.CompareContext> compareContexts = compareExpression.getRuleContexts(ZLExpressParser.CompareContext.class);
         ZLExpressParser.CompareContext compareContext = compareContexts.get(0);
         int type = compareContext.getStart().getType();
-        Class clazz1 = result1.getClazz();
-        Class clazz2 = result2.getClazz();
+        Class clazz1 = result1.getClazzType();
+        Class clazz2 = result2.getClazzType();
         switch (type) {
             case ZLExpressLexer.EQUALS:
                 return result1.equals(result2);

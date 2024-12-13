@@ -19,13 +19,13 @@ public class PlusVis implements ICustomVisitor<Number> {
             return null;
         }
 
-        if(result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Integer.class)){
+        if(result1.getClazzType().equals(Integer.class) && result2.getClazzType().equals(Integer.class)){
            return (Integer)result1.getResult() + (Integer) result2.getResult();
-        } else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Integer.class)) {
+        } else if (result1.getClazzType().equals(Double.class) && result2.getClazzType().equals(Integer.class)) {
             return (Double) result1.getResult() + (Integer) result2.getResult();
-        }else if (result1.getClazz().equals(Integer.class) && result2.getClazz().equals(Double.class)) {
+        }else if (result1.getClazzType().equals(Integer.class) && result2.getClazzType().equals(Double.class)) {
             return (Integer) result1.getResult() + (Double) result2.getResult();
-        } else if (result1.getClazz().equals(Double.class) && result2.getClazz().equals(Double.class)) {
+        } else if (result1.getClazzType().equals(Double.class) && result2.getClazzType().equals(Double.class)) {
             return (Double) result1.getResult() + (Double) result2.getResult();
         }
 

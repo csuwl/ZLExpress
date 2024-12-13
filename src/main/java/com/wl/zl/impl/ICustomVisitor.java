@@ -8,8 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author wanglei
  * @param <T>
+ * @author wanglei
  */
 public interface ICustomVisitor<T> {
 
@@ -32,7 +32,9 @@ public interface ICustomVisitor<T> {
             currentTree = currentTree.getParent();
         }
         return null;
-    };
+    }
+
+    ;
 
     /**
      * 放到父级context
@@ -56,11 +58,14 @@ public interface ICustomVisitor<T> {
             }
             tree = parent;
         }
-    };
+    }
+
+    ;
 
 
     /**
      * 查找函数定义
+     *
      * @param tree
      * @param functionDefinition
      * @return
@@ -87,7 +92,6 @@ public interface ICustomVisitor<T> {
      * @param tree
      * @param functionDefinition
      * @param defFunctionList
-     *
      */
     default void putParentFunctionDefinition(ParseTree tree, FunctionDefinition functionDefinition, List<ZLExpressParser.DefFunctionContext> defFunctionList) {
         while (tree != null) {
@@ -99,6 +103,52 @@ public interface ICustomVisitor<T> {
                 IScopeValue scopeValue = (IScopeValue) parent;
                 Map<FunctionDefinition, List<ZLExpressParser.DefFunctionContext>> functionMap = scopeValue.getFunctionMap();
                 functionMap.put(functionDefinition, defFunctionList);
+                return;
+            }
+            tree = parent;
+        }
+    }
+
+
+    /**
+     * 查找函数定义
+     *
+     * @param tree
+     * @return
+     */
+    default String resolveClass2Path(ParseTree tree, String className) {
+
+        ParseTree currentTree = tree;
+        while (currentTree != null) {
+            if (currentTree instanceof IScopeValue) {
+                IScopeValue scopeValue = (IScopeValue) currentTree;
+                Map<String, String> class2PathMap = scopeValue.getClass2PathMap();
+                if (null != class2PathMap && class2PathMap.containsKey(className)) {
+                    return class2PathMap.get(className);
+                }
+            }
+            currentTree = currentTree.getParent();
+        }
+        return null;
+    }
+
+    /**
+     * 放置函数定义
+     *
+     * @param tree
+     * @param className
+     * @param path
+     */
+    default void putParentClassPath(ParseTree tree, String className, String path) {
+        while (tree != null) {
+            ParseTree parent = tree.getParent();
+            if (null == parent) {
+                return;
+            }
+            if (parent instanceof IScopeValue) {
+                IScopeValue scopeValue = (IScopeValue) parent;
+                Map<String, String> class2PathMap = scopeValue.getClass2PathMap();
+                class2PathMap.put(className, path);
                 return;
             }
             tree = parent;

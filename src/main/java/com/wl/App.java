@@ -15,8 +15,8 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("import java.util.*;\n" +
-                "fdsa = new ds.fds(fdsg,gfd,654);", null, null);
+        Object process = zlExpress.process("import java.math.BigInteger;\n" +
+                "ds = new BigInteger(\"543\");", null, null);
 
         System.out.println(process);
 

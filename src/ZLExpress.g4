@@ -46,7 +46,7 @@ functionExecute
 ;
 
 functionExecuteParameterList
-:functionExecuteParameter
+:functionExecuteParameter?
 |functionExecuteParameter (',' functionExecuteParameter)*
 ;
 
@@ -177,6 +177,7 @@ BLOCK_RIGHT:'}';
 RETURN:'return';
 IMPORT:'import';
 NEW:'new';
+AS:'as';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;
@@ -187,12 +188,12 @@ functionExecuteParameter: (IDENTIFIER | constant | array)
 ;
 
 importExpression
-:IMPORT packagePath
+:IMPORT packagePath (AS id)?
 ;
 
 packagePath
 :id
-|id (DOT id)* (DOT '*')*
+|id (DOT id)*
 ;
 
 newObjectExpression

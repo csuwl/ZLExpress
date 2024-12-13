@@ -3,9 +3,7 @@ package com.wl.zl.impl;
 import com.wl.g4.ZLExpressParser;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-import java.io.IOException;
-import java.net.URL;
-import java.util.Enumeration;
+import java.util.List;
 
 public class ImportVis implements ICustomVisitor<Void> {
     @Override
@@ -13,19 +11,24 @@ public class ImportVis implements ICustomVisitor<Void> {
         ZLExpressParser.ImportExpressionContext ctx = (ZLExpressParser.ImportExpressionContext) tree;
         ZLExpressParser.PackagePathContext packagePathContext = ctx.packagePath();
         String packagePath = packagePathContext.getText();
-        System.out.println(packagePath);
-        ClassLoader contextClassLoader = Thread.currentThread().getContextClassLoader();
+        List<ZLExpressParser.IdContext> idContexts = ctx.getRuleContexts(ZLExpressParser.IdContext.class);
+
+        String id = null;
+        if (null != idContexts && idContexts.size() != 0) {
+            id = idContexts.get(0).getText();
+        } else {
+            String[] pathArray = packagePath.split("\\.");
+            id = pathArray[pathArray.length - 1];
+        }
+
         try {
-            String path = packagePath.replaceAll("\\.", "/");
-            Enumeration<URL> resources = contextClassLoader.getResources(path);
-            for (; resources.hasMoreElements(); ) {
-                URL resource = resources.nextElement();
-                System.out.println(resource);
-            }
-            System.out.println(resources);
-        } catch (IOException e) {
+            Class.forName(packagePath);
+        } catch (ClassNotFoundException e) {
             throw new RuntimeException(e);
         }
+
+        putParentClassPath(tree, id, packagePath);
+
         return null;
     }
 

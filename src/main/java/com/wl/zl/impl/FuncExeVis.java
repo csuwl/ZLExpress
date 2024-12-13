@@ -30,14 +30,14 @@ public class FuncExeVis implements ICustomVisitor<Object> {
         for (ZLExpressParser.FunctionExecuteParameterContext executeParameterItem : executeParameterItemList) {
             Result result = visitProcess.visitParseTree(executeParameterItem);
             parameterValue.add(result.getResult());
-            parameterTypes.add(TypeUtil.getTypeByJavaClass(result.getClazz()));
+            parameterTypes.add(TypeUtil.getTypeByJavaClass(result.getClazzType()));
         }
         FunctionDefinition functionDefinition = new FunctionDefinition(functionName, parameterTypes);
 
         List<ZLExpressParser.DefFunctionContext> functionContextList = resolveParentFunctionDefinition(ctx, functionDefinition);
         if (null == functionContextList || functionContextList.isEmpty()) {
-//            todo 抛异常
-            return null;
+//            抛异常
+            throw new RuntimeException("没有找到函数定义");
         } else {
             ZLExpressParser.DefFunctionContext defFunctionContext = functionContextList.get(0);
 
