@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * ZLExpress enter class
@@ -47,7 +48,7 @@ public class ZLExpress {
         NewObjectVis newObjectVis = new NewObjectVis();
         ObjectExeFunctionVis objectExeFunctionVis = new ObjectExeFunctionVis();
 
-        Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>(){
+        Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>() {
             {
                 put(plusVis.getProcessType(), plusVis);
                 put(assignVis.getProcessType(), assignVis);
@@ -80,20 +81,50 @@ public class ZLExpress {
         visitProcess.setVisitorMap(visitorMap);
     }
 
+
+    private Map<String, ZLExpressParser.ExprListContext> cacheExpress = new ConcurrentHashMap<>();
+
+    /**
+     * script enter method
+     *
+     * @param express
+     * @param context
+     * @param cache
+     * @return
+     */
     public Object process(String express, Map<Object, Object> context, Boolean cache) {
         Result result = processResult(express, context, cache);
         return result.getResult();
     }
 
+    /**
+     * script enter method
+     *
+     * @param express
+     * @param context
+     * @param cache
+     * @return
+     */
     public Result processResult(String express, Map<Object, Object> context, Boolean cache) {
+
         if (null == cache) {
             cache = Boolean.FALSE;
         }
+        ZLExpressParser.ExprListContext exprListContext = null;
+        if (cache && cacheExpress.containsKey(express)) {
+//            check has same express
+            exprListContext = cacheExpress.get(express);
+        } else {
+            ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString(express));
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
+            exprListContext = zlExpressParser.exprList();
+        }
 
-        ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString(express));
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
-
-        return visitProcess.visitParseTree(zlExpressParser.exprList());
+        if (null != context && context.size() > 0) {
+            Map<Object, Object> contextMap = exprListContext.getContext();
+            contextMap.putAll(context);
+        }
+        return visitProcess.visitParseTree(exprListContext);
     }
 }
