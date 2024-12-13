@@ -94,13 +94,13 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#for}.
+	 * Visit a parse tree produced by {@link ZLExpressParser}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitFor(ZLExpressParser.ForContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#if}.
+	 * Visit a parse tree produced by {@link ZLExpressParser}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
@@ -299,7 +299,7 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNot_void_type(ZLExpressParser.Not_void_typeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#null}.
+	 * Visit a parse tree produced by {@link ZLExpressParser}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
