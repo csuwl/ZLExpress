@@ -11,9 +11,9 @@ import java.util.List;
  * array process
  * @author wanglei
  */
-public class ArrayVis implements ICustomVisitor<List<Object>>{
+public class ArrayVis implements ICustomVisitor{
     @Override
-    public List<Object> visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ArrayContext arrayContext = (ZLExpressParser.ArrayContext) tree;
         List<ZLExpressParser.ArrayContentContext> arrayContentContextList = arrayContext.arrayContent();
         ArrayList<Object> arrayList = new ArrayList<>(arrayContentContextList.size());
@@ -21,7 +21,7 @@ public class ArrayVis implements ICustomVisitor<List<Object>>{
             Result result = visitProcess.visitParseTree(arrayContentContext);
             arrayList.add(result.getResult());
         }
-        return arrayList;
+        return new Result(arrayList);
     }
 
     @Override

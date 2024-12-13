@@ -1,17 +1,18 @@
 package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
+import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  * return  null
  * @author wanglei
  */
-public class NullVis implements ICustomVisitor<Object>{
+public class NullVis implements ICustomVisitor{
 
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
-        return null;
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+        return new Result(null);
     }
 
     @Override

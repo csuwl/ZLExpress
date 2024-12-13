@@ -12,9 +12,9 @@ import java.util.List;
  * new object
  * @author wanglei
  */
-public class NewObjectVis implements ICustomVisitor<Object> {
+public class NewObjectVis implements ICustomVisitor {
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.NewObjectExpressionContext ctx = (ZLExpressParser.NewObjectExpressionContext) tree;
         String className = ctx.packagePath().getText();
         String path = resolveClass2Path(tree, className);
@@ -33,7 +33,7 @@ public class NewObjectVis implements ICustomVisitor<Object> {
         try {
             Class<?> clazz = Class.forName(path);
             Constructor<?> constructor = clazz.getConstructor(classTypes);
-            return constructor.newInstance(parameterValueArray);
+            return new Result(constructor.newInstance(parameterValueArray));
 
         } catch (InstantiationException e) {
             throw new RuntimeException(e);

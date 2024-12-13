@@ -10,9 +10,9 @@ import java.util.List;
  * expression top level
  * @author wanglei
  */
-public class ExprListVis implements ICustomVisitor<Object> {
+public class ExprListVis implements ICustomVisitor {
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ExprListContext exprList = (ZLExpressParser.ExprListContext) tree;
         List<ZLExpressParser.ExpressionNotReturnContext> expressionNotReturnContexts = exprList.expressionNotReturn();
         Result result=null;
@@ -24,7 +24,7 @@ public class ExprListVis implements ICustomVisitor<Object> {
         if(null != returnExpressionContext){
             result = visitProcess.visitParseTree(returnExpressionContext);
         }
-        return null == result ? null : result.getResult();
+        return null == result ? new Result(null) : result;
     }
 
     @Override

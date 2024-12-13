@@ -12,9 +12,9 @@ import java.util.List;
  * call object method
  * @author wanglei
  */
-public class ObjectExeFunctionVis implements ICustomVisitor<Object> {
+public class ObjectExeFunctionVis implements ICustomVisitor{
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ObjectFunctionExecuteContext ctx = (ZLExpressParser.ObjectFunctionExecuteContext) tree;
         ZLExpressParser.PackagePathContext packagePathContext = ctx.packagePath();
         String path = packagePathContext.getText();
@@ -40,7 +40,7 @@ public class ObjectExeFunctionVis implements ICustomVisitor<Object> {
         Class<?> aClass = object.getClass();
         try {
             Method method = aClass.getMethod(functionName, parameterTypes);
-            return method.invoke(object, parameterValues);
+            return new Result(method.invoke(object, parameterValues));
         } catch (NoSuchMethodException e) {
             throw new RuntimeException(e);
         } catch (InvocationTargetException e) {

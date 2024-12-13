@@ -17,9 +17,9 @@ import java.util.List;
  *
  * @author wanglei1
  */
-public class LocalFuncExeVis implements ICustomVisitor<Object> {
+public class LocalFuncExeVis implements ICustomVisitor {
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.LocalFunctionExecuteContext ctx = (ZLExpressParser.LocalFunctionExecuteContext) tree;
         String functionName = ctx.getChild(0).getText();
         List<ZLExpressParser.FunctionExecuteParameterListContext> functionExecuteParameterListContexts = ctx.getRuleContexts(ZLExpressParser.FunctionExecuteParameterListContext.class);
@@ -42,7 +42,7 @@ public class LocalFuncExeVis implements ICustomVisitor<Object> {
         List<ZLExpressParser.DefFunctionContext> functionContextList = resolveParentFunctionDefinition(ctx, functionDefinition);
         if (null == functionContextList || functionContextList.isEmpty()) {
 //                查找内置函数
-            return InnerFunction.visit(innerFunctionDefinition,parameterValue);
+            return new Result(InnerFunction.visit(innerFunctionDefinition,parameterValue));
         } else {
             ZLExpressParser.DefFunctionContext defFunctionContext = functionContextList.get(0);
 
@@ -68,9 +68,9 @@ public class LocalFuncExeVis implements ICustomVisitor<Object> {
                 Result result = visitProcess.visitParseTree(exprListContext);
 //                函数返回类型是void的话 返回null
                 if (ZLExpressLexer.VOID_TYPE == defFunctionContext.return_type().type().stop.getType()) {
-                    return null;
+                    return new Result(null);
                 }
-                return result.getResult();
+                return result;
             }
         }
     }

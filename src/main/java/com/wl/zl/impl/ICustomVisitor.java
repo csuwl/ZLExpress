@@ -2,6 +2,7 @@ package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
 import com.wl.model.FunctionDefinition;
+import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.List;
@@ -9,12 +10,11 @@ import java.util.Map;
 
 /**
  * visitor custom
- * @param <T>
  * @author wanglei
  */
-public interface ICustomVisitor<T> {
+public interface ICustomVisitor {
 
-    T visit(ParseTree tree, VisitProcess visitProcess);
+    Result visit(ParseTree tree, VisitProcess visitProcess);
 
     public Class<? extends ParseTree> getProcessType();
 

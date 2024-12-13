@@ -70,7 +70,13 @@ expressionNotReturn
 | array
 | id
 | null
+| if
 ;
+
+if
+: IF LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
+;
+
 
 returnExpression
 : RETURN  (null | id | constant | functionExecute | computeExpression | array |booleanExpression | groupExpression)
@@ -113,6 +119,7 @@ booleanExpression
     | left=booleanExpression operator=AND right=booleanExpression    # AndExpression
     | left=booleanExpression operator=OR right=booleanExpression     # OrExpression
     | NOT booleanExpression                                          # NotExpression
+    | BOOLEAN_VALUE                                                  # BoolValueExpression
     ;
 
 array
@@ -179,6 +186,7 @@ RETURN:'return';
 IMPORT:'import';
 NEW:'new';
 AS:'as';
+IF:'if';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;

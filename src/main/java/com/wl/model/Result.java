@@ -10,10 +10,6 @@ public class Result {
         return clazzType;
     }
 
-    public void setClazzType(Class clazzType) {
-        this.clazzType = clazzType;
-    }
-
     public Object getResult() {
         return result;
     }
@@ -22,9 +18,11 @@ public class Result {
         this.result = result;
     }
 
-    public Result(Object result, Class clazzType) {
+    public Result(Object result) {
         this.result = result;
-        this.clazzType = clazzType;
+        if (null != result) {
+            this.clazzType = result.getClass();
+        }
     }
 
     @Override

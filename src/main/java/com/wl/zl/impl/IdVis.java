@@ -1,18 +1,19 @@
 package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
+import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
  * return id value
  * @author wanglei
  */
-public class IdVis implements ICustomVisitor<Object> {
+public class IdVis implements ICustomVisitor {
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.IdContext idContext = (ZLExpressParser.IdContext) tree;
         String id = idContext.getText();
-        return resolveContext(tree, id);
+        return new Result(resolveContext(tree, id));
     }
 
     @Override

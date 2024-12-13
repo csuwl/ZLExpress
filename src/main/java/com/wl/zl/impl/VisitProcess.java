@@ -30,8 +30,7 @@ public class VisitProcess {
         Class<? extends ParseTree> treeClass = tree.getClass();
         ICustomVisitor visitor = visitorMap.get(treeClass);
         if (null != visitor) {
-            Object object = visitor.visit(tree, this);
-            return new Result(object, null == object ? null : object.getClass());
+            return visitor.visit(tree, this);
         } else {
             return visitChildren(tree);
         }

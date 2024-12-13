@@ -8,11 +8,10 @@ import org.antlr.v4.runtime.tree.ParseTree;
  * not return expression
  * @author wanglei
  */
-public class NotReturnExpressionVis implements ICustomVisitor<Object>{
+public class NotReturnExpressionVis implements ICustomVisitor{
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
-        Result result = visitProcess.visitChildren(tree);
-        return result.getResult();
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+        return visitProcess.visitChildren(tree);
     }
 
     @Override

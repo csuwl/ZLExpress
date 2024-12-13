@@ -2,6 +2,7 @@ package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
 import com.wl.model.FunctionDefinition;
+import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.ArrayList;
@@ -13,9 +14,9 @@ import java.util.List;
  *
  * @author wanglei
  */
-public class DefFuncVis implements ICustomVisitor<Void> {
+public class DefFuncVis implements ICustomVisitor {
     @Override
-    public Void visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.DefFunctionContext ctx = (ZLExpressParser.DefFunctionContext) tree;
         String functionName = ctx.getChild(1).getText();
         List<ZLExpressParser.FunctionParameterListContext> parameterListContextList = ctx.getRuleContexts(ZLExpressParser.FunctionParameterListContext.class);
@@ -33,7 +34,7 @@ public class DefFuncVis implements ICustomVisitor<Void> {
         if (null == functionContextList || functionContextList.isEmpty()) {
             putParentFunctionDefinition(tree, functionDefinition, Arrays.asList(ctx));
         }
-        return null;
+        return new Result(null);
     }
 
     @Override

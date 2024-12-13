@@ -1,13 +1,14 @@
 package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
+import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.List;
 
-public class ImportVis implements ICustomVisitor<Void> {
+public class ImportVis implements ICustomVisitor {
     @Override
-    public Void visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ImportExpressionContext ctx = (ZLExpressParser.ImportExpressionContext) tree;
         ZLExpressParser.PackagePathContext packagePathContext = ctx.packagePath();
         String packagePath = packagePathContext.getText();
@@ -29,7 +30,7 @@ public class ImportVis implements ICustomVisitor<Void> {
 
         putParentClassPath(tree, id, packagePath);
 
-        return null;
+        return new Result(null);
     }
 
     @Override

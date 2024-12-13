@@ -1,15 +1,16 @@
 package com.wl.zl.impl;
 
 import com.wl.g4.ZLExpressParser;
+import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class TextConstantVis implements ICustomVisitor<String> {
+public class TextConstantVis implements ICustomVisitor {
     @Override
-    public String visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.TextConstantContext ctx = (ZLExpressParser.TextConstantContext) tree;
         String text = ctx.getText();
         text = text.substring(1, text.length() - 1);
-        return text;
+        return new Result(text);
     }
 
     @Override

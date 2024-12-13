@@ -1,5 +1,6 @@
 package com.wl;
 
+import com.wl.main.ZLExpress;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
@@ -37,6 +38,9 @@ public class AppTest
     {
         assertTrue( true );
         Date date = new Date();
+        ZLExpress zlExpress = new ZLExpress();
+        Object process = zlExpress.process("dsaof=543;return dsaof+10;", null, null);
+        System.out.println( process );
 
     }
 }

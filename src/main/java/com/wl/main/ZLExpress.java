@@ -47,6 +47,7 @@ public class ZLExpress {
         ImportVis importVis = new ImportVis();
         NewObjectVis newObjectVis = new NewObjectVis();
         ObjectExeFunctionVis objectExeFunctionVis = new ObjectExeFunctionVis();
+        NotReturnExpressionVis notReturnExpressionVis = new NotReturnExpressionVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>() {
             {
@@ -75,6 +76,7 @@ public class ZLExpress {
                 put(importVis.getProcessType(), importVis);
                 put(newObjectVis.getProcessType(), newObjectVis);
                 put(objectExeFunctionVis.getProcessType(), objectExeFunctionVis);
+                put(notReturnExpressionVis.getProcessType(), notReturnExpressionVis);
             }
         };
 

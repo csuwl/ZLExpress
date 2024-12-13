@@ -50,11 +50,11 @@ bigInt2 = bigInt.add(bigInt);// 调用对象方法
 
 ## 2、脚本中定义function
 ```java
-add(int a, int b){
+int add(int a, int b){
     return a + b;
 };
 
-sub(int a, int b){
+int sub(int a, int b){
     return a - b;
 };
 

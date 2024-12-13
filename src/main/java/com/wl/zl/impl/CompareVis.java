@@ -12,9 +12,9 @@ import java.util.List;
  *
  * @author wanglei
  */
-public class CompareVis implements ICustomVisitor<Boolean> {
+public class CompareVis implements ICustomVisitor {
     @Override
-    public Boolean visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.CompareExpressionContext compareExpression = (ZLExpressParser.CompareExpressionContext) tree;
         Result result1 = visitProcess.visitParseTree(compareExpression.getChild(0));
         Result result2 = visitProcess.visitParseTree(compareExpression.getChild(2));
@@ -26,41 +26,41 @@ public class CompareVis implements ICustomVisitor<Boolean> {
         Class clazz2 = result2.getClazzType();
         switch (type) {
             case ZLExpressLexer.EQUALS:
-                return result1.equals(result2);
+                return new Result(result1.equals(result2));
             case ZLExpressLexer.GE:
-                if (clazz1.equals(clazz2) && clazz1.equals(Integer.class)) {
-                    return (Integer) result1.getResult() >= (Integer) result2.getResult();
-                } else if (clazz1.equals(clazz2) && clazz1.equals(Double.class)) {
-                    return (Double) result1.getResult() >= (Double) result2.getResult();
+                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Integer) result1.getResult() >= (Integer) result2.getResult());
+                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Double) result1.getResult() >= (Double) result2.getResult());
                 } else {
-                    return false;
+                    return new Result(null);
                 }
             case ZLExpressLexer.LE:
-                if (clazz1.equals(clazz2) && clazz1.equals(Integer.class)) {
-                    return (Integer) result1.getResult() <= (Integer) result2.getResult();
-                } else if (clazz1.equals(clazz2) && clazz1.equals(Double.class)) {
-                    return (Double) result1.getResult() <= (Double) result2.getResult();
+                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Integer) result1.getResult() <= (Integer) result2.getResult());
+                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Double) result1.getResult() <= (Double) result2.getResult());
                 } else {
-                    return false;
+                    return new Result(null);
                 }
             case ZLExpressLexer.LT:
-                if (clazz1.equals(clazz2) && clazz1.equals(Integer.class)) {
-                    return (Integer) result1.getResult() < (Integer) result2.getResult();
-                } else if (clazz1.equals(clazz2) && clazz1.equals(Double.class)) {
-                    return (Double) result1.getResult() < (Double) result2.getResult();
+                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Integer) result1.getResult() < (Integer) result2.getResult());
+                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Double) result1.getResult() < (Double) result2.getResult());
                 } else {
-                    return false;
+                    return new Result(null);
                 }
             case ZLExpressLexer.GT:
-                if (clazz1.equals(clazz2) && clazz1.equals(Integer.class)) {
-                    return (Integer) result1.getResult() > (Integer) result2.getResult();
-                } else if (clazz1.equals(clazz2) && clazz1.equals(Double.class)) {
-                    return (Double) result1.getResult() > (Double) result2.getResult();
+                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Integer) result1.getResult() > (Integer) result2.getResult());
+                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                    return new Result((Double) result1.getResult() > (Double) result2.getResult());
                 } else {
-                    return false;
+                    return new Result(null);
                 }
         }
-        return null;
+        return new Result(null);
     }
 
     @Override

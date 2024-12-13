@@ -5,12 +5,11 @@ import com.wl.model.Result;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class ExpressionVis implements ICustomVisitor<Object>{
+public class ExpressionVis implements ICustomVisitor{
 
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
-        Result result = visitProcess.visitChildren(tree);
-        return result.getResult();
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+        return visitProcess.visitChildren(tree);
     }
 
     @Override

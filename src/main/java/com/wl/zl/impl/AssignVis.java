@@ -12,10 +12,10 @@ import org.antlr.v4.runtime.tree.ParseTree;
 /**
  * 赋值
  */
-public class AssignVis implements ICustomVisitor<Void> {
+public class AssignVis implements ICustomVisitor {
 
     @Override
-    public Void visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.AssignExpressionContext ctx = (ZLExpressParser.AssignExpressionContext) tree;
 
         int childCount = ctx.getChildCount();
@@ -47,7 +47,7 @@ public class AssignVis implements ICustomVisitor<Void> {
         }
 
         putParentContext(tree, symbel, value);
-        return null;
+        return new Result(null);
     }
 
     @Override

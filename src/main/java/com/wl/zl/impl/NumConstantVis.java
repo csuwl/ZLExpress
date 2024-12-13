@@ -4,12 +4,11 @@ import com.wl.g4.ZLExpressParser;
 import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class NumConstantVis implements ICustomVisitor<Object>{
+public class NumConstantVis implements ICustomVisitor{
 
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
-        Result result = visitProcess.visitChildren(tree);
-        return result.getResult();
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+        return visitProcess.visitChildren(tree);
     }
 
     @Override

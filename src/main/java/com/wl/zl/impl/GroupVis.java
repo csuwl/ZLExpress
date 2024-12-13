@@ -4,11 +4,10 @@ import com.wl.g4.ZLExpressParser;
 import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
-public class GroupVis implements ICustomVisitor<Object>{
+public class GroupVis implements ICustomVisitor{
     @Override
-    public Object visit(ParseTree tree, VisitProcess visitProcess) {
-        Result result = visitProcess.visitParseTree(tree.getChild(1));
-        return result.getResult();
+    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+        return visitProcess.visitParseTree(tree.getChild(1));
     }
 
     @Override
