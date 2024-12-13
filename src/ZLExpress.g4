@@ -29,6 +29,12 @@ exprList
 | (expressionNotReturn (';')+)* (returnExpression (';')+)?
 ;
 
+forExprList
+: expressionNotReturn
+| returnExpression
+| (expressionNotReturn (';')+)* (returnExpression (';')+)?
+;
+
 defFunction
 :return_type IDENTIFIER LEFT_PARENTHESIS functionParameterList RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT
 ;
@@ -71,6 +77,11 @@ expressionNotReturn
 | id
 | null
 | if
+| for
+;
+
+for
+:FOR LEFT_PARENTHESIS assignExpression ';' booleanExpression ';' computeExpression RIGHT_PARENTHESIS BLOCK_LEFT forExprList BLOCK_RIGHT
 ;
 
 if
@@ -109,7 +120,8 @@ computeExpression
 | computeExpression PLUS computeExpression                                                          # PlusExpression
 | computeExpression MINUS computeExpression                                                         # MinusExpression
 | groupComputeExpression                                                                            # GroupComputeExpressionA
-| (MINUS | PLUS)? (id|num)                                                                  # NumExpression
+| (MINUS | PLUS)? (id|num)                                                                          # NumExpression
+| id PLUS PLUS                                                                                      # PlusPlusExpression
 ;
 
 booleanExpression
@@ -187,6 +199,7 @@ IMPORT:'import';
 NEW:'new';
 AS:'as';
 IF:'if';
+FOR:'for';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;

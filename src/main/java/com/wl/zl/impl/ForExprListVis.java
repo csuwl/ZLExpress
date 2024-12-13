@@ -8,15 +8,14 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import java.util.List;
 
 /**
- * expression top level
- *
+ * for expression
  * @author wanglei
  */
-public class ExprListVis implements ICustomVisitor {
+public class ForExprListVis implements ICustomVisitor{
     @Override
     public Result visit(ParseTree tree, VisitProcess visitProcess) {
-        ZLExpressParser.ExprListContext exprList = (ZLExpressParser.ExprListContext) tree;
-        List<ZLExpressParser.ExpressionNotReturnContext> expressionNotReturnContexts = exprList.expressionNotReturn();
+        ZLExpressParser.ForExprListContext ctx = (ZLExpressParser.ForExprListContext) tree;
+        List<ZLExpressParser.ExpressionNotReturnContext> expressionNotReturnContexts = ctx.expressionNotReturn();
         Result result = null;
         for (ZLExpressParser.ExpressionNotReturnContext expressionNotReturnContext : expressionNotReturnContexts) {
             result = visitProcess.visitParseTree(expressionNotReturnContext);
@@ -25,7 +24,7 @@ public class ExprListVis implements ICustomVisitor {
             }
         }
 
-        ZLExpressParser.ReturnExpressionContext returnExpressionContext = exprList.returnExpression();
+        ZLExpressParser.ReturnExpressionContext returnExpressionContext = ctx.returnExpression();
         if (null != returnExpressionContext) {
             result = visitProcess.visitParseTree(returnExpressionContext);
         }
@@ -34,6 +33,6 @@ public class ExprListVis implements ICustomVisitor {
 
     @Override
     public Class<? extends ParseTree> getProcessType() {
-        return ZLExpressParser.ExprListContext.class;
+        return ZLExpressParser.ForExprListContext.class;
     }
 }

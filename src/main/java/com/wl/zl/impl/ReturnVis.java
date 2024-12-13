@@ -1,5 +1,6 @@
 package com.wl.zl.impl;
 
+import com.wl.g4.ZLExpressLexer;
 import com.wl.g4.ZLExpressParser;
 import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
@@ -13,7 +14,10 @@ public class ReturnVis implements ICustomVisitor {
     public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ReturnExpressionContext ctx = (ZLExpressParser.ReturnExpressionContext) tree;
         ParseTree child = ctx.getChild(1);
-        return visitProcess.visitParseTree(child);
+        Result result = visitProcess.visitParseTree(child);
+//        set return flag
+        result.setMessage(ZLExpressLexer.RETURN);
+        return result;
     }
 
     @Override

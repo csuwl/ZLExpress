@@ -1,4 +1,4 @@
-// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -37,6 +37,12 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExprList(ZLExpressParser.ExprListContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#forExprList}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForExprList(ZLExpressParser.ForExprListContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#defFunction}.
 	 * @param ctx the parse tree
@@ -87,6 +93,18 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitExpressionNotReturn(ZLExpressParser.ExpressionNotReturnContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#for}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFor(ZLExpressParser.ForContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link ZLExpressParser#if}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitIf(ZLExpressParser.IfContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#returnExpression}.
 	 * @param ctx the parse tree
@@ -140,6 +158,13 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMinusExpression(ZLExpressParser.MinusExpressionContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code PlusPlusExpression}
+	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitPlusPlusExpression(ZLExpressParser.PlusPlusExpressionContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code DivExpression}
 	 * labeled alternative in {@link ZLExpressParser#computeExpression}.
 	 * @param ctx the parse tree
@@ -160,6 +185,13 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitNinExpression(ZLExpressParser.NinExpressionContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code BoolValueExpression}
+	 * labeled alternative in {@link ZLExpressParser#booleanExpression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBoolValueExpression(ZLExpressParser.BoolValueExpressionContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AndExpression}
 	 * labeled alternative in {@link ZLExpressParser#booleanExpression}.
@@ -267,7 +299,7 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNot_void_type(ZLExpressParser.Not_void_typeContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser}.
+	 * Visit a parse tree produced by {@link ZLExpressParser#null}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */

@@ -1,4 +1,4 @@
-// Generated from D:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
+// Generated from E:/IdeaProject/ZLExpress/src/ZLExpress.g4 by ANTLR 4.13.2
 package com.wl.g4;
 
 /*
@@ -45,6 +45,18 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitExprList(ZLExpressParser.ExprListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterForExprList(ZLExpressParser.ForExprListContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitForExprList(ZLExpressParser.ForExprListContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -146,6 +158,30 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFor(ZLExpressParser.ForContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFor(ZLExpressParser.ForContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterIf(ZLExpressParser.IfContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitIf(ZLExpressParser.IfContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterReturnExpression(ZLExpressParser.ReturnExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -242,6 +278,18 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterPlusPlusExpression(ZLExpressParser.PlusPlusExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitPlusPlusExpression(ZLExpressParser.PlusPlusExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDivExpression(ZLExpressParser.DivExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -273,6 +321,18 @@ public class ZLExpressBaseListener implements ZLExpressListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitNinExpression(ZLExpressParser.NinExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBoolValueExpression(ZLExpressParser.BoolValueExpressionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBoolValueExpression(ZLExpressParser.BoolValueExpressionContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
