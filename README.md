@@ -36,6 +36,8 @@ int sumFunc(int d,int s){
 }
 
 sum = sumFunc(n,m);
+
+print(date("2024-12-06")," ",date("2024-02-08"));
 ```
 
 
