@@ -427,12 +427,12 @@ public interface ZLExpressListener extends ParseTreeListener {
 	 */
 	void exitNot_void_type(ZLExpressParser.Not_void_typeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link ZLExpressParser#null}.
+	 * Enter a parse tree produced by {@link ZLExpressParser}.
 	 * @param ctx the parse tree
 	 */
 	void enterNull(ZLExpressParser.NullContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link ZLExpressParser#null}.
+	 * Exit a parse tree produced by {@link ZLExpressParser}.
 	 * @param ctx the parse tree
 	 */
 	void exitNull(ZLExpressParser.NullContext ctx);
