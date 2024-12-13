@@ -185,7 +185,7 @@ return_type:type;
 not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 null:NULL;
 function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
-functionExecuteParameter: (id | constant | array)
+functionExecuteParameter: (id | constant | array | functionExecute)
 ;
 
 importExpression

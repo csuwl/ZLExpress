@@ -16,15 +16,6 @@ import java.util.Arrays;
 public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("import java.math.BigInteger;\n" +
-                "bigInteger = new BigInteger(\"543\");\n" +
-                "addSub = bigInteger.add(bigInteger);", null, null);
-
-        BigInteger bigInteger = new BigInteger("543");
-        BigInteger addSub = bigInteger.add(bigInteger);
-
-        System.out.println(addSub);
-        System.out.println(process);
-
+        Object process = zlExpress.process("print(date(\"2024-12-06\"),date(\"2024-02-08\"));", null, null);
     }
 }
