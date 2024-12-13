@@ -6,6 +6,10 @@ import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.List;
 
+/**
+ * expression top level
+ * @author wanglei
+ */
 public class ExprListVis implements ICustomVisitor<Object> {
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {

@@ -5,6 +5,10 @@ import com.wl.model.Result;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+/**
+ * + operator
+ * @author wanglei
+ */
 public class PlusVis implements ICustomVisitor<Number> {
 
     @Override

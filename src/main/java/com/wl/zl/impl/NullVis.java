@@ -4,6 +4,7 @@ import com.wl.g4.ZLExpressParser;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
+ * return  null
  * @author wanglei
  */
 public class NullVis implements ICustomVisitor<Object>{

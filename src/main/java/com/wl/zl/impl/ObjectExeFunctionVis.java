@@ -8,6 +8,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
+/**
+ * call object method
+ * @author wanglei
+ */
 public class ObjectExeFunctionVis implements ICustomVisitor<Object> {
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {

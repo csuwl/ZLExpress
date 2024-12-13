@@ -4,6 +4,10 @@ import com.wl.g4.ZLExpressParser;
 import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+/**
+ * not process
+ * @author wanglei
+ */
 public class NotVis implements ICustomVisitor<Boolean> {
     @Override
     public Boolean visit(ParseTree tree, VisitProcess visitProcess) {

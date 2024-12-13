@@ -5,6 +5,7 @@ import com.wl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 /**
+ * not return expression
  * @author wanglei
  */
 public class NotReturnExpressionVis implements ICustomVisitor<Object>{

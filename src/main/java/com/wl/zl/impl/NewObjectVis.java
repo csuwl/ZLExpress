@@ -8,6 +8,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
+/**
+ * new object
+ * @author wanglei
+ */
 public class NewObjectVis implements ICustomVisitor<Object> {
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {
