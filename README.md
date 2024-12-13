@@ -7,16 +7,16 @@ ZLExpress是一个脚本语言，支持业务规则、表达式（布尔组合�
 # 二、依赖和调用说明
 
 ```xml
-   <groupId>io.github.csuwl</groupId>
-   <artifactId>ZLExpress</artifactId>
-   <version>1.0-RELEASE</version>
+<groupId>io.github.csuwl</groupId>
+<artifactId>ZLExpress</artifactId>
+<version>1.0.1-RELEASE</version>
 ```
 
 
 ```java
-      ZLExpress zlExpress = new ZLExpress();
-      Object result = zlExpress.process("ds=543;ds>56;", null, null);
-      System.out.println(process);
+ZLExpress zlExpress = new ZLExpress();
+Object result = zlExpress.process("ds=543;ds>56;", null, null);
+System.out.println(process);
 ```
 
 # 三、语法介绍
