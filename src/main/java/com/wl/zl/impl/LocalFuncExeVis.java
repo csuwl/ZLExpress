@@ -37,7 +37,7 @@ public class LocalFuncExeVis implements ICustomVisitor<Object> {
             parameterClazzTypes.add(result.getClazzType());
         }
         FunctionDefinition functionDefinition = new FunctionDefinition(functionName, parameterTypes);
-        InnerFunctionDefinition innerFunctionDefinition = new InnerFunctionDefinition(functionName, parameterClazzTypes);
+        InnerFunctionDefinition innerFunctionDefinition = new InnerFunctionDefinition(functionName);
 
         List<ZLExpressParser.DefFunctionContext> functionContextList = resolveParentFunctionDefinition(ctx, functionDefinition);
         if (null == functionContextList || functionContextList.isEmpty()) {

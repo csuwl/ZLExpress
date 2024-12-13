@@ -2,8 +2,6 @@ package com.wl.innerfunction;
 
 import com.wl.model.InnerFunctionDefinition;
 
-import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,8 +22,6 @@ public class PrintFunction implements IInnerFunctionInterface {
 
     @Override
     public List<InnerFunctionDefinition> getInnerFunctionDefinition() {
-        return List.of(new InnerFunctionDefinition("print", Arrays.asList(Object.class))
-                , new InnerFunctionDefinition("print", Arrays.asList(String.class))
-                , new InnerFunctionDefinition("print", Arrays.asList(LocalDate.class)));
+        return List.of(new InnerFunctionDefinition("print"));
     }
 }

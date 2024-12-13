@@ -27,9 +27,6 @@ public class NowFunction implements IInnerFunctionInterface {
 
     @Override
     public List<InnerFunctionDefinition> getInnerFunctionDefinition() {
-        return Arrays.asList(new InnerFunctionDefinition("now", Arrays.asList(String.class))
-                , new InnerFunctionDefinition("now", Arrays.asList())
-                , new InnerFunctionDefinition("date", Arrays.asList(String.class))
-                , new InnerFunctionDefinition("date", Arrays.asList()));
+        return Arrays.asList(new InnerFunctionDefinition("now"), new InnerFunctionDefinition("date"));
     }
 }
