@@ -15,10 +15,10 @@ import java.util.List;
  *
  * @author wanglei1
  */
-public class FuncExeVis implements ICustomVisitor<Object> {
+public class LocalFuncExeVis implements ICustomVisitor<Object> {
     @Override
     public Object visit(ParseTree tree, VisitProcess visitProcess) {
-        ZLExpressParser.FunctionExecuteContext ctx = (ZLExpressParser.FunctionExecuteContext) tree;
+        ZLExpressParser.LocalFunctionExecuteContext ctx = (ZLExpressParser.LocalFunctionExecuteContext) tree;
         String functionName = ctx.getChild(0).getText();
         List<ZLExpressParser.FunctionExecuteParameterListContext> functionExecuteParameterListContexts = ctx.getRuleContexts(ZLExpressParser.FunctionExecuteParameterListContext.class);
         ZLExpressParser.FunctionExecuteParameterListContext functionExecuteParameterListContext = functionExecuteParameterListContexts.get(0);
@@ -74,6 +74,6 @@ public class FuncExeVis implements ICustomVisitor<Object> {
 
     @Override
     public Class<? extends ParseTree> getProcessType() {
-        return ZLExpressParser.FunctionExecuteContext.class;
+        return ZLExpressParser.LocalFunctionExecuteContext.class;
     }
 }

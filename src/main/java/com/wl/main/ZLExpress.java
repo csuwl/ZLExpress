@@ -33,7 +33,7 @@ public class ZLExpress {
         GroupComputeVis groupComputeVis = new GroupComputeVis();
         GroupVis groupVis = new GroupVis();
         DefFuncVis defFuncVis = new DefFuncVis();
-        FuncExeVis funcExeVis = new FuncExeVis();
+        LocalFuncExeVis localFuncExeVis = new LocalFuncExeVis();
         CompareVis compareVis = new CompareVis();
         NullVis nullVis = new NullVis();
         NotVis notVis = new NotVis();
@@ -45,6 +45,7 @@ public class ZLExpress {
         ReturnVis returnVis = new ReturnVis();
         ImportVis importVis = new ImportVis();
         NewObjectVis newObjectVis = new NewObjectVis();
+        ObjectExeFunctionVis objectExeFunctionVis = new ObjectExeFunctionVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>(){
             {
@@ -60,7 +61,7 @@ public class ZLExpress {
                 put(groupComputeVis.getProcessType(), groupComputeVis);
                 put(groupVis.getProcessType(), groupVis);
                 put(defFuncVis.getProcessType(), defFuncVis);
-                put(funcExeVis.getProcessType(), funcExeVis);
+                put(localFuncExeVis.getProcessType(), localFuncExeVis);
                 put(compareVis.getProcessType(), compareVis);
                 put(nullVis.getProcessType(), nullVis);
                 put(notVis.getProcessType(), notVis);
@@ -72,6 +73,7 @@ public class ZLExpress {
                 put(returnVis.getProcessType(), returnVis);
                 put(importVis.getProcessType(), importVis);
                 put(newObjectVis.getProcessType(), newObjectVis);
+                put(objectExeFunctionVis.getProcessType(), objectExeFunctionVis);
             }
         };
 

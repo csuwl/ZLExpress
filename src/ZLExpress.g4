@@ -42,7 +42,8 @@ function_parameter_type IDENTIFIER
 ;
 
 functionExecute
-: IDENTIFIER LEFT_PARENTHESIS functionExecuteParameterList RIGHT_PARENTHESIS
+: IDENTIFIER LEFT_PARENTHESIS functionExecuteParameterList RIGHT_PARENTHESIS          #localFunctionExecute
+| packagePath LEFT_PARENTHESIS functionExecuteParameterList RIGHT_PARENTHESIS         #objectFunctionExecute
 ;
 
 functionExecuteParameterList
@@ -184,7 +185,7 @@ return_type:type;
 not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 null:NULL;
 function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
-functionExecuteParameter: (IDENTIFIER | constant | array)
+functionExecuteParameter: (id | constant | array)
 ;
 
 importExpression

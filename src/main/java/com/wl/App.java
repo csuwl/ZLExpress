@@ -7,6 +7,7 @@ import com.wl.zl.impl.*;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 
+import java.math.BigInteger;
 import java.util.Arrays;
 
 /**
@@ -16,8 +17,13 @@ public class App {
     public static void main(String[] args) {
         ZLExpress zlExpress = new ZLExpress();
         Object process = zlExpress.process("import java.math.BigInteger;\n" +
-                "ds = new BigInteger(\"543\");", null, null);
+                "bigInteger = new BigInteger(\"543\");\n" +
+                "addSub = bigInteger.add(bigInteger);", null, null);
 
+        BigInteger bigInteger = new BigInteger("543");
+        BigInteger addSub = bigInteger.add(bigInteger);
+
+        System.out.println(addSub);
         System.out.println(process);
 
     }

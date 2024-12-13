@@ -56,11 +56,19 @@ public interface ZLExpressVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFunctionParameterItem(ZLExpressParser.FunctionParameterItemContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link ZLExpressParser#functionExecute}.
+	 * Visit a parse tree produced by the {@code localFunctionExecute}
+	 * labeled alternative in {@link ZLExpressParser#functionExecute}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunctionExecute(ZLExpressParser.FunctionExecuteContext ctx);
+	T visitLocalFunctionExecute(ZLExpressParser.LocalFunctionExecuteContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code objectFunctionExecute}
+	 * labeled alternative in {@link ZLExpressParser#functionExecute}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitObjectFunctionExecute(ZLExpressParser.ObjectFunctionExecuteContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link ZLExpressParser#functionExecuteParameterList}.
 	 * @param ctx the parse tree
