@@ -27,6 +27,8 @@ public class CompareVis implements ICustomVisitor {
         switch (type) {
             case ZLExpressLexer.EQUALS:
                 return new Result(result1.equals(result2));
+            case ZLExpressLexer.NE:
+                return new Result(!result1.equals(result2));
             case ZLExpressLexer.GE:
                 if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
                     return new Result((Integer) result1.getResult() >= (Integer) result2.getResult());
