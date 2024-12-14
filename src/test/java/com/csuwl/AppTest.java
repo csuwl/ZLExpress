@@ -39,10 +39,18 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
 
         ZLExpress zlExpress = new ZLExpress(true);
         Object process = zlExpress.process(" id = -43 ; id==-43;", null, null);
+        assertEquals(process,true);
+    }
+
+    public void testCompare()
+    {
+
+        ZLExpress zlExpress = new ZLExpress(false);
+        Object process = zlExpress.process(" id >53 || id==null", null, null);
+        System.out.println(process);
         assertEquals(process,true);
     }
 }

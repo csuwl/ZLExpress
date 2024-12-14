@@ -13,7 +13,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 public class OrVis implements ICustomVisitor {
     @Override
     public Result visit(ParseTree tree, VisitProcess visitProcess) {
-        ZLExpressParser.AndExpressionContext ctx = (ZLExpressParser.AndExpressionContext)tree;
+        ZLExpressParser.OrExpressionContext ctx = (ZLExpressParser.OrExpressionContext)tree;
         ZLExpressParser.BooleanExpressionContext left = ctx.left;
         ZLExpressParser.BooleanExpressionContext right = ctx.right;
         Result result1 = visitProcess.visitParseTree(left);
@@ -25,7 +25,7 @@ public class OrVis implements ICustomVisitor {
 
     @Override
     public Class<? extends ParseTree> getProcessType() {
-        return ZLExpressParser.AndExpressionContext.class;
+        return ZLExpressParser.OrExpressionContext.class;
     }
 }
 

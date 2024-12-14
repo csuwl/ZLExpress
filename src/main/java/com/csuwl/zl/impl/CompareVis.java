@@ -27,6 +27,12 @@ public class CompareVis implements ICustomVisitor {
 
         Object result1Value = result1.getResult();
         Object result2Value = result2.getResult();
+        if(null == result1Value && null == result2Value){
+            return new Result(true);
+        }
+        if(null == result1Value || null == result2Value){
+            return new Result(false);
+        }
         switch (type) {
             case ZLExpressLexer.EQUALS:
                 if (result1Value instanceof Number && result2Value instanceof Number) {
@@ -84,7 +90,7 @@ public class CompareVis implements ICustomVisitor {
                 } else if (result1Value instanceof Double && result2Value instanceof Integer) {
                     return new Result((Double) result1.getResult() >= (Integer) result2.getResult());
                 } else {
-                    return new Result(null);
+                    return new Result(false);
                 }
             case ZLExpressLexer.LE:
                 if (result1Value instanceof Integer && result2Value instanceof Integer) {
@@ -96,7 +102,7 @@ public class CompareVis implements ICustomVisitor {
                 } else if (result1Value instanceof Double && result2Value instanceof Integer) {
                     return new Result((Double) result1.getResult() <= (Integer) result2.getResult());
                 } else {
-                    return new Result(null);
+                    return new Result(false);
                 }
             case ZLExpressLexer.LT:
                 if (result1Value instanceof Integer && result2Value instanceof Integer) {
@@ -108,7 +114,7 @@ public class CompareVis implements ICustomVisitor {
                 } else if (result1Value instanceof Double && result2Value instanceof Integer) {
                     return new Result((Double) result1.getResult() < (Integer) result2.getResult());
                 } else {
-                    return new Result(null);
+                    return new Result(false);
                 }
             case ZLExpressLexer.GT:
                 if (result1Value instanceof Integer && result2Value instanceof Integer) {
@@ -120,10 +126,10 @@ public class CompareVis implements ICustomVisitor {
                 } else if (result1Value instanceof Double && result2Value instanceof Integer) {
                     return new Result((Double) result1.getResult() > (Integer) result2.getResult());
                 } else {
-                    return new Result(null);
+                    return new Result(false);
                 }
         }
-        return new Result(null);
+        return new Result(false);
     }
 
     @Override
