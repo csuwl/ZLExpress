@@ -25,7 +25,7 @@ System.out.println(process);
 ## 1、Operators and Java Object Operations
 ### Java syntax
 ```java
-//support +,-,*,/,<,>,<=,>=,==,!=, Operators such as in, not,&&(and), | | (or), etc，
+//support +,-,*,/,<,>,<=,>=,==,!=, Operators such as in, not,&&(and),||(or),like,etc，
 // "if", "else", "for", "break", "continue" and other statements, supporting custom functions. Support creating Java objects and calling methods.
 n = 10;
 sum = 0;
