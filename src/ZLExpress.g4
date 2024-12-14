@@ -93,9 +93,14 @@ continue
 :CONTINUE;
 
 if
-: IF LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
+: IF LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS BLOCK_LEFT ifContent BLOCK_RIGHT (elseContent)?
 ;
 
+ifContent:exprList;
+
+elseContent
+:ELSE BLOCK_LEFT exprList BLOCK_RIGHT
+;
 
 returnExpression
 : RETURN  (null | id | constant | functionExecute | computeExpression | array |booleanExpression | groupExpression)
@@ -207,6 +212,7 @@ IMPORT:'import';
 NEW:'new';
 AS:'as';
 IF:'if';
+ELSE:'else';
 FOR:'for';
 BREAK:'break';
 CONTINUE:'continue';

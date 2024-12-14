@@ -9,7 +9,7 @@ ZLExpress是一个脚本语言，支持业务规则、表达式（布尔组合�
 ```xml
 <groupId>io.github.csuwl</groupId>
 <artifactId>ZLExpress</artifactId>
-<version>1.0.4-RELEASE</version>
+<version>1.0.5-RELEASE</version>
 ```
 
 
@@ -24,7 +24,7 @@ System.out.println(process);
 ## 1、操作符和java对象操作
 ### 普通java语法
 ```java
-//支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or)等运算符，for, 支持自定义函数。支持创建java对象并调用方法。
+//支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or)等运算符，if,else,for,break,continue等语句，支持自定义函数。支持创建java对象并调用方法。
 n = 10;
 sum = 0;
 return sum+n;

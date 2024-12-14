@@ -39,17 +39,14 @@ public class AppTest
         assertTrue( true );
         Date date = new Date();
         ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process("int i=300;\n" +
-                "print(i);\n" +
-                "\n" +
-                "for(int i=0;i<40;i++){ \n" +
-                "    if(i<=10){\n" +
-                "        continue;\n" +
-                "    };\n" +
-                "   print(i); \n" +
-                " };\n" +
-                " \n" +
-                "print(\"结束\",\" \",i);", null, null);
+        Object process = zlExpress.process("if(i==654){\n" +
+                "   print(\"654\");\n" +
+                "   return ds;\n" +
+                "}else{\n" +
+                "   print(\"fdsonag\");\n" +
+                "  return dsa;\n" +
+                "} ;\n" +
+                "int sa=dfsa;", null, null);
 
     }
 }

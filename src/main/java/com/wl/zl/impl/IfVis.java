@@ -14,9 +14,12 @@ public class IfVis implements ICustomVisitor {
     public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.IfContext ctx = (ZLExpressParser.IfContext) tree;
         ZLExpressParser.BooleanExpressionContext booleanExpressionContext = ctx.booleanExpression();
+        ZLExpressParser.ElseContentContext elseContentContext = ctx.elseContent();
 
         if ((Boolean) visitProcess.visitParseTree(booleanExpressionContext).getResult()) {
-            return visitProcess.visitParseTree(ctx.exprList());
+            return visitProcess.visitParseTree(ctx.ifContent().exprList());
+        } else if (null != elseContentContext) {
+            return visitProcess.visitParseTree(elseContentContext.exprList());
         } else {
             return new Result(null);
         }
