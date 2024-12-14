@@ -100,6 +100,11 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
 }
 
 ```
+## 4、怎样贡献代码
+非常感谢您对ZLExpress项目的关注，欢迎您对ZLExpress项目提出建议、意见（包括批评）和贡献。
+如果您对ZLExpress的建议、评论和贡献可以直接通过GitHub的Issues提出。
+如果你有一些bug修复或者好的代码，你可以提交一个“Pull Request”到dev分支。
+
 
 ## links for us
 -  email:1105865632@qq.com
