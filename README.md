@@ -3,7 +3,7 @@
 
 # 一、Background Introduction
 
-ZLExpress is a scripting language that supports business rules, expressions (Boolean combinations), special mathematical formula calculations, syntax analysis, and other features.
+ZLExpress is a scripting language that supports business rules, expressions (Boolean combinations), special mathematical formula calculations, syntax analysis, and other features. Simplified code, minimal dependencies, 130k jar package suitable for all Java runtime environments
 
 # 二、Dependency and call instructions
 
