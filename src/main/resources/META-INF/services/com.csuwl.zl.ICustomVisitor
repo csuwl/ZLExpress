@@ -34,3 +34,6 @@ com.csuwl.zl.impl.ReturnVis
 com.csuwl.zl.impl.TextConstantVis
 com.csuwl.zl.impl.StringQuotedVis
 com.csuwl.zl.impl.MinusVis
+com.csuwl.zl.impl.NumDivVis
+com.csuwl.zl.impl.NumExpessVis
+com.csuwl.zl.impl.NumMulVis

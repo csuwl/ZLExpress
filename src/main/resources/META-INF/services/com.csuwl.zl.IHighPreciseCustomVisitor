@@ -5,3 +5,6 @@ com.csuwl.zl.impl.highprecise.IntegerConstantVis
 com.csuwl.zl.impl.highprecise.MinusVis
 com.csuwl.zl.impl.highprecise.PlusPlusVis
 com.csuwl.zl.impl.highprecise.PlusVis
+com.csuwl.zl.impl.highprecise.NumDivVis
+com.csuwl.zl.impl.highprecise.NumExpessVis
+com.csuwl.zl.impl.highprecise.NumMulVis
