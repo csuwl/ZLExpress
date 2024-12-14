@@ -41,8 +41,8 @@ public class AppTest
     {
         assertTrue( true );
 
-        ZLExpress zlExpress = new ZLExpress();
-        Object process = zlExpress.process(" \"543\" > \"7564\"", null, null);
+        ZLExpress zlExpress = new ZLExpress(true);
+        Object process = zlExpress.process(" 543 > 7564", null, null);
         System.out.println( process );
     }
 }

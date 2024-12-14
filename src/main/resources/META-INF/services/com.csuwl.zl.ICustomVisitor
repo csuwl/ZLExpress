@@ -33,3 +33,4 @@ com.csuwl.zl.impl.PlusVis
 com.csuwl.zl.impl.ReturnVis
 com.csuwl.zl.impl.TextConstantVis
 com.csuwl.zl.impl.StringQuotedVis
+com.csuwl.zl.impl.MinusVis

@@ -24,42 +24,101 @@ public class CompareVis implements ICustomVisitor {
         List<ZLExpressParser.CompareContext> compareContexts = compareExpression.getRuleContexts(ZLExpressParser.CompareContext.class);
         ZLExpressParser.CompareContext compareContext = compareContexts.get(0);
         int type = compareContext.getStart().getType();
-        Class clazz1 = result1.getClazzType();
-        Class clazz2 = result2.getClazzType();
+
+        Object result1Value = result1.getResult();
+        Object result2Value = result2.getResult();
         switch (type) {
             case ZLExpressLexer.EQUALS:
+                if (result1Value instanceof Number && result2Value instanceof Number) {
+                    if (result1Value instanceof Integer && result2Value instanceof Integer) {
+                        Integer res1 = (Integer) result1.getResult();
+                        Integer res2 = (Integer) result2.getResult();
+                        return new Result(res1.equals(res2));
+                    } else if (result1Value instanceof Double && result2Value instanceof Double) {
+                        Double res1 = (Double) result1.getResult();
+                        Double res2 = (Double) result2.getResult();
+                        return new Result(res1.equals(res2));
+                    } else if (result1Value instanceof Integer && result2Value instanceof Double) {
+                        Integer res1 = (Integer) result1.getResult();
+                        Double res1Double = Double.valueOf(res1.toString());
+                        Double res2 = (Double) result2.getResult();
+                        return new Result(res1Double.equals(res2));
+                    } else if (result1Value instanceof Double && result2Value instanceof Integer) {
+                        Double res1 = (Double) result1.getResult();
+                        Integer res2 = (Integer) result2.getResult();
+                        Double res2Double = Double.valueOf(res2.toString());
+                        return new Result(res1.equals(res2Double));
+                    }
+                }
                 return new Result(result1.equals(result2));
             case ZLExpressLexer.NE:
+                if (result1Value instanceof Number && result2Value instanceof Number) {
+                    if (result1Value instanceof Integer && result2Value instanceof Integer) {
+                        Integer res1 = (Integer) result1.getResult();
+                        Integer res2 = (Integer) result2.getResult();
+                        return new Result(!res1.equals(res2));
+                    } else if (result1Value instanceof Double && result2Value instanceof Double) {
+                        Double res1 = (Double) result1.getResult();
+                        Double res2 = (Double) result2.getResult();
+                        return new Result(!res1.equals(res2));
+                    } else if (result1Value instanceof Integer && result2Value instanceof Double) {
+                        Integer res1 = (Integer) result1.getResult();
+                        Double res1Double = Double.valueOf(res1.toString());
+                        Double res2 = (Double) result2.getResult();
+                        return new Result(!res1Double.equals(res2));
+                    } else if (result1Value instanceof Double && result2Value instanceof Integer) {
+                        Double res1 = (Double) result1.getResult();
+                        Integer res2 = (Integer) result2.getResult();
+                        Double res2Double = Double.valueOf(res2.toString());
+                        return new Result(!res1.equals(res2Double));
+                    }
+                }
                 return new Result(!result1.equals(result2));
             case ZLExpressLexer.GE:
-                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                if (result1Value instanceof Integer && result2Value instanceof Integer) {
                     return new Result((Integer) result1.getResult() >= (Integer) result2.getResult());
-                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                } else if (result1Value instanceof Double && result2Value instanceof Double) {
                     return new Result((Double) result1.getResult() >= (Double) result2.getResult());
+                } else if (result1Value instanceof Integer && result2Value instanceof Double) {
+                    return new Result((Integer) result1.getResult() >= (Double) result2.getResult());
+                } else if (result1Value instanceof Double && result2Value instanceof Integer) {
+                    return new Result((Double) result1.getResult() >= (Integer) result2.getResult());
                 } else {
                     return new Result(null);
                 }
             case ZLExpressLexer.LE:
-                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                if (result1Value instanceof Integer && result2Value instanceof Integer) {
                     return new Result((Integer) result1.getResult() <= (Integer) result2.getResult());
-                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                } else if (result1Value instanceof Double && result2Value instanceof Double) {
                     return new Result((Double) result1.getResult() <= (Double) result2.getResult());
+                } else if (result1Value instanceof Integer && result2Value instanceof Double) {
+                    return new Result((Integer) result1.getResult() <= (Double) result2.getResult());
+                } else if (result1Value instanceof Double && result2Value instanceof Integer) {
+                    return new Result((Double) result1.getResult() <= (Integer) result2.getResult());
                 } else {
                     return new Result(null);
                 }
             case ZLExpressLexer.LT:
-                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                if (result1Value instanceof Integer && result2Value instanceof Integer) {
                     return new Result((Integer) result1.getResult() < (Integer) result2.getResult());
-                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                } else if (result1Value instanceof Double && result2Value instanceof Double) {
                     return new Result((Double) result1.getResult() < (Double) result2.getResult());
+                } else if (result1Value instanceof Integer && result2Value instanceof Double) {
+                    return new Result((Integer) result1.getResult() < (Double) result2.getResult());
+                } else if (result1Value instanceof Double && result2Value instanceof Integer) {
+                    return new Result((Double) result1.getResult() < (Integer) result2.getResult());
                 } else {
                     return new Result(null);
                 }
             case ZLExpressLexer.GT:
-                if (Integer.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                if (result1Value instanceof Integer && result2Value instanceof Integer) {
                     return new Result((Integer) result1.getResult() > (Integer) result2.getResult());
-                } else if (Double.class.equals(clazz1) && clazz1.equals(clazz2)) {
+                } else if (result1Value instanceof Double && result2Value instanceof Double) {
                     return new Result((Double) result1.getResult() > (Double) result2.getResult());
+                } else if (result1Value instanceof Integer && result2Value instanceof Double) {
+                    return new Result((Integer) result1.getResult() > (Double) result2.getResult());
+                } else if (result1Value instanceof Double && result2Value instanceof Integer) {
+                    return new Result((Double) result1.getResult() > (Integer) result2.getResult());
                 } else {
                     return new Result(null);
                 }

@@ -3,6 +3,7 @@ package com.csuwl.main;
 import com.csuwl.g4.ZLExpressLexer;
 import com.csuwl.g4.ZLExpressParser;
 import com.csuwl.model.Result;
+import com.csuwl.zl.IHighPreciseCustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import com.csuwl.zl.impl.*;
 import com.csuwl.zl.ICustomVisitor;
@@ -21,19 +22,42 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author wanglei
  */
 public class ZLExpress {
-    private static VisitProcess visitProcess = new VisitProcess();
+    private  VisitProcess visitProcess = new VisitProcess();
 
-    static {
+    private Map<String, ZLExpressParser.ExprListContext> cacheExpress = new ConcurrentHashMap<>();
+
+    private boolean highPrecise = false;
+
+    /**
+     * create
+     */
+    public ZLExpress() {
+        this(false);
+    }
+
+    /**
+     * create high precise express
+     * @param highPrecise
+     */
+    public ZLExpress(boolean highPrecise) {
+        this.highPrecise = highPrecise;
+
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>();
+
+//        load method
         ServiceLoader<ICustomVisitor> visitors = ServiceLoader.load(ICustomVisitor.class);
         for (ICustomVisitor visitor : visitors) {
             visitorMap.put(visitor.getProcessType(), visitor);
         }
         visitProcess.setVisitorMap(visitorMap);
+
+        if (highPrecise) {
+            ServiceLoader<IHighPreciseCustomVisitor> highPreciseCustomVisitors = ServiceLoader.load(IHighPreciseCustomVisitor.class);
+            for (IHighPreciseCustomVisitor visitor : highPreciseCustomVisitors) {
+                visitorMap.put(visitor.getProcessType(), visitor);
+            }
+        }
     }
-
-
-    private Map<String, ZLExpressParser.ExprListContext> cacheExpress = new ConcurrentHashMap<>();
 
     /**
      * script enter method
