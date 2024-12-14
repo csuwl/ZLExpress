@@ -3,6 +3,7 @@ package com.wl.zl.impl;
 import com.wl.g4.ZLExpressParser;
 import com.wl.model.FunctionDefinition;
 import com.wl.model.Result;
+import com.wl.scope.IScopeValue;
 import org.antlr.v4.runtime.tree.ParseTree;
 
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Map;
 
 /**
  * visitor custom
+ *
  * @author wanglei
  */
 public interface ICustomVisitor {
@@ -153,6 +155,22 @@ public interface ICustomVisitor {
                 return;
             }
             tree = parent;
+        }
+    }
+
+    default void beforeVisit(ParseTree tree, VisitProcess visitProcess) {
+//        do nothing
+    }
+
+    /**
+     * such as clear
+     * @param tree
+     * @param visitProcess
+     */
+    default void afterVisit(ParseTree tree, VisitProcess visitProcess) {
+//        clear context
+        if (null != tree && tree instanceof IScopeValue) {
+            ((IScopeValue) tree).clear();
         }
     }
 }

@@ -51,8 +51,10 @@ public class ZLExpress {
         IfVis ifVis = new IfVis();
         BoolValueVis boolValueVis = new BoolValueVis();
         PlusPlusVis plusPlusVis = new PlusPlusVis();
-        ForVis forVis = new ForVis();
+        ForContextVis forContextVis = new ForContextVis();
         ForExprListVis forExprListVis = new ForExprListVis();
+        BreakVis breakVis = new BreakVis();
+        ContinueVis continueVis = new ContinueVis();
 
         Map<Class<? extends ParseTree>, ICustomVisitor> visitorMap = new HashMap<Class<? extends ParseTree>, ICustomVisitor>() {
             {
@@ -85,8 +87,10 @@ public class ZLExpress {
                 put(ifVis.getProcessType(), ifVis);
                 put(boolValueVis.getProcessType(), boolValueVis);
                 put(plusPlusVis.getProcessType(), plusPlusVis);
-                put(forVis.getProcessType(), forVis);
+                put(forContextVis.getProcessType(), forContextVis);
                 put(forExprListVis.getProcessType(), forExprListVis);
+                put(breakVis.getProcessType(), breakVis);
+                put(continueVis.getProcessType(), continueVis);
             }
         };
 

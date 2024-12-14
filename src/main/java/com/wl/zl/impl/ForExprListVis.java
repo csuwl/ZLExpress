@@ -9,9 +9,10 @@ import java.util.List;
 
 /**
  * for expression
+ *
  * @author wanglei
  */
-public class ForExprListVis implements ICustomVisitor{
+public class ForExprListVis implements ICustomVisitor {
     @Override
     public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.ForExprListContext ctx = (ZLExpressParser.ForExprListContext) tree;
@@ -20,6 +21,10 @@ public class ForExprListVis implements ICustomVisitor{
         for (ZLExpressParser.ExpressionNotReturnContext expressionNotReturnContext : expressionNotReturnContexts) {
             result = visitProcess.visitParseTree(expressionNotReturnContext);
             if (ZLExpressLexer.RETURN == result.getMessage()) {
+                return result;
+            } else if (ZLExpressLexer.BREAK == result.getMessage()) {
+                return result;
+            } else if (ZLExpressLexer.CONTINUE == result.getMessage()) {
                 return result;
             }
         }

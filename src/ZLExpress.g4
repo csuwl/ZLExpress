@@ -78,11 +78,19 @@ expressionNotReturn
 | null
 | if
 | for
+| break
+| continue
 ;
 
 for
 :FOR LEFT_PARENTHESIS assignExpression ';' booleanExpression ';' computeExpression RIGHT_PARENTHESIS BLOCK_LEFT forExprList BLOCK_RIGHT
 ;
+
+break
+:BREAK;
+
+continue
+:CONTINUE;
 
 if
 : IF LEFT_PARENTHESIS booleanExpression RIGHT_PARENTHESIS BLOCK_LEFT exprList BLOCK_RIGHT
@@ -125,7 +133,7 @@ computeExpression
 ;
 
 booleanExpression
-    : (id|constant|null) compare (id|constant|null)                  # CompareExpression
+    : (id|constant|null|computeExpression) compare (id|constant|null|computeExpression)                  # CompareExpression
     | (id|constant|null) IN (array|id)                               # InExpression
     | (id|constant|null) (NOT IN | NIN) (array|id)                   # NinExpression
     | left=booleanExpression operator=AND right=booleanExpression    # AndExpression
@@ -200,6 +208,8 @@ NEW:'new';
 AS:'as';
 IF:'if';
 FOR:'for';
+BREAK:'break';
+CONTINUE:'continue';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;

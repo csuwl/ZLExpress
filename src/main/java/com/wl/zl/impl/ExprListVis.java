@@ -22,6 +22,10 @@ public class ExprListVis implements ICustomVisitor {
             result = visitProcess.visitParseTree(expressionNotReturnContext);
             if (ZLExpressLexer.RETURN == result.getMessage()) {
                 return result;
+            } else if (ZLExpressLexer.BREAK == result.getMessage()) {
+                return result;
+            } else if (ZLExpressLexer.CONTINUE == result.getMessage()) {
+                return result;
             }
         }
 

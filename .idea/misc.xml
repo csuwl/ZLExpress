@@ -6,7 +6,7 @@
         <PerGrammarGenerationSettings>
           <option name="fileName" value="$PROJECT_DIR$/src/ZLExpress.g4" />
           <option name="autoGen" value="true" />
-          <option name="outputDir" value="D:\IdeaProject\ZLExpress\src\main\java" />
+          <option name="outputDir" value="$PROJECT_DIR$/src/main/java" />
           <option name="libDir" value="" />
           <option name="encoding" value="" />
           <option name="pkg" value="com.wl.g4" />
@@ -24,7 +24,7 @@
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_19" default="true" project-jdk-name="openjdk-19" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" default="true" project-jdk-name="corretto-17" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
   </component>
 </project>
