@@ -1,10 +1,12 @@
-# ZLExpress基本语法
 
-# 一、背景介绍
+<a herf="./README.md">English</a>|<a herf="./README-ZH.md">中文</a>
+# ZLExpress Basic Grammar
 
-ZLExpress是一个脚本语言，支持业务规则、表达式（布尔组合）、特殊数学公式计算、语法分析等特性。
+# 一、Background Introduction
 
-# 二、依赖和调用说明
+ZLExpress is a scripting language that supports business rules, expressions (Boolean combinations), special mathematical formula calculations, syntax analysis, and other features.
+
+# 二、Dependency and call instructions
 
 ```xml
 <groupId>io.github.csuwl</groupId>
@@ -19,12 +21,13 @@ Object result = zlExpress.process("ds=543;ds>56;", null, null);
 System.out.println(process);
 ```
 
-# 三、语法介绍
+# 三、Grammar Introduction
 
-## 1、操作符和java对象操作
-### 普通java语法
+## 1、Operators and Java Object Operations
+### Java syntax
 ```java
-//支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or)等运算符，if,else,for,break,continue等语句，支持自定义函数。支持创建java对象并调用方法。
+//support +,-,*,/,<,>,<=,>=,==,!=, Operators such as in, not,&&(and), | | (or), etc，
+// "if", "else", "for", "break", "continue" and other statements, supporting custom functions. Support creating Java objects and calling methods.
 n = 10;
 sum = 0;
 return sum+n;
@@ -41,14 +44,14 @@ print(date("2024-12-06")," ",date("2024-02-08"));
 
 
 
-### java的对象操作
+### Object Operations in Java
 ```java
 import java.math.BigInteger;
 bigInt = new BigInteger();
-bigInt2 = bigInt.add(bigInt);// 调用对象方法
+bigInt2 = bigInt.add(bigInt);// Call object methods
 ```
 
-## 2、脚本中定义function
+## 2、Define functions in the script
 ```java
 int add(int a, int b){
     return a + b;
