@@ -106,5 +106,5 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
 如果你有一些bug修复或者好的代码，你可以提交一个“Pull Request”到dev分支。
 
 
-## links for us
+## 联系我们
 -  email:1105865632@qq.com
