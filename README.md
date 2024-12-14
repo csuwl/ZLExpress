@@ -64,7 +64,16 @@ a = 10;
 return add(a, 4) + sub(a, 9);
 ```
 
-## 3、Custom extension function
+## 3、High precision support
+Specifying high-precision parameter when creating ZLExpress object
+```java
+ZLExpress zlExpress = new ZLExpress(true);
+Object process = zlExpress.process(" id = -43 ; id==-43;", null, null);
+assertEquals(process,true);
+```
+
+
+## 4、Custom extension function
 Custom extension functions are implemented through SPI mechanism. Create a META-INF.services folder in the resources directory,
 Then create "com.csuwl.innerfunction.ExtenderCustomFunctionInterface" file,
 And filled in the file with the class reference name that implements "com.csuwl.innerfunction.ExtenderCustomFunctionInterface".
@@ -99,7 +108,7 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
     }
 }
 ```
-## 4、How to Contribute
+## 5、How to Contribute
 Thank you very much for your interest in the ZLExpress project. We welcome your suggestions, comments (including criticisms) and contributions to the ZLExpress project.
 Your suggestions, comments and contributions on ZLExpress can be made directly through GitHub's Issues.
 If you have some bugfix, you can submit a "Pull Request" to the "dev" branch.

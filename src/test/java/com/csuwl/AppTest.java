@@ -42,7 +42,7 @@ public class AppTest
         assertTrue( true );
 
         ZLExpress zlExpress = new ZLExpress(true);
-        Object process = zlExpress.process(" -43", null, null);
-        System.out.println( process );
+        Object process = zlExpress.process(" id = -43 ; id==-43;", null, null);
+        assertEquals(process,true);
     }
 }

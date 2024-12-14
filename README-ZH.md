@@ -40,9 +40,6 @@ sum = sumFunc(n,m);
 print(date("2024-12-06")," ",date("2024-02-08"));
 ```
 
-
-
-
 ### java的对象操作
 ```java
 import java.math.BigInteger;
@@ -64,7 +61,16 @@ a = 10;
 return add(a, 4) + sub(a, 9);
 ```
 
-## 3、自定义扩展函数
+## 3、高精度支持
+创建ZLExpress对象时支持指定高精度运算
+```java
+ZLExpress zlExpress = new ZLExpress(true);
+Object process = zlExpress.process(" id = -43 ; id==-43;", null, null);
+assertEquals(process,true);
+```
+
+
+## 4、自定义扩展函数
 自定义扩展函数通过SPI机制实现。在resources目录下创建META-INF.services文件夹，
 然后创建com.csuwl.innerfunction.ExtenderCustomFunctionInterface文件，
 并在文件中填写实现了com.csuwl.innerfunction.ExtenderCustomFunctionInterface的类引用名
@@ -100,7 +106,7 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
 }
 
 ```
-## 4、怎样贡献代码
+## 5、怎样贡献代码
 非常感谢您对ZLExpress项目的关注，欢迎您对ZLExpress项目提出建议、意见（包括批评）和贡献。
 如果您对ZLExpress的建议、评论和贡献可以直接通过GitHub的Issues提出。
 如果你有一些bug修复或者好的代码，你可以提交一个“Pull Request”到dev分支。
