@@ -10,7 +10,7 @@ ZLExpress is a scripting language that supports business rules, expressions (Boo
 ```xml
 <groupId>io.github.csuwl</groupId>
 <artifactId>ZLExpress</artifactId>
-<version>1.0.5-RELEASE</version>
+<version>1.0.6-RELEASE</version>
 ```
 
 
@@ -64,7 +64,41 @@ a = 10;
 return add(a, 4) + sub(a, 9);
 ```
 
+## 3、Custom extension function
+Custom extension functions are implemented through SPI mechanism. Create a META-INF.services folder in the resources directory,
+Then create "com.csuwl.innerfunction.ExtenderCustomFunctionInterface" file,
+And filled in the file with the class reference name that implements "com.csuwl.innerfunction.ExtenderCustomFunctionInterface".
+```java
+import com.csuwl.innerfunction.ExtenderCustomFunctionInterface;
+import com.csuwl.model.InnerFunctionDefinition;
 
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * custom function
+ * prettyPrint
+ */
+public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
+    @Override
+    public Object visit(List<Object> parameterValue) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = 0; i < parameterValue.size(); i++) {
+            stringBuilder.append(parameterValue.get(i));
+        }
+        stringBuilder.append("]");
+
+        System.out.println(stringBuilder.toString());
+        return null;
+    }
+
+    @Override
+    public List<InnerFunctionDefinition> getInnerFunctionDefinition() {
+        return Arrays.asList(new InnerFunctionDefinition("prettyPrint"),new InnerFunctionDefinition("myPrint"));
+    }
+}
+```
 
 ## links for us
 -  email:1105865632@qq.com

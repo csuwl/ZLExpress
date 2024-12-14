@@ -4,7 +4,7 @@
 
     <groupId>io.github.csuwl</groupId>
     <artifactId>ZLExpress</artifactId>
-    <version>1.0.5-RELEASE</version>
+    <version>1.0.6-RELEASE</version>
     <packaging>jar</packaging>
 
     <name>ZLExpress</name>

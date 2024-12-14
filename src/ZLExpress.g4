@@ -145,7 +145,13 @@ booleanExpression
     | left=booleanExpression operator=OR right=booleanExpression     # OrExpression
     | NOT booleanExpression                                          # NotExpression
     | BOOLEAN_VALUE                                                  # BoolValueExpression
+    | like                                                           # LikeExpression
     ;
+
+like:
+| (id|stringQuoted) LIKE (id|stringQuoted)
+;
+
 
 array
     : LEFT_SQUARE_BRACKETS arrayContent? (COMMA arrayContent)* RIGHT_SQUARE_BRACKETS
@@ -165,9 +171,11 @@ num
 
 constant
     : num                           # NumConstant
-    | QUOTED_STRING+                # TextConstant
+    | stringQuoted                  # TextConstant
     | BOOLEAN_VALUE                 # BooleanConstant
     ;
+
+stringQuoted:QUOTED_STRING+;
 
 ASSIGN  : '=';
 
@@ -216,6 +224,7 @@ ELSE:'else';
 FOR:'for';
 BREAK:'break';
 CONTINUE:'continue';
+LIKE:'like';
 
 type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;

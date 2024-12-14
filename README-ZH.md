@@ -11,7 +11,7 @@ ZLExpress是一个脚本语言，支持业务规则、表达式（布尔组合�
 ```xml
 <groupId>io.github.csuwl</groupId>
 <artifactId>ZLExpress</artifactId>
-<version>1.0.5-RELEASE</version>
+<version>1.0.6-RELEASE</version>
 ```
 
 
@@ -64,7 +64,42 @@ a = 10;
 return add(a, 4) + sub(a, 9);
 ```
 
+## 3、自定义扩展函数
+自定义扩展函数通过SPI机制实现。在resources目录下创建META-INF.services文件夹，
+然后创建com.csuwl.innerfunction.ExtenderCustomFunctionInterface文件，
+并在文件中填写实现了com.csuwl.innerfunction.ExtenderCustomFunctionInterface的类引用名
+```java
+import com.csuwl.innerfunction.ExtenderCustomFunctionInterface;
+import com.csuwl.model.InnerFunctionDefinition;
 
+import java.util.Arrays;
+import java.util.List;
+
+/**
+ * custom function
+ * prettyPrint
+ */
+public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
+    @Override
+    public Object visit(List<Object> parameterValue) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("[");
+        for (int i = 0; i < parameterValue.size(); i++) {
+            stringBuilder.append(parameterValue.get(i));
+        }
+        stringBuilder.append("]");
+
+        System.out.println(stringBuilder.toString());
+        return null;
+    }
+
+    @Override
+    public List<InnerFunctionDefinition> getInnerFunctionDefinition() {
+        return Arrays.asList(new InnerFunctionDefinition("prettyPrint"),new InnerFunctionDefinition("myPrint"));
+    }
+}
+
+```
 
 ## links for us
 -  email:1105865632@qq.com
