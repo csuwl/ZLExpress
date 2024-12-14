@@ -1,5 +1,5 @@
 
-<a herf="./README.md">English</a>
+[English](README.md)|[中文](README-ZH.md)
 # ZLExpress基本语法
 
 # 一、背景介绍

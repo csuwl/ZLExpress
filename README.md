@@ -1,5 +1,4 @@
-
-<a herf="./README.md">English</a>|<a herf="./README-ZH.md">中文</a>
+[English](README.md)|[中文](README-ZH.md)
 # ZLExpress Basic Grammar
 
 # 一、Background Introduction
