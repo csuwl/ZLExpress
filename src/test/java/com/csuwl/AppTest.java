@@ -156,4 +156,22 @@ public class AppTest
         System.out.println(process2);
         Assert.assertEquals(process2, false);
     }
+
+
+    public void testFunctionCompute(){
+        ZLExpress zlExpress = new ZLExpress(false);
+        Object process = zlExpress.process("x=543;\n" +
+                "a=65;\n" +
+                "c=0.543;\n" +
+                "\n" +
+                "y=a*x+c;\n" +
+                "\n" +
+                "int ds(){\n" +
+                "  return y*x+c;\n" +
+                "};\n" +
+                "\n" +
+                "ds();", null, null);
+        System.out.println(process);
+        Assert.assertEquals(process, 1.9165480392E7);
+    }
 }
