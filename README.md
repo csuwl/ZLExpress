@@ -44,9 +44,6 @@ if(543 in [748,654,87,543,654,7654]){
 }
 ```
 
-
-
-
 ### Object Operations in Java
 ```java
 import java.math.BigInteger;
@@ -54,7 +51,17 @@ bigInt = new BigInteger();
 bigInt2 = bigInt.add(bigInt);// Call object methods
 ```
 
-## 2、Define functions in the script
+## 2、Base type
+ZLExpress has base type: int/Int,double/double,string/String,Bool/bool/boolean,Array/array
+```java
+int i=543;
+Int intValue=i;
+s = "fdsa";
+double dd=654.4532;
+arr=[654,76556,,876,9];
+```
+
+## 3、Define functions in the script
 ```java
 int add(int a, int b){
     return a + b;
@@ -68,7 +75,7 @@ a = 10;
 return add(a, 4) + sub(a, 9);
 ```
 
-## 3、High precision support
+## 4、High precision support
 Specifying high-precision parameter when creating ZLExpress object
 ```java
 ZLExpress zlExpress = new ZLExpress(true);
@@ -77,7 +84,7 @@ assertEquals(process,true);
 ```
 
 
-## 4、Custom extension function
+## 5、Custom extension function
 Custom extension functions are implemented through SPI mechanism. Create a META-INF.services folder in the resources directory,
 Then create "com.csuwl.innerfunction.ExtenderCustomFunctionInterface" file,
 And filled in the file with the class reference name that implements "com.csuwl.innerfunction.ExtenderCustomFunctionInterface".
@@ -112,7 +119,7 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
     }
 }
 ```
-## 5、How to Contribute
+## 6、How to Contribute
 Thank you very much for your interest in the ZLExpress project. We welcome your suggestions, comments (including criticisms) and contributions to the ZLExpress project.
 Your suggestions, comments and contributions on ZLExpress can be made directly through GitHub's Issues.
 If you have some bugfix, you can submit a "Pull Request" to the "dev" branch.
