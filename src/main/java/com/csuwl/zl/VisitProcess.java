@@ -3,6 +3,7 @@ package com.csuwl.zl;
 import com.csuwl.model.Result;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,7 +27,7 @@ public class VisitProcess {
     public VisitProcess() {
     }
 
-    public Result visitParseTree(ParseTree tree) {
+    public Result visitParseTree(ParseTree tree) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Class<? extends ParseTree> treeClass = tree.getClass();
         ICustomVisitor visitor = visitorMap.get(treeClass);
         if (null != visitor) {
@@ -41,7 +42,7 @@ public class VisitProcess {
     }
 
 
-    public Result visitChildren(ParseTree tree) {
+    public Result visitChildren(ParseTree tree) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         Result result = null;
         for (int i = 0; i < tree.getChildCount(); i++) {
             ParseTree child = tree.getChild(i);

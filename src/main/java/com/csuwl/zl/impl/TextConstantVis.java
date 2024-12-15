@@ -6,9 +6,11 @@ import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
+
 public class TextConstantVis implements ICustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         return visitProcess.visitChildren(tree);
     }
 

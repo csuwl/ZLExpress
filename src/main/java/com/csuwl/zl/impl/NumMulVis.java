@@ -6,6 +6,8 @@ import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * @author wanglei
  */
@@ -13,7 +15,7 @@ public class NumMulVis implements ICustomVisitor {
 
 
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.MulExpressionContext ctx = (ZLExpressParser.MulExpressionContext) tree;
 
         ParseTree child1 = ctx.getChild(0);

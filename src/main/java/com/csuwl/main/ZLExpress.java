@@ -11,6 +11,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -80,7 +81,7 @@ public class ZLExpress {
      * @param cache
      * @return
      */
-    public Result processResult(String express, Map<Object, Object> context, Boolean cache) {
+    public Result processResult(String express, Map<Object, Object> context, Boolean cache)  {
 
         if (null == cache) {
             cache = Boolean.FALSE;
@@ -100,6 +101,18 @@ public class ZLExpress {
             Map<Object, Object> contextMap = exprListContext.getContext();
             contextMap.putAll(context);
         }
-        return visitProcess.visitParseTree(exprListContext);
+        try {
+            return visitProcess.visitParseTree(exprListContext);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

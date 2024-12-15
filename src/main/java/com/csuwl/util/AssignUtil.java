@@ -1,14 +1,19 @@
 package com.csuwl.util;
 
+import com.csuwl.constant.Constant;
 import com.csuwl.g4.ZLExpressLexer;
 import com.csuwl.g4.ZLExpressParser;
 import com.csuwl.model.AssignModel;
 import com.csuwl.model.Result;
+import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.VisitProcess;
+import com.csuwl.zl.impl.highprecise.AssignVis;
 import org.antlr.v4.runtime.Token;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
-import java.math.BigInteger;
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * @author wanglei
@@ -18,12 +23,13 @@ public class AssignUtil {
     /**
      * get id and value
      *
+     * @param iCustomVisitor
      * @param ctx
      * @param visitProcess
      * @param highPrecise
      * @return
      */
-    public static AssignModel getAssignModel(ZLExpressParser.AssignExpressionContext ctx, VisitProcess visitProcess, Boolean highPrecise) {
+    public static AssignModel getAssignModel(ICustomVisitor iCustomVisitor, ZLExpressParser.AssignExpressionContext ctx, VisitProcess visitProcess, Boolean highPrecise) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         if (null != highPrecise && highPrecise) {
             int childCount = ctx.getChildCount();
             String symbel = null;
@@ -40,14 +46,44 @@ public class AssignUtil {
             }
 
             if (null != typeToken) {
-                if (ZLExpressLexer.INT_TYPE == typeToken.getType()) {
-                    value = new BigDecimal(result.getResult().toString());
-                } else if (ZLExpressLexer.DOUBLE_TYPE == typeToken.getType()) {
-                    value = new BigDecimal(result.getResult().toString());
-                } else if (ZLExpressLexer.STRING_TYPE == typeToken.getType()) {
-                    value = result.getResult().toString();
-                } else if (ZLExpressLexer.BOOL_TYPE == typeToken.getType()) {
-                    value = Boolean.parseBoolean(result.getResult().toString());
+                switch (typeToken.getType()) {
+                    case ZLExpressLexer.INT_TYPE:
+                        value = new BigDecimal(result.getResult().toString());
+                        break;
+                    case ZLExpressLexer.DOUBLE_TYPE:
+                        value = new BigDecimal(result.getResult().toString());
+                        break;
+                    case ZLExpressLexer.STRING_TYPE:
+                        value = result.getResult().toString();
+                        break;
+                    case ZLExpressLexer.BOOL_TYPE:
+                        value = Boolean.parseBoolean(result.getResult().toString());
+                        break;
+                    case ZLExpressLexer.ARRAY_TYPE:
+                        Object resultArray = result.getResult();
+                        if (resultArray instanceof List) {
+                            value = (List) resultArray;
+                        } else {
+                            value = Arrays.asList(resultArray);
+                        }
+                        break;
+                    case ZLExpressLexer.IDENTIFIER:
+//                        custom object type
+                        String custObjectClassName = typeToken.getText();
+                        String path = iCustomVisitor.resolveClass2Path(ctx, custObjectClassName);
+                        if (null == path) {
+                            path = Constant.DEFAULT_PACKAGE_PATH + custObjectClassName;
+                        }
+                        Class<?> clazz = Class.forName(path);
+                        Object resultObject = result.getResult();
+                        if (resultObject.getClass().isAssignableFrom(clazz)) {
+                            value = resultObject;
+                        } else {
+                            throw new RuntimeException("can not cast result Object to " + clazz.getName());
+                        }
+                        break;
+                    default:
+                        throw new RuntimeException("do not support type to assign" + typeToken.getType());
                 }
             } else {
                 value = result.getResult();
@@ -72,14 +108,44 @@ public class AssignUtil {
             }
 
             if (null != typeToken) {
-                if (ZLExpressLexer.INT_TYPE == typeToken.getType()) {
-                    value = Integer.parseInt(result.getResult().toString());
-                } else if (ZLExpressLexer.DOUBLE_TYPE == typeToken.getType()) {
-                    value = Double.parseDouble(result.getResult().toString());
-                } else if (ZLExpressLexer.STRING_TYPE == typeToken.getType()) {
-                    value = result.getResult().toString();
-                } else if (ZLExpressLexer.BOOL_TYPE == typeToken.getType()) {
-                    value = Boolean.parseBoolean(result.getResult().toString());
+                switch (typeToken.getType()) {
+                    case ZLExpressLexer.INT_TYPE:
+                        value = Integer.parseInt(result.getResult().toString());
+                        break;
+                    case ZLExpressLexer.DOUBLE_TYPE:
+                        value = Double.parseDouble(result.getResult().toString());
+                        break;
+                    case ZLExpressLexer.STRING_TYPE:
+                        value = result.getResult().toString();
+                        break;
+                    case ZLExpressLexer.BOOL_TYPE:
+                        value = Boolean.parseBoolean(result.getResult().toString());
+                        break;
+                    case ZLExpressLexer.ARRAY_TYPE:
+                        Object resultArray = result.getResult();
+                        if (resultArray instanceof List) {
+                            value = (List) resultArray;
+                        } else {
+                            value = Arrays.asList(resultArray);
+                        }
+                        break;
+                    case ZLExpressLexer.IDENTIFIER:
+//                        custom object type
+                        String custObjectClassName = typeToken.getText();
+                        String path = iCustomVisitor.resolveClass2Path(ctx, custObjectClassName);
+                        if (null == path) {
+                            path = Constant.DEFAULT_PACKAGE_PATH + custObjectClassName;
+                        }
+                        Class<?> clazz = Class.forName(path);
+                        Object resultObject = result.getResult();
+                        if (resultObject.getClass().isAssignableFrom(clazz)) {
+                            value = resultObject;
+                        } else {
+                            throw new RuntimeException("can not cast result Object to " + clazz.getName());
+                        }
+                        break;
+                    default:
+                        throw new RuntimeException("do not support type to assign" + typeToken.getType());
                 }
             } else {
                 value = result.getResult();

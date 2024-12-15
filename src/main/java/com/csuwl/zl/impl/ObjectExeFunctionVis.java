@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class ObjectExeFunctionVis implements ICustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.ObjectFunctionExecuteContext ctx = (ZLExpressParser.ObjectFunctionExecuteContext) tree;
         ZLExpressParser.PackagePathContext packagePathContext = ctx.packagePath();
         String path = packagePathContext.getText();

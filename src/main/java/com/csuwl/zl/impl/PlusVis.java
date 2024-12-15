@@ -7,6 +7,8 @@ import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * + operator
  *
@@ -15,7 +17,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 public class PlusVis implements ICustomVisitor {
 
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.PlusExpressionContext ctx = (ZLExpressParser.PlusExpressionContext) tree;
 
         ParseTree child1 = ctx.getChild(0);
