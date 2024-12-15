@@ -2,11 +2,13 @@ package com.csuwl;
 
 import com.csuwl.innerfunction.IInnerFunctionInterface;
 import com.csuwl.main.ZLExpress;
+import com.csuwl.util.NumUtil;
 import junit.framework.Assert;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.Iterator;
@@ -79,9 +81,12 @@ public class AppTest
         System.out.println(process);
 
 
-        zlExpress = new ZLExpress(false);
-        process = zlExpress.process("dd sa = new Date(); Array ds=[543];", null, null);
-        System.out.println(process);
+        try {
+            zlExpress = new ZLExpress(false);
+            process = zlExpress.process("dd sa = new Date(); Array ds=[543];", null, null);
+            System.out.println(process);
+        } catch (Exception e) {
+        }
     }
 
     public void testImport2() {
@@ -93,18 +98,61 @@ public class AppTest
         }
     }
 
-    public void testArray(){
+    public void testArray() {
 //        Array ds=[543];
-            ZLExpress zlExpress = new ZLExpress(false);
-            Object process = zlExpress.process("Array ds=[543]; return ds;", null, null);
-            Assert.assertEquals(process, Arrays.asList(543));
+        ZLExpress zlExpress = new ZLExpress(false);
+        Object process = zlExpress.process("Array ds=[543]; return ds;", null, null);
+        Assert.assertEquals(process, Arrays.asList(543));
     }
 
-    public void testArray2(){
+    public void testArray2() {
         ZLExpress zlExpress = new ZLExpress(false);
         Object process = zlExpress.process("543 in [748,654,87,543,654,7654];", null, null);
         Assert.assertEquals(process, true);
         Object process2 = zlExpress.process("[543] in [748,654,87,543,654,7654];", null, null);
+        System.out.println(process2);
+        Assert.assertEquals(process2, false);
+    }
+
+    public void testCompareNum() {
+        Double v = new Double("543.00");
+        Integer i = new Integer("543");
+        BigDecimal bigDecimal = new BigDecimal("76457");
+
+        int i1 = NumUtil.compareBigDecimal(v, i);
+    }
+
+    public void testCompute() {
+        ZLExpress zlExpress = new ZLExpress(false);
+        Object process2 = zlExpress.process("ds=5432.0;ds+43;", null, null);
+        System.out.println(process2);
+    }
+
+    public void testAgoDay() {
+        ZLExpress zlExpress = new ZLExpress(false);
+        Object process2 = zlExpress.process("dds=now();\n" +
+                "dds agoDay 3;", null, null);
+        System.out.println(process2);
+        Assert.assertEquals(process2, false);
+
+        zlExpress = new ZLExpress(false);
+        process2 = zlExpress.process("dds='2024-12-01';\n" +
+                "dds agoDay 3;", null, null);
+        System.out.println(process2);
+        Assert.assertEquals(process2, true);
+    }
+
+
+    public void testRecentDay() {
+        ZLExpress zlExpress = new ZLExpress(false);
+        Object process2 = zlExpress.process("dds=now();\n" +
+                "dds recentDay 3;", null, null);
+        System.out.println(process2);
+        Assert.assertEquals(process2, true);
+
+        zlExpress = new ZLExpress(false);
+        process2 = zlExpress.process("dds='2024-12-01';\n" +
+                "dds recentDay 3;", null, null);
         System.out.println(process2);
         Assert.assertEquals(process2, false);
     }

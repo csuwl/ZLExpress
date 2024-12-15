@@ -18,20 +18,27 @@ public class NumExpessVis implements ICustomVisitor {
         ZLExpressParser.NumExpressionContext ctx = (ZLExpressParser.NumExpressionContext) tree;
         TerminalNode minus = ctx.MINUS();
 
-        Result result = visitProcess.visitParseTree(ctx.getChild(1));
-        Object resultValue = result.getResult();
-        if (resultValue instanceof Double) {
-            Double res = (Double) resultValue;
-            if(null != minus) {
+        if (null == minus) {
+            Result result = visitProcess.visitParseTree(ctx.getChild(0));
+            Object resultValue = result.getResult();
+            if (resultValue instanceof Double) {
+                Double res = (Double) resultValue;
+                return new Result(res);
+            } else if (resultValue instanceof Integer) {
+                Integer res = (Integer) resultValue;
+                return new Result(res);
+            }
+
+        } else {
+            Result result = visitProcess.visitParseTree(ctx.getChild(1));
+            Object resultValue = result.getResult();
+            if (resultValue instanceof Double) {
+                Double res = (Double) resultValue;
+                return new Result(-res);
+            } else if (resultValue instanceof Integer) {
+                Integer res = (Integer) resultValue;
                 return new Result(-res);
             }
-            return new Result(res);
-        } else if (resultValue instanceof Integer) {
-            Integer res = (Integer) resultValue;
-            if(null != minus) {
-                return new Result(-res);
-            }
-            return new Result(res);
         }
 
         throw new RuntimeException("不是数字，无法匹配正负号");
