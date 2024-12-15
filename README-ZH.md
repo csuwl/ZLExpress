@@ -29,7 +29,7 @@ System.out.println(process);
 //支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or),like等运算符，if,else,for,break,continue等语句，支持自定义函数。支持创建java对象并调用方法。
 n = 10;
 sum = 0;
-return sum+n;
+        return sum+n;
 
 int sumFunc(int d,int s){
     return d+s;
@@ -37,7 +37,11 @@ int sumFunc(int d,int s){
 
 sum = sumFunc(n,m);
 
-print(date("2024-12-06")," ",date("2024-02-08"));
+if(543 in [748,654,87,543,654,7654]){
+    print(date("2024-12-06")," ",date("2024-02-08"));
+ }else{
+    return false;
+}
 ```
 
 ### java的对象操作
