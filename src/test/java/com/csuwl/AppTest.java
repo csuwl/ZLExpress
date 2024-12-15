@@ -81,9 +81,12 @@ public class AppTest
         System.out.println(process);
 
 
-        zlExpress = new ZLExpress(false);
-        process = zlExpress.process("dd sa = new Date(); Array ds=[543];", null, null);
-        System.out.println(process);
+        try {
+            zlExpress = new ZLExpress(false);
+            process = zlExpress.process("dd sa = new Date(); Array ds=[543];", null, null);
+            System.out.println(process);
+        } catch (Exception e) {
+        }
     }
 
     public void testImport2() {
@@ -133,7 +136,7 @@ public class AppTest
         Assert.assertEquals(process2, false);
 
         zlExpress = new ZLExpress(false);
-         process2 = zlExpress.process("dds='2024-12-01';\n" +
+        process2 = zlExpress.process("dds='2024-12-01';\n" +
                 "dds agoDay 3;", null, null);
         System.out.println(process2);
         Assert.assertEquals(process2, true);

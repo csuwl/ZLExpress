@@ -15,7 +15,7 @@ import java.time.temporal.ChronoField;
 import java.util.Date;
 
 /**
- * 'A recentDay B' means 'now() - A <= B';
+ * 'A recentDay B' means 'now() - A &le; B';
  * <p>
  * 3 days ago example:
  * dds = now();
