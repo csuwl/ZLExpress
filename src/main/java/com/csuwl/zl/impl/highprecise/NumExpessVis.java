@@ -8,6 +8,7 @@ import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
 /**
@@ -15,7 +16,7 @@ import java.math.BigDecimal;
  */
 public class NumExpessVis implements IHighPreciseCustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.NumExpressionContext ctx = (ZLExpressParser.NumExpressionContext) tree;
         TerminalNode minus = ctx.MINUS();
 

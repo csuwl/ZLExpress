@@ -7,12 +7,14 @@ import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
+import java.lang.reflect.InvocationTargetException;
+
 /**
  * @author wanglei
  */
 public class NumExpessVis implements ICustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.NumExpressionContext ctx = (ZLExpressParser.NumExpressionContext) tree;
         TerminalNode minus = ctx.MINUS();
 

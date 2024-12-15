@@ -1,5 +1,6 @@
 package com.csuwl.zl.impl;
 
+import com.csuwl.constant.Constant;
 import com.csuwl.g4.ZLExpressParser;
 import com.csuwl.model.Result;
 import com.csuwl.zl.ICustomVisitor;
@@ -12,11 +13,12 @@ import java.util.List;
 
 /**
  * new object
+ *
  * @author wanglei
  */
 public class NewObjectVis implements ICustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
         ZLExpressParser.NewObjectExpressionContext ctx = (ZLExpressParser.NewObjectExpressionContext) tree;
         String className = ctx.packagePath().getText();
         String path = resolveClass2Path(tree, className);
@@ -32,22 +34,14 @@ public class NewObjectVis implements ICustomVisitor {
             classTypes[i] = result.getClazzType();
         }
 
-        try {
-            Class<?> clazz = Class.forName(path);
-            Constructor<?> constructor = clazz.getConstructor(classTypes);
-            return new Result(constructor.newInstance(parameterValueArray));
-
-        } catch (InstantiationException e) {
-            throw new RuntimeException(e);
-        } catch (IllegalAccessException e) {
-            throw new RuntimeException(e);
-        } catch (InvocationTargetException e) {
-            throw new RuntimeException(e);
-        } catch (NoSuchMethodException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        if (null == path) {
+            path = Constant.DEFAULT_PACKAGE_PATH + className;
         }
+        Class<?> clazz = Class.forName(path);
+        Constructor<?> constructor = clazz.getConstructor(classTypes);
+        return new Result(constructor.newInstance(parameterValueArray));
+
+
     }
 
     @Override

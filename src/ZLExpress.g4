@@ -115,11 +115,10 @@ groupExpression
 
 
 assignExpression
-  : type? IDENTIFIER ASSIGN constant
- |type? IDENTIFIER ASSIGN booleanExpression
- |type? IDENTIFIER ASSIGN computeExpression
- |type? IDENTIFIER ASSIGN functionExecute
- |ARRAY_TYPE? IDENTIFIER ASSIGN array
+  : not_void_type? IDENTIFIER ASSIGN constant
+ |not_void_type? IDENTIFIER ASSIGN booleanExpression
+ |not_void_type? IDENTIFIER ASSIGN computeExpression
+ |not_void_type? IDENTIFIER ASSIGN functionExecute
  |not_void_type? IDENTIFIER ASSIGN newObjectExpression
  ;
 
@@ -173,6 +172,7 @@ constant
     : num                           # NumConstant
     | stringQuoted                  # TextConstant
     | BOOLEAN_VALUE                 # BooleanConstant
+    | array                         # ArrayConstant
     ;
 
 stringQuoted:QUOTED_STRING+;
@@ -226,9 +226,10 @@ BREAK:'break';
 CONTINUE:'continue';
 LIKE:'like';
 
-type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
+objectType:IDENTIFIER;
+type :objectType|INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;
-not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
+not_void_type:objectType|INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 null:NULL;
 function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 functionExecuteParameter: (id | constant | array | functionExecute)

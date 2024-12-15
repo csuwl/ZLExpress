@@ -8,6 +8,7 @@ import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 
 /**
@@ -18,7 +19,7 @@ import java.math.BigDecimal;
 public class PlusVis implements IHighPreciseCustomVisitor {
 
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.PlusExpressionContext ctx = (ZLExpressParser.PlusExpressionContext) tree;
 
         ParseTree child1 = ctx.getChild(0);

@@ -6,6 +6,7 @@ import com.csuwl.model.Result;
 import com.csuwl.scope.IScopeValue;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import java.util.Map;
 
@@ -16,7 +17,7 @@ import java.util.Map;
  */
 public interface ICustomVisitor {
 
-    Result visit(ParseTree tree, VisitProcess visitProcess);
+    Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException;
 
     public Class<? extends ParseTree> getProcessType();
 

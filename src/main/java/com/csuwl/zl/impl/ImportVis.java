@@ -10,7 +10,7 @@ import java.util.List;
 
 public class ImportVis implements ICustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException {
         ZLExpressParser.ImportExpressionContext ctx = (ZLExpressParser.ImportExpressionContext) tree;
         ZLExpressParser.PackagePathContext packagePathContext = ctx.packagePath();
         String packagePath = packagePathContext.getText();
@@ -24,11 +24,7 @@ public class ImportVis implements ICustomVisitor {
             id = pathArray[pathArray.length - 1];
         }
 
-        try {
-            Class.forName(packagePath);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
-        }
+        Class.forName(packagePath);
 
         putParentClassPath(tree, id, packagePath);
 

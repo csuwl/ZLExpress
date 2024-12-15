@@ -8,6 +8,7 @@ import com.csuwl.zl.IHighPreciseCustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 public class CompareVis implements IHighPreciseCustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.CompareExpressionContext compareExpression = (ZLExpressParser.CompareExpressionContext) tree;
         Result result1 = visitProcess.visitParseTree(compareExpression.getChild(0));
         Result result2 = visitProcess.visitParseTree(compareExpression.getChild(2));
