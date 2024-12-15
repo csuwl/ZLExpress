@@ -138,13 +138,15 @@ computeExpression
 
 booleanExpression
     : (id|constant|null|computeExpression) compare (id|constant|null|computeExpression)                  # CompareExpression
-    | (id|constant|null) IN (array|id)                               # InExpression
-    | (id|constant|null) (NOT IN | NIN) (array|id)                   # NinExpression
-    | left=booleanExpression operator=AND right=booleanExpression    # AndExpression
-    | left=booleanExpression operator=OR right=booleanExpression     # OrExpression
-    | NOT booleanExpression                                          # NotExpression
-    | BOOLEAN_VALUE                                                  # BoolValueExpression
-    | like                                                           # LikeExpression
+    | (id|constant|null) IN (array|id)                                                                   # InExpression
+    | (id|constant|null) (NOT IN | NIN) (array|id)                                                       # NinExpression
+    | left=booleanExpression operator=AND right=booleanExpression                                        # AndExpression
+    | left=booleanExpression operator=OR right=booleanExpression                                         # OrExpression
+    | NOT booleanExpression                                                                              # NotExpression
+    | BOOLEAN_VALUE                                                                                      # BoolValueExpression
+    | like                                                                                               # LikeExpression
+    | (id|stringQuoted) AGODAY (id|num)                                                                  # AgoDayExpression
+    | (id|stringQuoted) RECENTDAY (id|num)                                                               # RecentDayExpression
     ;
 
 like:
@@ -225,6 +227,8 @@ FOR:'for';
 BREAK:'break';
 CONTINUE:'continue';
 LIKE:'like';
+AGODAY:'agoDay'|'AgoDay'|'ago_day';
+RECENTDAY:'recentDay'|'RecentDay'|'recent_day';
 
 objectType:IDENTIFIER;
 type :objectType|INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;

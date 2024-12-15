@@ -2,6 +2,7 @@ package com.csuwl.zl.impl.highprecise;
 
 import com.csuwl.g4.ZLExpressParser;
 import com.csuwl.model.Result;
+import com.csuwl.util.NumUtil;
 import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.IHighPreciseCustomVisitor;
 import com.csuwl.zl.VisitProcess;
@@ -25,18 +26,30 @@ public class NumMulVis implements IHighPreciseCustomVisitor {
         Result result1 = visitProcess.visitParseTree(child1);
         Result result2 = visitProcess.visitParseTree(child2);
         if (null == result1 || null == result1.getResult() || null == result2 || null == result2.getResult()) {
-            throw new RuntimeException("某个数为null,无法相加");
+            throw new RuntimeException("某个数为null,无法相乘");
         }
         Object result1Value = result1.getResult();
         Object result2Value = result2.getResult();
 
-        if (result1Value instanceof BigDecimal && result2Value instanceof BigDecimal) {
-            BigDecimal res1 = (BigDecimal) result1Value;
-            BigDecimal res2 = (BigDecimal) result2Value;
-            return new Result(res1.multiply(res2));
+        if (!(result1Value instanceof Number) || !(result2Value instanceof Number)) {
+            throw new RuntimeException("不是数字无法相乘");
         }
 
-        throw new RuntimeException("不是数字，无法相乘");
+        BigDecimal res1 = null;
+        BigDecimal res2 = null;
+        if (result1Value instanceof BigDecimal) {
+            res1 = (BigDecimal) result1Value;
+        } else {
+            res1 = NumUtil.toBigDecimal((BigDecimal) result1Value);
+        }
+
+        if (result2Value instanceof BigDecimal) {
+            res2 = (BigDecimal) result2Value;
+        } else {
+            res2 = NumUtil.toBigDecimal((BigDecimal) result2Value);
+        }
+
+        return new Result(res1.multiply(res2));
     }
 
     @Override

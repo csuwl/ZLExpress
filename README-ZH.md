@@ -29,7 +29,7 @@ System.out.println(process);
 //支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or),like等运算符，if,else,for,break,continue等语句，支持自定义函数。支持创建java对象并调用方法。
 n = 10;
 sum = 0;
-        return sum+n;
+return sum+n;
 
 int sumFunc(int d,int s){
     return d+s;
@@ -82,9 +82,21 @@ ZLExpress zlExpress = new ZLExpress(true);
 Object process = zlExpress.process(" id = -43 ; id==-43;", null, null);
 assertEquals(process,true);
 ```
+## 5、日期比较
+agoDay(今天-比较日期>某个值)：可以用来比较是否为几天前。 
 
+recentDay(今天-日期<=某个值)：可以用来比较是否为近几天。
+```java
+dds = now();
+dds agoDay 3;// false
+dds recentDay 3;// true
 
-## 5、自定义扩展函数
+dds = "2024-12-01";
+dds agoDay 3; // true
+dds recentDay 3 // false
+```
+
+## 6、自定义扩展函数
 自定义扩展函数通过SPI机制实现。在resources目录下创建META-INF.services文件夹，
 然后创建com.csuwl.innerfunction.ExtenderCustomFunctionInterface文件，
 并在文件中填写实现了com.csuwl.innerfunction.ExtenderCustomFunctionInterface的类引用名
@@ -120,7 +132,7 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
 }
 
 ```
-## 6、怎样贡献代码
+## 7、怎样贡献代码
 非常感谢您对ZLExpress项目的关注，欢迎您对ZLExpress项目提出建议、意见（包括批评）和贡献。
 如果您对ZLExpress的建议、评论和贡献可以直接通过GitHub的Issues提出。
 如果你有一些bug修复或者好的代码，你可以提交一个“Pull Request”到dev分支。
