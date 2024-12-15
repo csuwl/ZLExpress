@@ -11,7 +11,7 @@ ZLExpress是一个脚本语言，支持业务规则、表达式（布尔组合�
 ```xml
 <groupId>io.github.csuwl</groupId>
 <artifactId>ZLExpress</artifactId>
-<version>1.0.7-RELEASE</version>
+<version>1.0.8-RELEASE</version>
 ```
 
 
