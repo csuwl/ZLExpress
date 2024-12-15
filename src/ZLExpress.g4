@@ -22,6 +22,10 @@ grammar ZLExpress;
 // ############################################################
 }
 
+file
+: package ';' exprList
+;
+
 
 exprList
 : expressionNotReturn
@@ -80,6 +84,10 @@ expressionNotReturn
 | for
 | break
 | continue
+;
+
+package
+:PACKAGE packagePath
 ;
 
 for
@@ -225,6 +233,7 @@ FOR:'for';
 BREAK:'break';
 CONTINUE:'continue';
 LIKE:'like';
+PACKAGE:'package';
 
 objectType:IDENTIFIER;
 type :objectType|INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;

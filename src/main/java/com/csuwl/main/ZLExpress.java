@@ -11,6 +11,7 @@ import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.io.*;
 import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
@@ -92,6 +93,43 @@ public class ZLExpress {
             exprListContext = cacheExpress.get(express);
         } else {
             ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromString(express));
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
+            exprListContext = zlExpressParser.exprList();
+        }
+
+        if (null != context && context.size() > 0) {
+            Map<Object, Object> contextMap = exprListContext.getContext();
+            contextMap.putAll(context);
+        }
+        try {
+            return visitProcess.visitParseTree(exprListContext);
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException(e);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        } catch (InstantiationException e) {
+            throw new RuntimeException(e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    /**
+     * 处理文件
+     */
+    public Result processFile(String fileName, Map<Object, Object> context, Boolean cache) throws IOException {
+        if (null == cache) {
+            cache = Boolean.FALSE;
+        }
+        ZLExpressParser.ExprListContext exprListContext = null;
+        if (cache && cacheExpress.containsKey(fileName)) {
+//            check has same express
+            exprListContext = cacheExpress.get(fileName);
+        } else {
+            ZLExpressLexer lexer = new ZLExpressLexer(CharStreams.fromFileName(fileName));
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             ZLExpressParser zlExpressParser = new ZLExpressParser(tokens);
             exprListContext = zlExpressParser.exprList();
