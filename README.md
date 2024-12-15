@@ -10,7 +10,7 @@ ZLExpress is a scripting language that supports business rules, expressions (Boo
 ```xml
 <groupId>io.github.csuwl</groupId>
 <artifactId>ZLExpress</artifactId>
-<version>1.0.7-RELEASE</version>
+<version>1.0.8-RELEASE</version>
 ```
 
 
