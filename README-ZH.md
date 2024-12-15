@@ -28,7 +28,8 @@ System.out.println(process);
 ## 1、操作符和java对象操作
 ### 普通java语法
 ```java
-//支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or),like等运算符，if,else,for,break,continue等语句，支持自定义函数。支持创建java对象并调用方法。
+//支持 +,-,*,/,<,>,<=,>=,==,!=,in,not,&&(and),||(or),like等运算符，
+// if,else,for,break,continue等语句，支持自定义函数。支持创建java对象并调用方法。
 n = 10;
 sum = 0;
 return sum+n;
