@@ -34,7 +34,7 @@ n = 10;
 sum = 0;
 return sum+n;
 
-int sumFunc(int d,int s){
+sumFunc(int d,int s){
     return d+s;
 }
 
@@ -66,11 +66,11 @@ arr=[654,76556,,876,9];
 
 ## 3、脚本中定义function
 ```java
-int add(int a, int b){
+add(int a, int b){
     return a + b;
 };
 
-int sub(int a, int b){
+sub(int a, int b){
     return a - b;
 };
 
