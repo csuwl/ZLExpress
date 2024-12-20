@@ -4,7 +4,7 @@
 
 # 一、背景介绍
 
-<img src="./images/ZLExpress-logo.jpg" width="400px" height="400px"/>
+<img src="https://github.com/csuwl/ZLExpress/blob/master/images/ZLExpress-logo.jpg" width="400px" height="400px"/>
 
 ZLExpress是一个脚本语言，支持业务规则、表达式（布尔组合）、特殊数学公式计算、语法分析等特性。代码精简，依赖最小，130k的jar包(比QLExpress还小)适合所有java的运行环境
 

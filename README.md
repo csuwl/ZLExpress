@@ -3,7 +3,7 @@
 
 # 一、Background Introduction
 
-<img src="./images/ZLExpress-logo.jpg" width="400px" height="400px"/>
+<img src="https://github.com/csuwl/ZLExpress/blob/master/images/ZLExpress-logo.jpg" width="400px" height="400px"/>
 
 ZLExpress is a scripting language that supports business rules, expressions (Boolean combinations), special mathematical formula calculations, syntax analysis, and other features. Simplified code, minimal dependencies, 130k jar package (smaller than QLExpress) suitable for all Java runtime environments
 
