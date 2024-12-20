@@ -70,10 +70,6 @@ public class LocalFuncExeVis implements ICustomVisitor {
 //               执行内容
                 Result result = visitProcess.visitParseTree(exprListContext);
                 result.setMessage(0);
-//                函数返回类型是void的话 返回null
-                if (ZLExpressLexer.VOID_TYPE == defFunctionContext.return_type().type().stop.getType()) {
-                    return new Result(null);
-                }
                 return result;
             }
         }

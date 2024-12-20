@@ -36,7 +36,7 @@ forExprList
 ;
 
 defFunction
-:return_type IDENTIFIER LEFT_PARENTHESIS functionParameterList RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT
+:IDENTIFIER LEFT_PARENTHESIS functionParameterList RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT
 ;
 
 functionParameterList:
