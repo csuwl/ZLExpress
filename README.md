@@ -3,6 +3,8 @@
 
 # 一、Background Introduction
 
+<img src="https://github.com/csuwl/ZLExpress/blob/master/images/ZLExpress-logo.jpg" width="400px" height="400px"/>
+
 ZLExpress is a scripting language that supports business rules, expressions (Boolean combinations), special mathematical formula calculations, syntax analysis, and other features. Simplified code, minimal dependencies, 130k jar package (smaller than QLExpress) suitable for all Java runtime environments
 
 # 二、Dependency and call instructions
@@ -10,7 +12,7 @@ ZLExpress is a scripting language that supports business rules, expressions (Boo
 ```xml
 <groupId>io.github.csuwl</groupId>
 <artifactId>ZLExpress</artifactId>
-<version>1.0.6-RELEASE</version>
+<version>1.0.10-RELEASE</version>
 ```
 
 
@@ -26,22 +28,24 @@ System.out.println(process);
 ### Java syntax
 ```java
 //support +,-,*,/,<,>,<=,>=,==,!=, Operators such as in, not,&&(and),||(or),like,etc，
-// "if", "else", "for", "break", "continue" and other statements, supporting custom functions. Support creating Java objects and calling methods.
+// "if", "else", "for", "break", "continue" and other statements, 
+// supporting custom functions. Support creating Java objects and calling methods.
 n = 10;
 sum = 0;
 return sum+n;
 
-int sumFunc(int d,int s){
+sumFunc(int d,int s){
     return d+s;
 }
 
 sum = sumFunc(n,m);
 
-print(date("2024-12-06")," ",date("2024-02-08"));
+if(543 in [748,654,87,543,654,7654]){
+    print(date("2024-12-06")," ",date("2024-02-08"));
+ }else{
+    return false;
+}
 ```
-
-
-
 
 ### Object Operations in Java
 ```java
@@ -50,13 +54,23 @@ bigInt = new BigInteger();
 bigInt2 = bigInt.add(bigInt);// Call object methods
 ```
 
-## 2、Define functions in the script
+## 2、Base type
+ZLExpress has base type: int/Int,double/double,string/String,Bool/bool/boolean,Array/array
 ```java
-int add(int a, int b){
+int i=543;
+Int intValue=i;
+s = "fdsa";
+double dd=654.4532;
+arr=[654,76556,,876,9];
+```
+
+## 3、Define functions in the script
+```java
+add(int a, int b){
     return a + b;
 };
 
-int sub(int a, int b){
+sub(int a, int b){
     return a - b;
 };
 
@@ -64,7 +78,7 @@ a = 10;
 return add(a, 4) + sub(a, 9);
 ```
 
-## 3、High precision support
+## 4、High precision support
 Specifying high-precision parameter when creating ZLExpress object
 ```java
 ZLExpress zlExpress = new ZLExpress(true);
@@ -72,8 +86,21 @@ Object process = zlExpress.process(" id = -43 ; id==-43;", null, null);
 assertEquals(process,true);
 ```
 
+## 5、Date comparison
+agoDay(today - comparisonDate > someValue): Used to check if a date is more than a certain number of days ago.
 
-## 4、Custom extension function
+recentDay(today - date <= someValue): Used to check if a date falls within the past few days.
+```java
+dds = now();
+dds agoDay 3;// false
+dds recentDay 3;// true
+
+dds = "2024-12-01";
+dds agoDay 3; // true
+dds recentDay 3 // false
+```
+
+## 6、Custom extension function
 Custom extension functions are implemented through SPI mechanism. Create a META-INF.services folder in the resources directory,
 Then create "com.csuwl.innerfunction.ExtenderCustomFunctionInterface" file,
 And filled in the file with the class reference name that implements "com.csuwl.innerfunction.ExtenderCustomFunctionInterface".
@@ -108,7 +135,7 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
     }
 }
 ```
-## 5、How to Contribute
+## 7、How to Contribute
 Thank you very much for your interest in the ZLExpress project. We welcome your suggestions, comments (including criticisms) and contributions to the ZLExpress project.
 Your suggestions, comments and contributions on ZLExpress can be made directly through GitHub's Issues.
 If you have some bugfix, you can submit a "Pull Request" to the "dev" branch.

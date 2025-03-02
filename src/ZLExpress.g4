@@ -36,7 +36,7 @@ forExprList
 ;
 
 defFunction
-:return_type IDENTIFIER LEFT_PARENTHESIS functionParameterList RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT
+:IDENTIFIER LEFT_PARENTHESIS functionParameterList RIGHT_PARENTHESIS BLOCK_LEFT exprList  BLOCK_RIGHT
 ;
 
 functionParameterList:
@@ -115,11 +115,10 @@ groupExpression
 
 
 assignExpression
-  : type? IDENTIFIER ASSIGN constant
- |type? IDENTIFIER ASSIGN booleanExpression
- |type? IDENTIFIER ASSIGN computeExpression
- |type? IDENTIFIER ASSIGN functionExecute
- |ARRAY_TYPE? IDENTIFIER ASSIGN array
+  : not_void_type? IDENTIFIER ASSIGN constant
+ |not_void_type? IDENTIFIER ASSIGN booleanExpression
+ |not_void_type? IDENTIFIER ASSIGN computeExpression
+ |not_void_type? IDENTIFIER ASSIGN functionExecute
  |not_void_type? IDENTIFIER ASSIGN newObjectExpression
  ;
 
@@ -139,13 +138,15 @@ computeExpression
 
 booleanExpression
     : (id|constant|null|computeExpression) compare (id|constant|null|computeExpression)                  # CompareExpression
-    | (id|constant|null) IN (array|id)                               # InExpression
-    | (id|constant|null) (NOT IN | NIN) (array|id)                   # NinExpression
-    | left=booleanExpression operator=AND right=booleanExpression    # AndExpression
-    | left=booleanExpression operator=OR right=booleanExpression     # OrExpression
-    | NOT booleanExpression                                          # NotExpression
-    | BOOLEAN_VALUE                                                  # BoolValueExpression
-    | like                                                           # LikeExpression
+    | (id|constant|null) IN (array|id)                                                                   # InExpression
+    | (id|constant|null) (NOT IN | NIN) (array|id)                                                       # NinExpression
+    | left=booleanExpression operator=AND right=booleanExpression                                        # AndExpression
+    | left=booleanExpression operator=OR right=booleanExpression                                         # OrExpression
+    | NOT booleanExpression                                                                              # NotExpression
+    | BOOLEAN_VALUE                                                                                      # BoolValueExpression
+    | like                                                                                               # LikeExpression
+    | (id|stringQuoted) AGODAY (id|num)                                                                  # AgoDayExpression
+    | (id|stringQuoted) RECENTDAY (id|num)                                                               # RecentDayExpression
     ;
 
 like:
@@ -173,6 +174,7 @@ constant
     : num                           # NumConstant
     | stringQuoted                  # TextConstant
     | BOOLEAN_VALUE                 # BooleanConstant
+    | array                         # ArrayConstant
     ;
 
 stringQuoted:QUOTED_STRING+;
@@ -225,10 +227,13 @@ FOR:'for';
 BREAK:'break';
 CONTINUE:'continue';
 LIKE:'like';
+AGODAY:'agoDay'|'AgoDay'|'ago_day';
+RECENTDAY:'recentDay'|'RecentDay'|'recent_day';
 
-type :INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
+objectType:IDENTIFIER;
+type :objectType|INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|VOID_TYPE|ARRAY_TYPE;
 return_type:type;
-not_void_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
+not_void_type:objectType|INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 null:NULL;
 function_parameter_type:INT_TYPE|DOUBLE_TYPE|STRING_TYPE|BOOL_TYPE|ARRAY_TYPE;
 functionExecuteParameter: (id | constant | array | functionExecute)

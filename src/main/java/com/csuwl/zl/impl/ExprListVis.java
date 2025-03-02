@@ -7,6 +7,7 @@ import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public class ExprListVis implements ICustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.ExprListContext exprList = (ZLExpressParser.ExprListContext) tree;
         List<ZLExpressParser.ExpressionNotReturnContext> expressionNotReturnContexts = exprList.expressionNotReturn();
         Result result = null;

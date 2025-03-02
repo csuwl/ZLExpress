@@ -2,10 +2,14 @@ package com.csuwl.zl.impl;
 
 import com.csuwl.g4.ZLExpressParser;
 import com.csuwl.model.Result;
+import com.csuwl.util.NumUtil;
 import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTree;
+
+import java.lang.reflect.InvocationTargetException;
+import java.math.BigDecimal;
 
 /**
  * + operator
@@ -15,7 +19,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 public class PlusVis implements ICustomVisitor {
 
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.PlusExpressionContext ctx = (ZLExpressParser.PlusExpressionContext) tree;
 
         ParseTree child1 = ctx.getChild(0);
@@ -29,6 +33,10 @@ public class PlusVis implements ICustomVisitor {
         Object result1Value = result1.getResult();
         Object result2Value = result2.getResult();
 
+        if (!(result1Value instanceof Number) || !(result2Value instanceof Number)) {
+            throw new RuntimeException("不是数字无法相加");
+        }
+
         if (result1Value instanceof Integer && result2Value instanceof Integer) {
             return new Result((Integer) result1Value + (Integer) result2Value);
         } else if (result1Value instanceof Double && result2Value instanceof Integer) {
@@ -37,9 +45,11 @@ public class PlusVis implements ICustomVisitor {
             return new Result((Integer) result1Value + (Double) result2Value);
         } else if (result1Value instanceof Double && result2Value instanceof Double) {
             return new Result((Double) result1Value + (Double) result2Value);
+        } else {
+            BigDecimal res1 = NumUtil.toBigDecimal((Number) result1Value);
+            BigDecimal res2 = NumUtil.toBigDecimal((Number) result2Value);
+            return new Result(res1.add(res2));
         }
-
-        throw new RuntimeException("不是数字，无法相加");
     }
 
     @Override

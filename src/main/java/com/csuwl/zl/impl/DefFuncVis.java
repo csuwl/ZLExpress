@@ -20,7 +20,7 @@ public class DefFuncVis implements ICustomVisitor {
     @Override
     public Result visit(ParseTree tree, VisitProcess visitProcess) {
         ZLExpressParser.DefFunctionContext ctx = (ZLExpressParser.DefFunctionContext) tree;
-        String functionName = ctx.getChild(1).getText();
+        String functionName = ctx.getChild(0).getText();
         List<ZLExpressParser.FunctionParameterListContext> parameterListContextList = ctx.getRuleContexts(ZLExpressParser.FunctionParameterListContext.class);
         ZLExpressParser.FunctionParameterListContext functionParameterListContext = parameterListContextList.get(0);
         List<ZLExpressParser.FunctionParameterItemContext> functionParameterItemContextList = functionParameterListContext.getRuleContexts(ZLExpressParser.FunctionParameterItemContext.class);

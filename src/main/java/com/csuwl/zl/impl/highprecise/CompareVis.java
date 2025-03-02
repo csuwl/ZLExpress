@@ -3,11 +3,13 @@ package com.csuwl.zl.impl.highprecise;
 import com.csuwl.g4.ZLExpressLexer;
 import com.csuwl.g4.ZLExpressParser;
 import com.csuwl.model.Result;
+import com.csuwl.util.NumUtil;
 import com.csuwl.zl.ICustomVisitor;
 import com.csuwl.zl.IHighPreciseCustomVisitor;
 import com.csuwl.zl.VisitProcess;
 import org.antlr.v4.runtime.tree.ParseTree;
 
+import java.lang.reflect.InvocationTargetException;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
  */
 public class CompareVis implements IHighPreciseCustomVisitor {
     @Override
-    public Result visit(ParseTree tree, VisitProcess visitProcess) {
+    public Result visit(ParseTree tree, VisitProcess visitProcess) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         ZLExpressParser.CompareExpressionContext compareExpression = (ZLExpressParser.CompareExpressionContext) tree;
         Result result1 = visitProcess.visitParseTree(compareExpression.getChild(0));
         Result result2 = visitProcess.visitParseTree(compareExpression.getChild(2));
@@ -32,43 +34,110 @@ public class CompareVis implements IHighPreciseCustomVisitor {
         Object result2Value = result2.getResult();
         switch (type) {
             case ZLExpressLexer.EQUALS:
+                if (null == result1Value && null == result2Value) {
+                    return new Result(true);
+                }
+                if(null == result1Value || null == result2Value) {
+                    return new Result(false);
+                }
+
+                if (result1Value instanceof Number && result2Value instanceof Number) {
+                    BigDecimal res1 = NumUtil.toBigDecimal((Number) result1Value);
+                    BigDecimal res2 = NumUtil.toBigDecimal((Number) result2Value);
+                    return new Result(res1.equals(res2));
+                }
                 return new Result(result1.equals(result2));
             case ZLExpressLexer.NE:
+                if (null == result1Value && null == result2Value) {
+                    return new Result(false);
+                }
+                if(null == result1Value || null == result2Value) {
+                    return new Result(true);
+                }
+                if (result1Value instanceof Number && result2Value instanceof Number) {
+                    BigDecimal res1 = NumUtil.toBigDecimal((Number) result1Value);
+                    BigDecimal res2 = NumUtil.toBigDecimal((Number) result2Value);
+                    return new Result(!res1.equals(res2));
+                }
                 return new Result(!result1.equals(result2));
             case ZLExpressLexer.GE:
-                if (result1Value instanceof BigDecimal && result2Value instanceof BigDecimal) {
-                    BigDecimal bigDecimal1 = (BigDecimal) result1.getResult();
-                    BigDecimal bigDecimal2 = (BigDecimal) result2.getResult();
-                    return new Result(bigDecimal1.compareTo(bigDecimal2) >= 0);
-                } else {
-                    return new Result(null);
+                if (null == result1Value || null == result2Value) {
+                    return new Result(false);
                 }
+
+                BigDecimal res1 = null;
+                BigDecimal res2 = null;
+                if (result1Value instanceof BigDecimal) {
+                    res1 = (BigDecimal) result1Value;
+                } else {
+                    res1 = NumUtil.toBigDecimal((BigDecimal) result1Value);
+                }
+
+                if (result2Value instanceof BigDecimal) {
+                    res2 = (BigDecimal) result2Value;
+                } else {
+                    res2 = NumUtil.toBigDecimal((BigDecimal) result2Value);
+                }
+                return new Result(res1.compareTo(res2) >= 0);
             case ZLExpressLexer.LE:
-                if (result1Value instanceof BigDecimal && result2Value instanceof BigDecimal) {
-                    BigDecimal bigDecimal1 = (BigDecimal) result1.getResult();
-                    BigDecimal bigDecimal2 = (BigDecimal) result2.getResult();
-                    return new Result(bigDecimal1.compareTo(bigDecimal2) <= 0);
-                } else {
-                    return new Result(null);
+                if (null == result1Value || null == result2Value) {
+                    return new Result(false);
                 }
+
+                BigDecimal ress1 = null;
+                BigDecimal ress2 = null;
+                if (result1Value instanceof BigDecimal) {
+                    ress1 = (BigDecimal) result1Value;
+                } else {
+                    ress1 = NumUtil.toBigDecimal((BigDecimal) result1Value);
+                }
+
+                if (result2Value instanceof BigDecimal) {
+                    ress2 = (BigDecimal) result2Value;
+                } else {
+                    ress2 = NumUtil.toBigDecimal((BigDecimal) result2Value);
+                }
+                return new Result(ress1.compareTo(ress2) <= 0);
             case ZLExpressLexer.LT:
-                if (result1Value instanceof BigDecimal && result2Value instanceof BigDecimal) {
-                    BigDecimal bigDecimal1 = (BigDecimal) result1.getResult();
-                    BigDecimal bigDecimal2 = (BigDecimal) result2.getResult();
-                    return new Result(bigDecimal1.compareTo(bigDecimal2) < 0);
-                } else {
-                    return new Result(null);
+                if (null == result1Value || null == result2Value) {
+                    return new Result(false);
                 }
+
+                BigDecimal resss1 = null;
+                BigDecimal resss2 = null;
+                if (result1Value instanceof BigDecimal) {
+                    resss1 = (BigDecimal) result1Value;
+                } else {
+                    resss1 = NumUtil.toBigDecimal((BigDecimal) result1Value);
+                }
+
+                if (result2Value instanceof BigDecimal) {
+                    resss2 = (BigDecimal) result2Value;
+                } else {
+                    resss2 = NumUtil.toBigDecimal((BigDecimal) result2Value);
+                }
+                return new Result(resss1.compareTo(resss2) < 0);
             case ZLExpressLexer.GT:
-                if (result1Value instanceof BigDecimal && result2Value instanceof BigDecimal) {
-                    BigDecimal bigDecimal1 = (BigDecimal) result1.getResult();
-                    BigDecimal bigDecimal2 = (BigDecimal) result2.getResult();
-                    return new Result(bigDecimal1.compareTo(bigDecimal2) > 0);
-                } else {
-                    return new Result(null);
+                if (null == result1Value || null == result2Value) {
+                    return new Result(false);
                 }
+
+                BigDecimal ressss1 = null;
+                BigDecimal ressss2 = null;
+                if (result1Value instanceof BigDecimal) {
+                    ressss1 = (BigDecimal) result1Value;
+                } else {
+                    ressss1 = NumUtil.toBigDecimal((BigDecimal) result1Value);
+                }
+
+                if (result2Value instanceof BigDecimal) {
+                    ressss2 = (BigDecimal) result2Value;
+                } else {
+                    ressss2 = NumUtil.toBigDecimal((BigDecimal) result2Value);
+                }
+                return new Result(ressss1.compareTo(ressss2) > 0);
         }
-        return new Result(null);
+        return new Result(false);
     }
 
     @Override
