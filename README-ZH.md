@@ -141,5 +141,8 @@ public class CustomPrintFunction implements ExtenderCustomFunctionInterface {
 如果你有一些bug修复或者好的代码，你可以提交一个“Pull Request”到dev分支。
 
 
+## 8、接下来的工作
+邀请有时间和能力的小伙伴，在程序运行时将ZLExpress语法代码编译成java字节码运行。
+
 ## 联系我们
 -  email:1105865632@qq.com
